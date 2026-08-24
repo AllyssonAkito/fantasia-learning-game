@@ -13,4 +13,10 @@ export {
   InMemoryChildProfileRepository,
   type ChildProfileRepository,
   type CreateChildProfileInput,
+  type UpdateChildProfileInput,
 } from './child-profile-service';
+export {
+  ChildProfileSession,
+  type ChildProfileSessionState,
+} from './child-profile-session';
+export { avatarCatalog, getAvatar, type AvatarDefinition } from './avatars';

@@ -8,6 +8,7 @@ export type AppShellState =
 
 export interface AppShellProps {
   state: AppShellState;
+  adultAccess?: ReactNode;
 }
 
 interface SafeStateProps {
@@ -84,7 +85,7 @@ function ShellContent({ state }: AppShellProps) {
   }
 }
 
-export function AppShell({ state }: AppShellProps) {
+export function AppShell({ state, adultAccess }: AppShellProps) {
   return (
     <div className="app-shell">
       <header className="app-shell__header">
@@ -94,6 +95,7 @@ export function AppShell({ state }: AppShellProps) {
           </span>
           <span>Fantasia</span>
         </a>
+        {adultAccess}
       </header>
       <main className="app-shell__main">
         <ShellContent state={state} />

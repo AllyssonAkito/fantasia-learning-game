@@ -13,6 +13,8 @@ export interface CreateChildProfileInput {
   preferences: ChildProfile['preferences'];
 }
 
+export type UpdateChildProfileInput = Partial<CreateChildProfileInput>;
+
 function copy(profile: ChildProfile): ChildProfile {
   return {
     ...profile,
@@ -60,6 +62,55 @@ export class ChildProfileService {
         responsibleId,
         ...input,
         createdAt: timestamp,
+        updatedAt: timestamp,
+      }),
+    );
+  }
+
+  async update(
+    responsibleId: string,
+    profileId: string,
+    changes: UpdateChildProfileInput,
+  ): Promise<ChildProfile> {
+    const current = await this.repository.findById(profileId);
+    if (
+      !current ||
+      current.responsibleId !== responsibleId ||
+      current.archivedAt
+    ) {
+      throw new Error('Perfil indisponível para edição.');
+    }
+
+    return this.repository.save(
+      childProfileSchema.parse({
+        ...current,
+        ...changes,
+        preferences: changes.preferences ?? current.preferences,
+        updatedAt: this.now(),
+      }),
+    );
+  }
+
+  async archive(
+    responsibleId: string,
+    profileId: string,
+    adultConfirmed: boolean,
+  ): Promise<ChildProfile> {
+    if (!adultConfirmed) {
+      throw new Error('A confirmação adulta é obrigatória.');
+    }
+
+    const current = await this.repository.findById(profileId);
+    if (!current || current.responsibleId !== responsibleId) {
+      throw new Error('Perfil não encontrado.');
+    }
+    if (current.archivedAt) return current;
+
+    const timestamp = this.now();
+    return this.repository.save(
+      childProfileSchema.parse({
+        ...current,
+        archivedAt: timestamp,
         updatedAt: timestamp,
       }),
     );

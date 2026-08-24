@@ -40,7 +40,117 @@ body {
   display: flex;
   min-height: 4.5rem;
   align-items: center;
+  justify-content: space-between;
   padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+}
+
+.adult-access-button {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0.15rem solid rgb(255 255 255 / 80%);
+  border-radius: 1.1rem;
+  background: rgb(255 255 255 / 70%);
+  cursor: pointer;
+  font-size: 1.35rem;
+  place-items: center;
+}
+
+.adult-access-button:focus-visible,
+.adult-gate button:focus-visible,
+.avatar-option input:focus-visible + .avatar-option__symbol {
+  outline: 0.25rem solid var(--color-sun);
+  outline-offset: 0.2rem;
+}
+
+.adult-gate {
+  position: fixed;
+  z-index: 10;
+  display: grid;
+  background: rgb(31 65 72 / 70%);
+  inset: 0;
+  padding: 1rem;
+  place-items: center;
+}
+
+.adult-gate__card {
+  width: min(28rem, 100%);
+  border-radius: 2rem;
+  background: var(--color-cream);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem;
+  text-align: center;
+}
+
+.adult-gate__icon {
+  font-size: 3.5rem;
+}
+
+.adult-gate__hold,
+.adult-gate__cancel {
+  width: 100%;
+  min-height: 3.5rem;
+  border: 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.adult-gate__hold {
+  margin-top: 1rem;
+  background: var(--color-sun);
+}
+
+.adult-gate__cancel {
+  margin-top: 0.75rem;
+  background: #e6f4f5;
+}
+
+.avatar-picker {
+  border: 0;
+}
+
+.avatar-picker legend {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.avatar-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 1rem;
+}
+
+.avatar-option {
+  position: relative;
+  display: grid;
+  min-height: 7rem;
+  cursor: pointer;
+  gap: 0.4rem;
+  place-items: center;
+  text-align: center;
+}
+
+.avatar-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.avatar-option__symbol {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 0.25rem solid transparent;
+  border-radius: 1.5rem;
+  font-size: 2.25rem;
+  place-items: center;
+}
+
+.avatar-option input:checked + .avatar-option__symbol {
+  border-color: var(--color-ink);
 }
 
 .brand {
