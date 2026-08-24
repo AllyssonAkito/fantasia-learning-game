@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { AudioService, BrowserAudioBackend } from '@fantasia/audio';
 import { engineExamples } from './examples';
+
+const audio = new AudioService(new BrowserAudioBackend());
+
 export function Harness() {
   const [results, setResults] = useState<Record<string, boolean>>({});
   return (
@@ -18,6 +22,15 @@ export function Harness() {
               {example.label.slice(0, 1)}
             </div>
             <h2>{example.label}</h2>
+            <button
+              aria-label={`Ouvir instrução de ${example.label}`}
+              onClick={() =>
+                void audio.repeatInstruction({ text: 'Exemplo visual' })
+              }
+              type="button"
+            >
+              <span aria-hidden="true">🔊</span> Ouvir de novo
+            </button>
             <div className="actions">
               <button
                 onClick={() =>

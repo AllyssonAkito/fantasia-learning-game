@@ -58,7 +58,8 @@ Carrega, valida, versiona e consulta definições de conteúdo.
 
 ### Shared Services
 
-- áudio e TTS;
+- áudio e TTS (`packages/audio`), com fila, interrupção, mute, fallback visual e
+  redução automática de efeitos durante a fala;
 - feedback;
 - dicas;
 - recompensas;

@@ -5,6 +5,9 @@ describe('Harness', () => {
   it('executa os oito exemplos fora do produto', () => {
     render(<Harness />);
     expect(screen.getAllByRole('article')).toHaveLength(8);
+    expect(
+      screen.getAllByRole('button', { name: /Ouvir instrução de/i }),
+    ).toHaveLength(8);
     fireEvent.click(
       screen.getAllByRole('button', { name: 'Executar acerto' })[0]!,
     );
