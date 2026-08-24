@@ -1,0 +1,22 @@
+{
+  "name": "fantasia-learning-game",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plataforma infantil de microjogos educativos orientada por conteúdo.",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=22.12 <25",
+    "pnpm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @fantasia/web dev",
+    "dev:prototype": "vite --host 0.0.0.0",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  }
+}
