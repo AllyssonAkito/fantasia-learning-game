@@ -7,12 +7,14 @@ export interface LiveLearningPathProps {
   catalog: ContentCatalog;
   courseId: string;
   store: LearningPathProgressStore;
+  onSelect?: (levelId: string) => void;
 }
 
 export function LiveLearningPath({
   catalog,
   courseId,
   store,
+  onSelect,
 }: LiveLearningPathProps) {
   const progress = useSyncExternalStore(
     store.subscribe,
@@ -20,6 +22,9 @@ export function LiveLearningPath({
     store.getSnapshot,
   );
   return (
-    <LearningPath path={buildLearningPathView(catalog, courseId, progress)} />
+    <LearningPath
+      onSelect={onSelect}
+      path={buildLearningPathView(catalog, courseId, progress)}
+    />
   );
 }

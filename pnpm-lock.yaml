@@ -129,6 +129,9 @@ importers:
       '@fantasia/engine-core':
         specifier: workspace:*
         version: link:../../packages/engine-core
+      '@fantasia/engines':
+        specifier: workspace:*
+        version: link:../../packages/engines
       '@fantasia/telemetry':
         specifier: workspace:*
         version: link:../../packages/telemetry

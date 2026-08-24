@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { InMemoryContentCatalog, mvpCatalogSeed } from '@fantasia/content';
+import { AudioService, BrowserAudioBackend } from '@fantasia/audio';
 
 import { FantasiaApp } from './app/FantasiaApp';
 import { LearningPathProgressStore } from './learning-path/LearningPathProgressStore';
@@ -16,10 +17,12 @@ if (!rootElement) {
 
 const catalog = new InMemoryContentCatalog(mvpCatalogSeed);
 const progressStore = new LearningPathProgressStore();
+const audio = new AudioService(new BrowserAudioBackend());
 
 createRoot(rootElement).render(
   <StrictMode>
     <FantasiaApp
+      audio={audio}
       catalog={catalog}
       profiles={[
         {
