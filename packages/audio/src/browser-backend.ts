@@ -1,6 +1,17 @@
 import type { AudioAvailability, AudioBackend } from './audio-service';
 import type { AudioEffectDefinition } from './effect-catalog';
 
+export function selectPortugueseVoice(
+  voices: readonly SpeechSynthesisVoice[],
+): SpeechSynthesisVoice | undefined {
+  const language = (voice: SpeechSynthesisVoice) => voice.lang.toLowerCase();
+  return (
+    voices.find((voice) => language(voice) === 'pt-br') ??
+    voices.find((voice) => language(voice).startsWith('pt-br')) ??
+    voices.find((voice) => language(voice).startsWith('pt'))
+  );
+}
+
 export class BrowserAudioBackend implements AudioBackend {
   private currentAudio?: HTMLAudioElement;
   private context?: AudioContext;
@@ -29,20 +40,34 @@ export class BrowserAudioBackend implements AudioBackend {
     });
   }
 
-  speak(text: string, volume: number, language: string) {
+  async speak(text: string, volume: number, language: string) {
+    if (!this.availability.speech) throw new Error('speech-unavailable');
+    const synthesis = window.speechSynthesis;
+    let voice = selectPortugueseVoice(synthesis.getVoices());
+    if (!voice) {
+      await new Promise<void>((voicesReady) => {
+        const finish = () => {
+          synthesis.removeEventListener('voiceschanged', finish);
+          voicesReady();
+        };
+        synthesis.addEventListener('voiceschanged', finish, { once: true });
+        globalThis.setTimeout(finish, 700);
+      });
+      voice = selectPortugueseVoice(synthesis.getVoices());
+    }
+    if (!voice) throw new Error('portuguese-voice-unavailable');
+
     return new Promise<void>((resolve, reject) => {
-      if (!this.availability.speech) {
-        reject(new Error('speech-unavailable'));
-        return;
-      }
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = language;
+      utterance.lang =
+        voice.lang || (language.startsWith('pt') ? language : 'pt-BR');
+      utterance.voice = voice;
       utterance.rate = 0.9;
       utterance.pitch = 1.08;
       utterance.volume = volume;
       utterance.onend = () => resolve();
       utterance.onerror = () => reject(new Error('speech-failed'));
-      window.speechSynthesis.speak(utterance);
+      synthesis.speak(utterance);
     });
   }
 

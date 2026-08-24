@@ -1,4 +1,13 @@
-# Fantasia 1.0.0
+# Fantasia 1.0.1
+
+## Melhorias
+
+- cada nível agora apresenta seis tarefas em uma grade visual;
+- tarefas são liberadas em sequência e o nível termina somente após 6/6;
+- narração prioriza voz brasileira `pt-BR`, usa outra voz portuguesa como fallback e nunca escolhe voz inglesa;
+- instrução escrita permanece disponível quando o dispositivo não oferece voz em português.
+
+## Versão anterior — 1.0.0
 
 Primeira versão pública da plataforma de microjogos educativos criada para aprender brincando.
 

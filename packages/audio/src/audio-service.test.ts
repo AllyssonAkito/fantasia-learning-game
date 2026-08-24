@@ -55,6 +55,15 @@ describe('AudioService', () => {
     expect(driver.speak).toHaveBeenCalledWith('Toque na estrela', 1, 'pt-BR');
   });
 
+  it('não encaminha idioma inglês para a narração infantil', async () => {
+    const driver = backend({ recorded: false, speech: true, effects: false });
+    const service = new AudioService(driver);
+    await expect(
+      service.playInstruction({ text: 'Vamos brincar', language: 'en-US' }),
+    ).resolves.toBe('tts');
+    expect(driver.speak).toHaveBeenCalledWith('Vamos brincar', 1, 'pt-BR');
+  });
+
   it('oferece apoio visual quando todo áudio está indisponível', async () => {
     const onUnavailable = vi.fn();
     const service = new AudioService(

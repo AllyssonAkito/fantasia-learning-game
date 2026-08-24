@@ -38,7 +38,7 @@ const manifestEntries = await Promise.all(
 
 await writeFile(
   resolve(target, 'release-manifest.json'),
-  `${JSON.stringify({ version: '1.0.0', files: manifestEntries }, null, 2)}\n`,
+  `${JSON.stringify({ version: '1.0.1', files: manifestEntries }, null, 2)}\n`,
   'utf8',
 );
 

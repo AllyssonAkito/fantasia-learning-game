@@ -153,7 +153,9 @@ export class AudioService {
           await this.backend.speak(
             instruction.text,
             this.speechVolume,
-            instruction.language ?? 'pt-BR',
+            instruction.language?.toLowerCase().startsWith('pt')
+              ? instruction.language
+              : 'pt-BR',
           );
           return 'tts';
         } catch {
