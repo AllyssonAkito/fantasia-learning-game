@@ -2,6 +2,8 @@
 
 Primeira versão pública da plataforma de microjogos educativos criada para aprender brincando.
 
+Jogar: <https://fantasia-melina.allyssonakito.chatgpt.site>
+
 ## Destaques
 
 - trilha infantil com progressão, conclusão e recompensas locais;

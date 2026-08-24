@@ -10,6 +10,13 @@
 - conteúdo persistente: nenhum;
 - segredos de runtime: nenhum.
 
+## Produção
+
+- URL pública: <https://fantasia-melina.allyssonakito.chatgpt.site>
+- smoke test: HTTP 200 para HTML, bundle JavaScript, manifesto e fallback de rota;
+- cabeçalhos verificados: `nosniff` e bloqueio de frames;
+- primeira publicação: 24 de agosto de 2026.
+
 ## Promoção
 
 O mesmo artefato aprovado pela regressão é salvo como versão imutável e promovido para produção. O arquivo `dist/release-manifest.json` registra SHA-256 e tamanho de cada arquivo do cliente publicado.

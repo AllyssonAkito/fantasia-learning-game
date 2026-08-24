@@ -10,6 +10,7 @@ A primeira revisão ocorre entre 24 e 72 horas após a publicação. Este docume
 - regressões abertas de P0/P1: 0;
 - catálogo aprovado: 108 atividades;
 - tamanho do build móvel: abaixo do limite de 450 kB;
+- disponibilidade no smoke test inicial: HTTP 200 para página, assets, manifesto e fallback;
 - dados de uso reais: ainda não disponíveis no instante da publicação.
 
 ## Monitoramento

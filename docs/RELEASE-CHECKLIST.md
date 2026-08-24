@@ -20,6 +20,7 @@ Checklist operacional do Epic E14. A publicação inclui a plataforma orientada 
 - [x] Revisão de privacidade, segurança e retenção concluída.
 - [x] Plano de rollback documentado.
 - [x] Build reproduzível e pacote de hospedagem verificável.
+- [x] URL pública responde com HTML, assets, manifesto e fallback de rota.
 
 ## Comandos de aprovação
 
