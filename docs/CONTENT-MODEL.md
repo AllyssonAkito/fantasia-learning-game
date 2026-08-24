@@ -4,6 +4,8 @@
 
 Permitir criar e revisar atividades sem alterar os motores.
 
+Os schemas executáveis iniciais ficam em `packages/content/src/schemas.ts`. A identidade do responsável e outros contratos não pedagógicos pertencem a `packages/domain`.
+
 ## Hierarquia
 
 ```text
