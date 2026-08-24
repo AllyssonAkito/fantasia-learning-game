@@ -34,6 +34,8 @@ Separar completamente a mecânica do microjogo do conteúdo pedagógico. A arqui
 
 Responsável por navegação, carregamento, recuperação de falhas e composição das telas.
 
+A primeira implementação fica em `apps/web/src/app/AppShell.tsx`. Ela modela `loading`, `empty`, `error` e `ready` como estados explícitos, oferece recuperação no erro e recebe o conteúdo pronto sem conhecer atividades ou motores.
+
 ### Learning Path
 
 Apresenta Curso → Trilha → Habilidade → Nível sem expor a taxonomia completa para a criança.

@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { FoundationStatus } from './FoundationStatus';
+import { AppShell } from './app/AppShell';
 import './styles.css';
 
 const rootElement = document.getElementById('root');
@@ -14,6 +14,6 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <FoundationStatus />
+    <AppShell state={{ status: 'empty' }} />
   </StrictMode>,
 );
