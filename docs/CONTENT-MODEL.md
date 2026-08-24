@@ -30,6 +30,8 @@ Cada entidade possui identificador estável, versão de schema, versão editoria
 
 Todos os IDs são globais, em minúsculas, separados por ponto e não carregam textos exibidos. Referências ausentes, IDs duplicados, ciclos ou relações fora da hierarquia invalidam o catálogo antes do build.
 
+Curso, trilha e nível podem declarar `presentation` com rótulo curto e ícone destinados à criança. O modelo de navegação recebe somente esses campos, o destino opaco e o estado `current`, `locked` ou `completed`; títulos internos e nomes da taxonomia não são renderizados.
+
 `schemaVersion` é um inteiro positivo. `contentVersion` usa SemVer e identifica a revisão executada. Conteúdo publicado é imutável; correções geram nova revisão sem reescrever o histórico.
 
 ## Activity

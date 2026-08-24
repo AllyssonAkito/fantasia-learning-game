@@ -10,6 +10,7 @@ import {
   type Skill,
   type Trail,
 } from './schemas';
+import { validateCatalogIntegrity } from './integrity';
 
 export interface ContentCatalogSeed {
   courses?: readonly Course[];
@@ -47,6 +48,7 @@ export class InMemoryContentCatalog implements ContentCatalog {
   readonly #activities = new Map<string, Activity>();
 
   constructor(seed: ContentCatalogSeed = {}) {
+    validateCatalogIntegrity(seed);
     for (const candidate of seed.courses ?? []) {
       const course = courseSchema.parse(candidate);
       this.#courses.set(course.id, copy(course));

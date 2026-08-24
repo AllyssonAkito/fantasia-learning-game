@@ -38,10 +38,18 @@ const commonFields = {
   order: z.number().int().nonnegative(),
 };
 
+const childPresentationSchema = z
+  .object({
+    label: z.string().trim().min(1).max(40),
+    icon: z.string().regex(/^icon\.[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  })
+  .strict();
+
 export const courseSchema = z
   .object({
     ...commonFields,
     id: entityId('course', 1),
+    presentation: childPresentationSchema.optional(),
   })
   .strict();
 
@@ -50,6 +58,7 @@ export const trailSchema = z
     ...commonFields,
     id: entityId('trail', 2),
     courseId: entityId('course', 1),
+    presentation: childPresentationSchema.optional(),
   })
   .strict();
 
@@ -67,6 +76,7 @@ export const levelSchema = z
     id: entityId('level', 3),
     skillId: entityId('skill', 2),
     difficulty: z.number().int().min(1).max(10),
+    presentation: childPresentationSchema.optional(),
   })
   .strict();
 

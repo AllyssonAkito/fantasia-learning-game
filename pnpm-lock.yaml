@@ -74,6 +74,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@fantasia/content':
+        specifier: workspace:*
+        version: link:../../packages/content
       react:
         specifier: 'catalog:'
         version: 19.2.8
