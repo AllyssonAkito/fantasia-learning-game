@@ -67,6 +67,9 @@ Carrega, valida, versiona e consulta definições de conteúdo.
 - telemetria;
 - feature flags.
 
+Telemetria e agregações ficam em `packages/telemetry`; o adapter inicial é
+local, com retenção de 30 dias e exclusão por perfil, sem dependência de rede.
+
 ### Profile Repository
 
 Abstrai o armazenamento do responsável, perfis infantis e progresso. A primeira implementação pode ser local, preservando a possibilidade de backend futuro.
