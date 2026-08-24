@@ -1,6 +1,6 @@
 {
   "name": "fantasia-learning-game",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Plataforma infantil de microjogos educativos orientada por conteúdo.",
@@ -16,6 +16,7 @@
     "dev:harness": "pnpm --filter @fantasia/engine-harness dev",
     "dev:prototype": "vite --host 0.0.0.0",
     "build": "pnpm -r --if-present build",
+    "build:site": "pnpm build && node scripts/build-site.mjs",
     "e2e": "playwright test",
     "format": "prettier --write apps packages scripts tests package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
     "format:check": "prettier --check apps packages scripts tests package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",

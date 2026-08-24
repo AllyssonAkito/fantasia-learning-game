@@ -1,5 +1,7 @@
 # O Jardim da Cenoura
 
+> **Jogue a versão pública:** [Fantasia — Microjogos educativos](https://fantasia-melina.allyssonakito.chatgpt.site)
+
 Jogo infantil de navegador criado especialmente para **Melina**, de 4 anos. O projeto combina exploração, lógica, reconhecimento visual, letras e primeiros sons da leitura em atividades curtas, coloridas e sem punição.
 
 Os personagens foram desenvolvidos a partir dos brinquedos da família. Todo o jogo funciona localmente, sem cadastro, anúncios, compras ou envio de dados.
