@@ -1,5 +1,11 @@
 # Backlog executável do MVP
 
+## Proposal — Estratégia adaptativa futura
+
+Após o MVP, pesquisar uma recomendação explicável que use somente sinais agregados da sessão (tentativas, dicas, tempo e conclusão) para sugerir dificuldade ou atividade seguinte. Qualquer experimento exige Issue própria, revisão pedagógica e de privacidade, controle do responsável e opção de desligar. Não há algoritmo adaptativo em produção no MVP.
+
+Critérios para uma futura avaliação: não diagnosticar a criança, não comparar crianças, não criar pressão, não ocultar a regra de recomendação e manter sempre uma trilha manual disponível.
+
 ## Convenções
 
 - IDs locais serão substituídos pelos números reais das Issues após publicação.

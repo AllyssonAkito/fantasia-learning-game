@@ -11,3 +11,9 @@ export {
   type CompleteActivityInput,
   type ProgressRepository,
 } from './progress-repository';
+export {
+  AttemptHistory,
+  attemptRecordSchema,
+  type AttemptRecord,
+} from './attempt-history';
+export { applyUnlockRules, type UnlockRule } from './unlock-rules';

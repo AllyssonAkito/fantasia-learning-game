@@ -13,6 +13,7 @@
   "scripts": {
     "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build",
     "dev": "pnpm --filter @fantasia/web dev",
+    "dev:harness": "pnpm --filter @fantasia/engine-harness dev",
     "dev:prototype": "vite --host 0.0.0.0",
     "build": "pnpm -r --if-present build",
     "e2e": "playwright test",
