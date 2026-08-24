@@ -1,14 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  buildLearningPathView,
-  exampleCatalogSeed,
-  InMemoryContentCatalog,
-} from '@fantasia/content';
+import { exampleCatalogSeed, InMemoryContentCatalog } from '@fantasia/content';
 
 import { AppShell } from './app/AppShell';
 import { AdultGate } from './adult/AdultGate';
-import { LearningPath } from './learning-path/LearningPath';
+import { LiveLearningPath } from './learning-path/LiveLearningPath';
+import { LearningPathProgressStore } from './learning-path/LearningPathProgressStore';
 import './styles.css';
 
 const rootElement = document.getElementById('root');
@@ -20,7 +17,7 @@ if (!rootElement) {
 }
 
 const catalog = new InMemoryContentCatalog(exampleCatalogSeed);
-const learningPath = buildLearningPathView(catalog, 'course.logic');
+const progressStore = new LearningPathProgressStore();
 
 createRoot(rootElement).render(
   <StrictMode>
@@ -28,7 +25,13 @@ createRoot(rootElement).render(
       adultAccess={<AdultGate onUnlock={() => undefined} />}
       state={{
         status: 'ready',
-        content: <LearningPath path={learningPath} />,
+        content: (
+          <LiveLearningPath
+            catalog={catalog}
+            courseId="course.logic"
+            store={progressStore}
+          />
+        ),
       }}
     />
   </StrictMode>,

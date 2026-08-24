@@ -29,6 +29,7 @@ export function LearningPath({ path }: LearningPathProps) {
           <button
             aria-label={`${stop.label}. ${stateLabels[stop.state]}`}
             className={`path-stop path-stop--${stop.state}`}
+            data-level-id={stop.destinationId}
             disabled={stop.state === 'locked'}
             key={stop.destinationId}
             type="button"
