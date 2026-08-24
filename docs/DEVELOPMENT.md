@@ -35,6 +35,32 @@ Para conferir os contratos TypeScript sem emitir arquivos:
 pnpm typecheck
 ```
 
+## Ambientes
+
+O Vite fornece três modos aceitos pela aplicação:
+
+| Modo | Uso | Dados e serviços |
+|---|---|---|
+| `development` | desenvolvimento local com atualização rápida | adaptadores locais; telemetria desligada |
+| `test` | testes unitários, integração e interface | dados determinísticos; telemetria desligada |
+| `production` | build estático publicado | serviços explicitamente configurados; sem segredos no cliente |
+
+Use `.env.example` apenas como inventário de variáveis públicas. Qualquer variável com prefixo `VITE_` entra no bundle do navegador e, portanto, nunca pode conter segredos, credenciais ou dados pessoais. Arquivos `.env` locais não são versionados.
+
+Um modo desconhecido gera erro explícito em vez de iniciar a experiência com configuração ambígua. Falhas de um serviço opcional devem cair em adaptadores seguros e não bloquear a criança.
+
+## Qualidade e testes
+
+```bash
+pnpm lint
+pnpm format:check
+pnpm test
+pnpm e2e
+pnpm check
+```
+
+`pnpm check` executa lint, formatação, tipos, testes e build. O teste de interface usa Chromium em viewport móvel; instale o navegador uma vez com `pnpm exec playwright install chromium`.
+
 ## Protótipo preservado
 
 O `index.html` da raiz, `game.js`, `styles.css` e os assets atuais continuam sendo o protótipo de referência. Eles não fazem parte do build da nova aplicação.
