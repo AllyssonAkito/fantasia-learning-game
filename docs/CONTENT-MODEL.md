@@ -14,20 +14,32 @@ Course
             └── Activity
 ```
 
-Cada entidade possui identificador estável, versão, título interno e estado editorial.
+Cada entidade possui identificador estável, versão de schema, versão editorial, título interno e estado editorial. A decisão normativa está em [ADR-007](adr/ADR-007-pedagogical-taxonomy.md).
+
+## Identidade e relações
+
+| Entidade | Prefixo de ID | Relação obrigatória |
+|---|---|---|
+| `Course` | `course.` | raiz |
+| `Trail` | `trail.` | `courseId` |
+| `Skill` | `skill.` | `trailId` |
+| `Level` | `level.` | `skillId` |
+| `Activity` | `activity.` | `levelId` e `engine` |
+
+Todos os IDs são globais, em minúsculas, separados por ponto e não carregam textos exibidos. Referências ausentes, IDs duplicados, ciclos ou relações fora da hierarquia invalidam o catálogo antes do build.
+
+`schemaVersion` é um inteiro positivo. `contentVersion` usa SemVer e identifica a revisão executada. Conteúdo publicado é imutável; correções geram nova revisão sem reescrever o histórico.
 
 ## Activity
 
 ```json
 {
-  "id": "logic.pattern.repeat.001",
-  "version": 1,
+  "id": "activity.logic.repeat.001",
+  "schemaVersion": 1,
+  "contentVersion": "1.0.0",
   "status": "draft",
   "engine": "sequence",
-  "course": "logic",
-  "trail": "patterns",
-  "skill": "recognize-repetition",
-  "level": "patterns-01",
+  "levelId": "level.logic.patterns.01",
   "difficulty": 2,
   "instruction": {
     "text": "O que vem depois?",
@@ -59,13 +71,11 @@ Cada entidade possui identificador estável, versão, título interno e estado e
 | Campo | Finalidade |
 |---|---|
 | `id` | identidade permanente |
-| `version` | evolução compatível do conteúdo |
+| `schemaVersion` | versão do formato do registro |
+| `contentVersion` | revisão editorial em SemVer |
 | `status` | `draft`, `review`, `published`, `retired` |
 | `engine` | motor registrado |
-| `course` | área pedagógica |
-| `trail` | agrupamento de habilidades |
-| `skill` | habilidade treinada |
-| `level` | posição na progressão |
+| `levelId` | nível e caminho pedagógico relacionados |
 | `difficulty` | escala interna de 1 a 10 |
 | `instruction` | texto e áudio |
 | `content` | payload específico do motor |
