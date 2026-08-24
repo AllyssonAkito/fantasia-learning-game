@@ -25,6 +25,17 @@
 - [Templates de Issues](../.github/ISSUE_TEMPLATE/)
 - [Template de Pull Request](../.github/PULL_REQUEST_TEMPLATE.md)
 
+## Release e operação
+
+- [Checklist de release](RELEASE-CHECKLIST.md)
+- [Revisão de privacidade e segurança](PRIVACY-SECURITY-REVIEW.md)
+- [Plano de rollback](ROLLBACK.md)
+- [Notas da versão 1.0.0](RELEASE-NOTES.md)
+- [Revisão pós-release](POST-RELEASE-REVIEW.md)
+- [Plano de QA infantil](QA-CHILD-PLAN.md)
+- [Relatório do piloto técnico](QA-PILOT-REPORT.md)
+- [Auditoria de acessibilidade](ACCESSIBILITY-AUDIT.md)
+
 ## Ordem recomendada de leitura
 
 1. Produto

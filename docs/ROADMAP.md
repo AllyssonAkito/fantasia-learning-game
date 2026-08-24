@@ -77,6 +77,8 @@ Saída: progresso individual compreensível sem coleta excessiva.
 - critérios de lançamento;
 - publicação do MVP.
 
+Saída: MVP 1.0.0 público, com regressão concluída, rollback documentado e monitoramento inicial.
+
 ## Pós-MVP
 
 - dificuldade adaptativa;
