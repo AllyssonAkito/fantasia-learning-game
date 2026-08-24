@@ -5,3 +5,10 @@ export {
   type InventoryItem,
   type ProfileInventory,
 } from './inventory';
+export { EquipmentRepository, type ProfileEquipment } from './equipment';
+export {
+  findCatalogItem,
+  initialItemCatalog,
+  type CatalogItem,
+  type EquipmentSlot,
+} from './item-catalog';

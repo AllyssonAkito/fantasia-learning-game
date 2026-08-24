@@ -151,6 +151,8 @@ O painel completo não é pré-requisito do primeiro ciclo do motor.
 
 ## Fora de escopo inicial
 
+O catálogo inicial de itens cosméticos é conquistado apenas por conclusão de atividades. Não há compra, preço, raridade, prazo, escassez ou loja infantil no MVP.
+
 - IA em produção;
 - CMS completo;
 - alfabetização no primeiro MVP da plataforma;
