@@ -412,16 +412,8 @@ body {
   padding: clamp(1rem, 5vw, 2rem);
 }
 
-.activity-screen h1,
-.activity-screen__eyebrow {
+.activity-screen h1 {
   margin: 0;
-}
-
-.activity-screen__eyebrow {
-  color: #316f78;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .activity-screen__back {
@@ -462,6 +454,7 @@ body {
   color: var(--color-ink);
   cursor: pointer;
   font: inherit;
+  font-size: 2.4rem;
   font-weight: 900;
   padding: 0.75rem;
 }
@@ -504,6 +497,36 @@ body {
 .assembly-board__pieces button {
   background: #fff2bf;
   box-shadow: 0 0.25rem 0 #dca313;
+  font-size: 2.2rem;
+}
+
+.activity-completion-overlay {
+  position: fixed;
+  z-index: 50;
+  display: grid;
+  overflow-y: auto;
+  background: rgb(34 77 82 / 58%);
+  inset: 0;
+  padding: 1rem;
+  place-items: center;
+}
+
+.activity-completion-overlay__dialog {
+  display: grid;
+  width: min(32rem, 100%);
+  gap: 1rem;
+  border: 0.25rem solid rgb(255 255 255 / 85%);
+  border-radius: 2rem;
+  background: var(--color-cream);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1rem, 5vw, 2rem);
+}
+
+.activity-completion-overlay .reward-celebration {
+  width: 100%;
+  min-height: 11rem;
+  margin: 0;
+  box-shadow: none;
 }
 
 .assembly-board__pieces button[aria-pressed='true'] {

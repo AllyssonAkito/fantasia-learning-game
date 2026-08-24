@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   AudioService,
   InstructionAudio,
@@ -8,24 +8,33 @@ import type {
 export interface InstructionAudioControlProps {
   audio: AudioService;
   instruction: InstructionAudio;
+  autoPlay?: boolean;
   onRepeated?: (result: InstructionResult) => void;
 }
 
 export function InstructionAudioControl({
   audio,
   instruction,
+  autoPlay = false,
   onRepeated,
 }: InstructionAudioControlProps) {
   const [status, setStatus] = useState<'idle' | 'playing' | 'visual-only'>(
     'idle',
   );
 
-  async function repeat() {
+  const repeat = useCallback(async () => {
     setStatus('playing');
     const result = await audio.repeatInstruction(instruction);
     setStatus(result === 'visual-only' ? 'visual-only' : 'idle');
     onRepeated?.(result);
-  }
+  }, [audio, instruction, onRepeated]);
+  const autoPlayed = useRef(false);
+
+  useEffect(() => {
+    if (!autoPlay || autoPlayed.current) return;
+    autoPlayed.current = true;
+    void repeat();
+  }, [autoPlay, repeat]);
 
   return (
     <div className="instruction-audio">
