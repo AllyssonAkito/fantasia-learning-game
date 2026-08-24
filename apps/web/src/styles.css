@@ -399,6 +399,123 @@ body {
   font-weight: 800;
 }
 
+.activity-screen {
+  display: grid;
+  width: min(42rem, calc(100vw - 2rem));
+  gap: 1rem;
+  border: 0.25rem solid rgb(255 255 255 / 80%);
+  border-radius: 2rem;
+  background: var(--color-cream);
+  box-shadow:
+    var(--shadow-soft),
+    0 0.45rem 0 #72bbc8;
+  padding: clamp(1rem, 5vw, 2rem);
+}
+
+.activity-screen h1,
+.activity-screen__eyebrow {
+  margin: 0;
+}
+
+.activity-screen__eyebrow {
+  color: #316f78;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.activity-screen__back {
+  justify-self: start;
+  min-height: 3.5rem;
+  border: 0;
+  border-radius: 1rem;
+  background: #e6f4f5;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.65rem 1rem;
+}
+
+.activity-screen__pattern,
+.activity-screen__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.activity-screen__pattern span {
+  display: grid;
+  min-height: 5rem;
+  border-radius: 1.2rem;
+  background: #eaf8fa;
+  font-size: 2.2rem;
+  place-items: center;
+}
+
+.activity-screen__options button {
+  min-height: 5rem;
+  border: 0.18rem solid #fff;
+  border-radius: 1.25rem;
+  background: #fff2bf;
+  box-shadow: 0 0.3rem 0 #dca313;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.75rem;
+}
+
+.activity-screen__options button:focus-visible,
+.activity-screen__back:focus-visible {
+  outline: 0.25rem solid var(--color-sun);
+  outline-offset: 0.2rem;
+}
+
+.activity-screen__options button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.assembly-board {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.8fr) minmax(8rem, 1.2fr);
+  gap: 1rem;
+}
+
+.assembly-board__pieces,
+.assembly-board__slots {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.assembly-board button {
+  min-height: 4.5rem;
+  border: 0.16rem solid #fff;
+  border-radius: 1rem;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.6rem;
+}
+
+.assembly-board__pieces button {
+  background: #fff2bf;
+  box-shadow: 0 0.25rem 0 #dca313;
+}
+
+.assembly-board__pieces button[aria-pressed='true'] {
+  outline: 0.28rem solid #5ab98d;
+}
+
+.assembly-board__slots button {
+  border: 0.2rem dashed #72bbc8;
+  background: #eaf8fa;
+  font-size: 1.5rem;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

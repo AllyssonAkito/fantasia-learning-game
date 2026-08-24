@@ -3,6 +3,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { InMemoryContentCatalog, mvpCatalogSeed } from '@fantasia/content';
 import { LearningPathProgressStore } from '../learning-path/LearningPathProgressStore';
 import { FantasiaApp } from './FantasiaApp';
+import type { AudioService } from '@fantasia/audio';
+
+const audio = {
+  repeatInstruction: vi.fn(async () => 'visual-only' as const),
+  playEffect: vi.fn(async () => true),
+} as unknown as AudioService;
 
 afterEach(() => vi.useRealTimers());
 
@@ -11,6 +17,7 @@ describe('FantasiaApp', () => {
     vi.useFakeTimers();
     render(
       <FantasiaApp
+        audio={audio}
         catalog={new InMemoryContentCatalog(mvpCatalogSeed)}
         progressStore={new LearningPathProgressStore()}
         profiles={[
@@ -27,5 +34,37 @@ describe('FantasiaApp', () => {
     expect(
       screen.getByRole('heading', { name: 'Resumo das brincadeiras' }),
     ).toBeVisible();
+  });
+
+  it('percorre nível, atividade e retorno com avanço', () => {
+    render(
+      <FantasiaApp
+        audio={audio}
+        catalog={new InMemoryContentCatalog(mvpCatalogSeed)}
+        profiles={[]}
+        progressStore={new LearningPathProgressStore()}
+      />,
+    );
+    fireEvent.click(
+      screen.getByRole('button', {
+        name: /Padrões.*Pronto para brincar/i,
+      }),
+    );
+    expect(
+      screen.getByRole('heading', { name: 'O que vem depois?' }),
+    ).toBeVisible();
+    const activity = mvpCatalogSeed.activities![0]!;
+    const expectedId = (activity.content as { expectedId: string }).expectedId;
+    const label = (
+      activity.content as { options: { id: string; label: string }[] }
+    ).options.find(({ id }) => id === expectedId)!.label;
+    fireEvent.click(screen.getByRole('button', { name: label }));
+    fireEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+    expect(
+      screen.getByRole('button', { name: /Padrões.*Concluído/i }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('button', { name: /Montar.*Pronto para brincar/i }),
+    ).toBeEnabled();
   });
 });

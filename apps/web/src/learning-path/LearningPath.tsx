@@ -2,6 +2,7 @@ import type { LearningPathView } from '@fantasia/content';
 
 export interface LearningPathProps {
   path: LearningPathView;
+  onSelect?: (levelId: string) => void;
 }
 
 const stateLabels = {
@@ -10,7 +11,7 @@ const stateLabels = {
   locked: 'Bloqueado por enquanto',
 } as const;
 
-export function LearningPath({ path }: LearningPathProps) {
+export function LearningPath({ path, onSelect }: LearningPathProps) {
   if (path.status === 'empty') {
     return (
       <section aria-live="polite" className="path-empty" role="status">
@@ -32,6 +33,7 @@ export function LearningPath({ path }: LearningPathProps) {
             data-level-id={stop.destinationId}
             disabled={stop.state === 'locked'}
             key={stop.destinationId}
+            onClick={() => onSelect?.(stop.destinationId)}
             type="button"
           >
             <span aria-hidden="true" className="path-stop__number">

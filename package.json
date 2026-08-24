@@ -11,15 +11,16 @@
     "pnpm": ">=11 <12"
   },
   "scripts": {
-    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build && pnpm qa:performance",
     "dev": "pnpm --filter @fantasia/web dev",
     "dev:harness": "pnpm --filter @fantasia/engine-harness dev",
     "dev:prototype": "vite --host 0.0.0.0",
     "build": "pnpm -r --if-present build",
     "e2e": "playwright test",
-    "format": "prettier --write apps packages package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
-    "format:check": "prettier --check apps packages package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
+    "format": "prettier --write apps packages scripts tests package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
+    "format:check": "prettier --check apps packages scripts tests package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
     "lint": "eslint apps packages --max-warnings 0",
+    "qa:performance": "node scripts/validate-mobile-budget.mjs",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },
