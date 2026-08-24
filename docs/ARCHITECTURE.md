@@ -123,13 +123,17 @@ Catálogo
 - telemetria desacoplada;
 - testes determinísticos com fonte de aleatoriedade controlável.
 
+## Stack aprovada
+
+A fundação usa React, TypeScript estrito e Vite em um workspace pnpm. Regras de domínio e motores permanecem independentes do framework de interface; conteúdo e persistência são validados por schema antes de chegar às sessões. Testes usam Vitest e Testing Library nas camadas de unidade e integração, com Playwright para os fluxos de interface.
+
+A decisão completa, suas alternativas e consequências estão em [ADR-005](adr/ADR-005-technical-stack.md).
+
 ## Decisões em aberto
 
-- framework de interface;
 - estratégia de backend;
 - autenticação do responsável;
 - formato definitivo do catálogo;
-- biblioteca de schema;
 - hospedagem;
 - política de sincronização entre dispositivos.
 
