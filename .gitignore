@@ -1,2 +1,16 @@
 # Fotos originais dos brinquedos permanecem apenas no dispositivo da família.
 assets/characters/*-foto.*
+
+# Workspace da plataforma
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.vite/
+.pnpm-store/
+.env
+.env.*
+!.env.example
+*.local
+*.tsbuildinfo

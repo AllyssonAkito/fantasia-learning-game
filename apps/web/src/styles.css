@@ -1,0 +1,36 @@
+:root {
+  color: #264d54;
+  background: #e9fbff;
+  font-family: system-ui, sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 20rem;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.foundation-status {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.foundation-status__sparkle {
+  font-size: 3rem;
+}
+
+.foundation-status h1 {
+  margin-block: 1rem 0.5rem;
+}
+
+.foundation-status p {
+  margin: 0;
+}

@@ -6,6 +6,8 @@ Os personagens foram desenvolvidos a partir dos brinquedos da família. Todo o j
 
 > Este código é o protótipo de experiência. O planejamento da futura plataforma de microjogos orientada por conteúdo está em [`docs/`](docs/README.md). A estratégia preserva o protótipo e não autoriza uma reescrita sem Issues aprovadas.
 
+A fundação da nova plataforma vive em [`apps/web/`](apps/web/) e pode ser executada sem alterar o protótipo. As instruções reproduzíveis estão em [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) e a política de bibliotecas em [`docs/DEPENDENCY-POLICY.md`](docs/DEPENDENCY-POLICY.md).
+
 ## Estado atual
 
 - 9 atividades na trilha principal
