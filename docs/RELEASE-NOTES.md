@@ -1,4 +1,13 @@
-# Fantasia 1.0.1
+# Fantasia 1.0.2
+
+## Melhorias
+
+- escolhas apresentam somente os personagens, mantendo nomes acessíveis;
+- instruções em português brasileiro são reproduzidas ao abrir a atividade;
+- conclusão aparece em modal sobre a brincadeira, sem rolar a página;
+- o rótulo técnico “Brincadeira N” foi removido da experiência infantil.
+
+## Versão anterior — 1.0.1
 
 ## Melhorias
 

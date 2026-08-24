@@ -4,6 +4,26 @@ import type { AudioService } from '@fantasia/audio';
 import { InstructionAudioControl } from './InstructionAudioControl';
 
 describe('InstructionAudioControl', () => {
+  it('reproduz automaticamente uma vez ao entrar na atividade', async () => {
+    const repeatInstruction = vi.fn(async () => 'played' as const);
+    const { rerender } = render(
+      <InstructionAudioControl
+        autoPlay
+        audio={{ repeatInstruction } as unknown as AudioService}
+        instruction={{ text: 'Escolha o coelhinho.' }}
+      />,
+    );
+    await waitFor(() => expect(repeatInstruction).toHaveBeenCalledOnce());
+    rerender(
+      <InstructionAudioControl
+        autoPlay
+        audio={{ repeatInstruction } as unknown as AudioService}
+        instruction={{ text: 'Escolha o coelhinho.' }}
+      />,
+    );
+    expect(repeatInstruction).toHaveBeenCalledOnce();
+  });
+
   it('repete por toque e mantém a alternativa visual', async () => {
     const repeatInstruction = vi.fn(async () => 'visual-only' as const);
     const onRepeated = vi.fn();

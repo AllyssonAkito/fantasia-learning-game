@@ -5,7 +5,7 @@ import { feedbackCopyCatalog } from '@fantasia/content';
 import { feedbackForAttempt, type FeedbackCue } from '@fantasia/engine-core';
 import { InstructionAudioControl } from '../audio/InstructionAudioControl';
 import { ActivityFeedback } from '../feedback/ActivityFeedback';
-import { RewardCelebration } from '../rewards/RewardCelebration';
+import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
 import { createChoicePresentation } from './activity-presentation';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
 
@@ -63,11 +63,9 @@ function ChoiceActivityScreen({
       <button className="activity-screen__back" onClick={onBack} type="button">
         ← Voltar
       </button>
-      <p className="activity-screen__eyebrow">
-        Brincadeira {activity.order + 1}
-      </p>
       <h1 id="activity-title">{activity.instruction.text}</h1>
       <InstructionAudioControl
+        autoPlay
         audio={audio}
         instruction={activity.instruction}
       />
@@ -90,12 +88,13 @@ function ChoiceActivityScreen({
       >
         {presentation.options.map((option) => (
           <button
+            aria-label={option.label}
             disabled={complete}
             key={option.id}
             onClick={() => answer(option.id)}
             type="button"
           >
-            {option.label}
+            <span aria-hidden="true">{option.label.split(' ')[0]}</span>
           </button>
         ))}
       </div>
@@ -103,15 +102,11 @@ function ChoiceActivityScreen({
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}
       {complete ? (
-        <>
-          <RewardCelebration
-            coins={activity.reward.coins}
-            stars={activity.reward.stars}
-          />
-          <button className="primary-action" onClick={onComplete} type="button">
-            Continuar
-          </button>
-        </>
+        <ActivityCompletionOverlay
+          coins={activity.reward.coins}
+          onContinue={onComplete}
+          stars={activity.reward.stars}
+        />
       ) : null}
     </section>
   );

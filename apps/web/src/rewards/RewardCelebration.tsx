@@ -1,9 +1,14 @@
 export interface RewardCelebrationProps {
   stars: number;
   coins: number;
+  headingId?: string;
 }
 
-export function RewardCelebration({ stars, coins }: RewardCelebrationProps) {
+export function RewardCelebration({
+  stars,
+  coins,
+  headingId,
+}: RewardCelebrationProps) {
   return (
     <section
       aria-live="polite"
@@ -14,7 +19,7 @@ export function RewardCelebration({ stars, coins }: RewardCelebrationProps) {
       <span aria-hidden="true" className="reward-celebration__sparkles">
         ✦ ⭐ ✦
       </span>
-      <h2>Você conseguiu!</h2>
+      <h2 id={headingId}>Você conseguiu!</h2>
       <p>
         {stars} {stars === 1 ? 'estrela' : 'estrelas'} e {coins}{' '}
         {coins === 1 ? 'moeda' : 'moedas'}

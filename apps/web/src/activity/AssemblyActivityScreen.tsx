@@ -9,7 +9,7 @@ import { feedbackForAttempt, type FeedbackCue } from '@fantasia/engine-core';
 import { assemblyEngine, type AssemblyDefinition } from '@fantasia/engines';
 import { InstructionAudioControl } from '../audio/InstructionAudioControl';
 import { ActivityFeedback } from '../feedback/ActivityFeedback';
-import { RewardCelebration } from '../rewards/RewardCelebration';
+import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
 
 export interface AssemblyActivityScreenProps {
   activity: Activity;
@@ -99,11 +99,9 @@ export function AssemblyActivityScreen({
       <button className="activity-screen__back" onClick={onBack} type="button">
         ← Voltar
       </button>
-      <p className="activity-screen__eyebrow">
-        Brincadeira {activity.order + 1}
-      </p>
       <h1 id="activity-title">{activity.instruction.text}</h1>
       <InstructionAudioControl
+        autoPlay
         audio={audio}
         instruction={activity.instruction}
       />
@@ -114,6 +112,7 @@ export function AssemblyActivityScreen({
             .filter(({ id }) => !placedIds.has(id))
             .map((piece) => (
               <button
+                aria-label={pieceLabel(piece.id)}
                 aria-pressed={selected === piece.id}
                 draggable
                 key={piece.id}
@@ -123,7 +122,9 @@ export function AssemblyActivityScreen({
                 }
                 type="button"
               >
-                {pieceLabel(piece.id)}
+                <span aria-hidden="true">
+                  {pieceLabel(piece.id).split(' ')[0]}
+                </span>
               </button>
             ))}
         </div>
@@ -151,15 +152,11 @@ export function AssemblyActivityScreen({
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}
       {complete ? (
-        <>
-          <RewardCelebration
-            coins={activity.reward.coins}
-            stars={activity.reward.stars}
-          />
-          <button className="primary-action" onClick={onComplete} type="button">
-            Continuar
-          </button>
-        </>
+        <ActivityCompletionOverlay
+          coins={activity.reward.coins}
+          onContinue={onComplete}
+          stars={activity.reward.stars}
+        />
       ) : null}
     </section>
   );

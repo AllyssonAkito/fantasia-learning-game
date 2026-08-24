@@ -1,5 +1,16 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  // O Chromium headless anuncia TTS, mas não conclui a fala. A camada de voz
+  // tem cobertura unitária; no E2E exercitamos o fallback visual sem bloqueio.
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+      configurable: true,
+      value: undefined,
+    });
+  });
+});
+
 test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   page,
 }) => {
@@ -37,10 +48,18 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   await expect(
     page.getByRole('heading', { name: 'O que vem depois?' }),
   ).toBeVisible();
-  await page.getByRole('button', { name: '💜 coração roxo' }).click();
+  await expect(page.getByText(/brincadeira \d+/i)).toHaveCount(0);
   await expect(
-    page.getByRole('heading', { name: 'Você conseguiu!' }),
-  ).toBeVisible();
+    page.getByRole('button', { name: '💜 coração roxo' }),
+  ).toHaveText('💜');
+  await page.getByRole('button', { name: '💜 coração roxo' }).click();
+  const completion = page.getByRole('dialog', { name: 'Você conseguiu!' });
+  await expect(completion).toBeVisible();
+  await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
+  await expect(page.locator('.activity-completion-overlay')).toHaveCSS(
+    'position',
+    'fixed',
+  );
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(
     page.getByRole('button', { name: /atividade 1.*concluída/i }),
