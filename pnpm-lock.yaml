@@ -175,6 +175,9 @@ importers:
 
   packages/content:
     dependencies:
+      '@fantasia/engines':
+        specifier: workspace:*
+        version: link:../engines
       zod:
         specifier: 'catalog:'
         version: 4.4.3

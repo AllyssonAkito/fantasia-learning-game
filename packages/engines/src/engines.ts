@@ -49,7 +49,7 @@ export const choiceEngine: ActivityEngine<ChoiceDefinition, string> = {
     ),
 };
 
-const dragDefinitionSchema = base
+export const dragDefinitionSchema = base
   .extend({
     items: z.array(z.object({ id, targetId: id }).strict()).min(1),
     targets: z.array(option).min(1),
@@ -248,6 +248,17 @@ export const allEngines = [
   comparisonEngine,
   assemblyEngine,
 ] as const;
+
+export const engineDefinitionSchemas = {
+  choice: choiceDefinitionSchema,
+  drag: dragDefinitionSchema,
+  sequence: sequenceDefinitionSchema,
+  association: associationDefinitionSchema,
+  classification: classificationDefinitionSchema,
+  memory: memoryDefinitionSchema,
+  comparison: comparisonDefinitionSchema,
+  assembly: assemblyDefinitionSchema,
+} as const;
 
 export function registerAllEngines(registry: EngineRegistry): EngineRegistry {
   for (const engine of allEngines) registry.register(engine as ActivityEngine);

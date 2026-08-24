@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { exampleCatalogSeed, InMemoryContentCatalog } from '@fantasia/content';
+import { InMemoryContentCatalog, mvpCatalogSeed } from '@fantasia/content';
 
 import { AppShell } from './app/AppShell';
 import { AdultGate } from './adult/AdultGate';
@@ -16,7 +16,7 @@ if (!rootElement) {
   );
 }
 
-const catalog = new InMemoryContentCatalog(exampleCatalogSeed);
+const catalog = new InMemoryContentCatalog(mvpCatalogSeed);
 const progressStore = new LearningPathProgressStore();
 
 createRoot(rootElement).render(
