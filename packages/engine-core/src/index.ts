@@ -17,3 +17,9 @@ export {
   type EvaluationResult,
 } from './evaluation';
 export { createSeededRandom, seededShuffle } from './random';
+export {
+  hintForAttempt,
+  type ActivityHint,
+  type HintContent,
+  type HintLevel,
+} from './hint-service';
