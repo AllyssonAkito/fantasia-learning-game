@@ -12,6 +12,7 @@ export interface MvpMetrics {
   sessions: number;
   completionRate: number;
   activitiesCompleted: number;
+  totalActivityMs: number;
   medianActivityMs: number;
   averageAttemptsToComplete: number;
   hintsByLevel: Record<1 | 2 | 3, number>;
@@ -67,6 +68,10 @@ export function aggregateMvpMetrics(
     completionRate:
       started.length === 0 ? 0 : completed.length / started.length,
     activitiesCompleted: completed.length,
+    totalActivityMs: completed.reduce(
+      (total, event) => total + (event.elapsedMs ?? 0),
+      0,
+    ),
     medianActivityMs: median(
       completed.flatMap((event) => event.elapsedMs ?? []),
     ),
