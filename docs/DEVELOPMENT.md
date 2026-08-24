@@ -1,5 +1,9 @@
 # Desenvolvimento local
 
+## Harness visual dos motores
+
+Execute `pnpm dev:harness` para abrir os oito exemplos de motor diretamente, sem navegar pelo produto infantil. Cada cartão permite simular acerto e erro por teclado, toque ou mouse e apresenta retorno visual em região anunciada por leitores de tela.
+
 ## Pré-requisitos
 
 - Node.js 22.22 ou versão compatível com `>=22.12 <25`;
