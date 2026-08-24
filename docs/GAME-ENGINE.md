@@ -21,6 +21,8 @@ Todo motor deve:
 
 ## Estados padronizados
 
+A máquina de estados executável inicial está em `packages/engine-core/src/activity-session.ts`. Transições inválidas falham explicitamente, erros podem voltar a `idle` por recuperação e a conclusão só é emitida uma vez.
+
 ```text
 loading
 ready
