@@ -28,6 +28,13 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
     .getByRole('button', { name: /padrões.*pronto para brincar/i })
     .click();
   await expect(
+    page.getByRole('button', { name: /atividade 1.*pronta/i }),
+  ).toBeEnabled();
+  await expect(page.getByRole('button', { name: /atividade \d/i })).toHaveCount(
+    6,
+  );
+  await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
+  await expect(
     page.getByRole('heading', { name: 'O que vem depois?' }),
   ).toBeVisible();
   await page.getByRole('button', { name: '💜 coração roxo' }).click();
@@ -36,8 +43,11 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   ).toBeVisible();
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(
-    page.getByRole('button', { name: /padrões.*concluído/i }),
-  ).toBeVisible();
+    page.getByRole('button', { name: /atividade 1.*concluída/i }),
+  ).toBeEnabled();
+  await expect(
+    page.getByRole('button', { name: /atividade 2.*pronta/i }),
+  ).toBeEnabled();
   expect(consoleErrors).toEqual([]);
 });
 
@@ -62,6 +72,7 @@ test('respeita movimento reduzido na celebração', async ({ page }) => {
   await page
     .getByRole('button', { name: /padrões.*pronto para brincar/i })
     .click();
+  await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
   await page.getByRole('button', { name: '💜 coração roxo' }).click();
   const duration = await page
     .locator('.reward-celebration')

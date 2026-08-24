@@ -526,6 +526,142 @@ body {
   white-space: nowrap;
 }
 
+.level-grid {
+  display: grid;
+  width: min(48rem, calc(100vw - 2rem));
+  gap: 1rem;
+  padding: 1rem 0 3rem;
+  text-align: center;
+}
+
+.level-grid h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+.level-grid__back {
+  justify-self: start;
+  min-height: 3.5rem;
+  border: 0;
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 75%);
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.65rem 1rem;
+}
+
+.level-grid__count {
+  display: inline-flex;
+  min-height: 4.5rem;
+  align-items: baseline;
+  justify-self: center;
+  gap: 0.55rem;
+  border-radius: 1.2rem;
+  background: #c9e7fb;
+  color: #4e87b3;
+  padding: 0.55rem 1.25rem;
+}
+
+.level-grid__count strong {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.level-grid__count span {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.level-grid__tasks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.level-task {
+  position: relative;
+  display: grid;
+  min-height: 10rem;
+  overflow: hidden;
+  border: 0.25rem solid #fff;
+  border-radius: 1.5rem;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 0.35rem 0 #b9d4e6;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  gap: 0.35rem;
+  padding: 0.7rem;
+  place-items: center;
+}
+
+.level-task__picture {
+  display: grid;
+  width: 100%;
+  min-height: 5.6rem;
+  border-radius: 1rem;
+  background: #eaf8fa;
+  font-size: 3.2rem;
+  place-items: center;
+}
+
+.level-task__title {
+  font-weight: 900;
+}
+
+.level-task small {
+  color: #52757b;
+  font-weight: 800;
+}
+
+.level-task__check {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0 1.15rem 0 1rem;
+  background: var(--color-sun);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 900;
+  place-items: center;
+}
+
+.level-task--current {
+  border-color: var(--color-sun);
+  box-shadow: 0 0.35rem 0 #dca313;
+}
+
+.level-task--completed {
+  border-color: var(--color-sun);
+}
+
+.level-task--locked {
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  opacity: 0.72;
+}
+
+.level-grid__back:focus-visible,
+.level-task:focus-visible {
+  outline: 0.3rem solid #316f78;
+  outline-offset: 0.2rem;
+}
+
+@media (max-width: 38rem) {
+  .level-grid__tasks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .level-task {
+    min-height: 9rem;
+  }
+}
+
 .learning-path {
   width: min(38rem, calc(100vw - 2rem));
   padding: 1rem 0 3rem;

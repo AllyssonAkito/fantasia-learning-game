@@ -36,7 +36,7 @@ describe('FantasiaApp', () => {
     ).toBeVisible();
   });
 
-  it('percorre nível, atividade e retorno com avanço', () => {
+  it('percorre as seis tarefas antes de concluir e avançar o nível', () => {
     render(
       <FantasiaApp
         audio={audio}
@@ -51,15 +51,30 @@ describe('FantasiaApp', () => {
       }),
     );
     expect(
-      screen.getByRole('heading', { name: 'O que vem depois?' }),
-    ).toBeVisible();
-    const activity = mvpCatalogSeed.activities![0]!;
-    const expectedId = (activity.content as { expectedId: string }).expectedId;
-    const label = (
-      activity.content as { options: { id: string; label: string }[] }
-    ).options.find(({ id }) => id === expectedId)!.label;
-    fireEvent.click(screen.getByRole('button', { name: label }));
-    fireEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+      screen.getAllByRole('button', { name: /Atividade \d/i }),
+    ).toHaveLength(6);
+
+    const activities = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.logic.patterns.01',
+    );
+    for (const [index, activity] of activities.entries()) {
+      fireEvent.click(
+        screen.getByRole('button', {
+          name: new RegExp(`Atividade ${index + 1}.*Pronta`, 'i'),
+        }),
+      );
+      expect(
+        screen.getByRole('heading', { name: 'O que vem depois?' }),
+      ).toBeVisible();
+      const expectedId = (activity.content as { expectedId: string })
+        .expectedId;
+      const label = (
+        activity.content as { options: { id: string; label: string }[] }
+      ).options.find(({ id }) => id === expectedId)!.label;
+      fireEvent.click(screen.getByRole('button', { name: label }));
+      fireEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+    }
+
     expect(
       screen.getByRole('button', { name: /Padrões.*Concluído/i }),
     ).toBeVisible();

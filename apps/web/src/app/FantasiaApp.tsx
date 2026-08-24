@@ -9,6 +9,7 @@ import {
   type ResponsibleProfile,
 } from '../adult/ResponsibleArea';
 import { LiveLearningPath } from '../learning-path/LiveLearningPath';
+import { LevelActivityGrid } from '../learning-path/LevelActivityGrid';
 import type { LearningPathProgressStore } from '../learning-path/LearningPathProgressStore';
 import { AppShell } from './AppShell';
 
@@ -29,8 +30,10 @@ export function FantasiaApp({
 }: FantasiaAppProps) {
   const [adultAreaOpen, setAdultAreaOpen] = useState(false);
   const [levelId, setLevelId] = useState<string>();
-  const activity = levelId
-    ? catalog.getActivitiesByLevel(levelId)[0]
+  const [activityId, setActivityId] = useState<string>();
+  const levelActivities = levelId ? catalog.getActivitiesByLevel(levelId) : [];
+  const activity = activityId
+    ? levelActivities.find(({ id }) => id === activityId)
     : undefined;
 
   const nextLevel = (completedLevelId: string) => {
@@ -52,17 +55,33 @@ export function FantasiaApp({
               <ActivityScreen
                 activity={activity}
                 audio={audio}
-                onBack={() => setLevelId(undefined)}
+                onBack={() => setActivityId(undefined)}
                 onComplete={() => {
-                  progressStore.completeLevel(levelId, nextLevel(levelId));
-                  setLevelId(undefined);
+                  const levelComplete = progressStore.completeActivity(
+                    activity.id,
+                    levelId,
+                    levelActivities.map(({ id }) => id),
+                    nextLevel(levelId),
+                  );
+                  setActivityId(undefined);
+                  if (levelComplete) setLevelId(undefined);
                 }}
+              />
+            ) : levelId ? (
+              <LevelActivityGrid
+                activities={levelActivities}
+                onBack={() => setLevelId(undefined)}
+                onSelect={setActivityId}
+                store={progressStore}
               />
             ) : (
               <LiveLearningPath
                 catalog={catalog}
                 courseId="course.logic"
-                onSelect={setLevelId}
+                onSelect={(selectedLevelId) => {
+                  setLevelId(selectedLevelId);
+                  setActivityId(undefined);
+                }}
                 store={progressStore}
               />
             ),
