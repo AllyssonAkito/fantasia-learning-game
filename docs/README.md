@@ -28,6 +28,7 @@
 ## Release e operação
 
 - [Checklist de release](RELEASE-CHECKLIST.md)
+- [Hospedagem](HOSTING.md)
 - [Revisão de privacidade e segurança](PRIVACY-SECURITY-REVIEW.md)
 - [Plano de rollback](ROLLBACK.md)
 - [Notas da versão 1.0.0](RELEASE-NOTES.md)
