@@ -41,18 +41,19 @@ export function InstructionAudioControl({
       <button
         aria-label="Ouvir a instrução novamente"
         className="instruction-audio__button"
+        data-playing={status === 'playing'}
         disabled={status === 'playing'}
         onClick={() => void repeat()}
         type="button"
       >
-        <span aria-hidden="true">🔊</span>
-        {status === 'playing' ? 'Ouvindo…' : 'Ouvir de novo'}
+        <span aria-hidden="true">{status === 'playing' ? '🔉' : '🔊'}</span>
       </button>
-      <p className="instruction-audio__text">{instruction.text}</p>
       <span aria-live="polite" className="visually-hidden">
-        {status === 'visual-only'
-          ? 'O áudio não está disponível. A instrução está escrita na tela.'
-          : ''}
+        {status === 'playing'
+          ? 'Reproduzindo instrução.'
+          : status === 'visual-only'
+            ? `O áudio não está disponível. Instrução: ${instruction.text}`
+            : ''}
       </span>
     </div>
   );

@@ -1,4 +1,14 @@
-# Fantasia 1.0.2
+# Fantasia 1.0.3
+
+## Melhorias
+
+- fases agora priorizam completamente personagens, objetos e áudio;
+- título e instruções permanecem acessíveis, mas não ocupam a tela infantil;
+- repetir instrução virou um botão circular somente com ícone no canto inferior esquerdo;
+- voltar virou um botão × somente com ícone no canto superior direito;
+- o mesmo padrão visual foi aplicado às fases de escolha e montagem.
+
+## Versão anterior — 1.0.2
 
 ## Melhorias
 
