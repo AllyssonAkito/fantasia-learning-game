@@ -12,7 +12,7 @@
 
 ## Promoção
 
-O mesmo artefato aprovado pela regressão é salvo como versão imutável e promovido para produção. O arquivo `dist/release-manifest.json` registra SHA-256 e tamanho de cada arquivo executável publicado.
+O mesmo artefato aprovado pela regressão é salvo como versão imutável e promovido para produção. O arquivo `dist/release-manifest.json` registra SHA-256 e tamanho de cada arquivo do cliente publicado.
 
 ## Saúde
 
