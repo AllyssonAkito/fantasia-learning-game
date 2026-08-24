@@ -96,16 +96,17 @@ export function AssemblyActivityScreen({
   const placedIds = new Set(Object.keys(placements));
   return (
     <section className="activity-screen" aria-labelledby="activity-title">
-      <button className="activity-screen__back" onClick={onBack} type="button">
-        ← Voltar
+      <button
+        aria-label="Voltar"
+        className="activity-screen__back"
+        onClick={onBack}
+        type="button"
+      >
+        <span aria-hidden="true">×</span>
       </button>
-      <h1 id="activity-title">{activity.instruction.text}</h1>
-      <InstructionAudioControl
-        autoPlay
-        audio={audio}
-        instruction={activity.instruction}
-      />
-      <p>Escolha ou arraste uma peça da esquerda para o lugar certo.</p>
+      <h1 className="visually-hidden" id="activity-title">
+        {activity.instruction.text}
+      </h1>
       <div className="assembly-board">
         <div className="assembly-board__pieces" aria-label="Peças disponíveis">
           {pieces
@@ -151,6 +152,11 @@ export function AssemblyActivityScreen({
       {feedback ? (
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}
+      <InstructionAudioControl
+        autoPlay
+        audio={audio}
+        instruction={activity.instruction}
+      />
       {complete ? (
         <ActivityCompletionOverlay
           coins={activity.reward.coins}

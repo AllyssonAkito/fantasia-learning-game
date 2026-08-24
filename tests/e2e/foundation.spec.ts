@@ -45,10 +45,12 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
     6,
   );
   await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
-  await expect(
-    page.getByRole('heading', { name: 'O que vem depois?' }),
-  ).toBeVisible();
+  await expect(page.locator('#activity-title')).toHaveClass('visually-hidden');
   await expect(page.getByText(/brincadeira \d+/i)).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Voltar' })).toHaveText('×');
+  await expect(
+    page.getByRole('button', { name: 'Ouvir a instrução novamente' }),
+  ).toHaveText(/🔊|🔉/);
   await expect(
     page.getByRole('button', { name: '💜 coração roxo' }),
   ).toHaveText('💜');

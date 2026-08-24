@@ -60,15 +60,17 @@ function ChoiceActivityScreen({
 
   return (
     <section className="activity-screen" aria-labelledby="activity-title">
-      <button className="activity-screen__back" onClick={onBack} type="button">
-        ← Voltar
+      <button
+        aria-label="Voltar"
+        className="activity-screen__back"
+        onClick={onBack}
+        type="button"
+      >
+        <span aria-hidden="true">×</span>
       </button>
-      <h1 id="activity-title">{activity.instruction.text}</h1>
-      <InstructionAudioControl
-        autoPlay
-        audio={audio}
-        instruction={activity.instruction}
-      />
+      <h1 className="visually-hidden" id="activity-title">
+        {activity.instruction.text}
+      </h1>
       {presentation.pattern.length > 0 ? (
         <div
           className="activity-screen__pattern"
@@ -80,7 +82,7 @@ function ChoiceActivityScreen({
           <span aria-label="parte que falta">?</span>
         </div>
       ) : (
-        <p>{presentation.prompt}</p>
+        <p className="visually-hidden">{presentation.prompt}</p>
       )}
       <div
         className="activity-screen__options"
@@ -101,6 +103,11 @@ function ChoiceActivityScreen({
       {feedback ? (
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}
+      <InstructionAudioControl
+        autoPlay
+        audio={audio}
+        instruction={activity.instruction}
+      />
       {complete ? (
         <ActivityCompletionOverlay
           coins={activity.reward.coins}

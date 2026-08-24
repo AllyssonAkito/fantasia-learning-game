@@ -364,24 +364,22 @@ body {
 
 .instruction-audio {
   display: grid;
-  gap: 0.45rem;
-  justify-items: start;
+  justify-self: start;
 }
 
 .instruction-audio__button {
-  display: inline-flex;
-  min-height: 3.5rem;
-  align-items: center;
-  gap: 0.55rem;
+  display: grid;
+  width: 3.65rem;
+  height: 3.65rem;
   border: 0.16rem solid #fff;
-  border-radius: 1.15rem;
+  border-radius: 50%;
   background: #fff2bf;
   box-shadow: 0 0.25rem 0 #dca313;
   color: var(--color-ink);
   cursor: pointer;
-  font: inherit;
-  font-weight: 900;
-  padding: 0.65rem 1rem;
+  font-size: 1.65rem;
+  padding: 0;
+  place-items: center;
 }
 
 .instruction-audio__button:focus-visible {
@@ -391,12 +389,11 @@ body {
 
 .instruction-audio__button:disabled {
   cursor: wait;
-  opacity: 0.72;
+  opacity: 0.78;
 }
 
-.instruction-audio__text {
-  margin: 0;
-  font-weight: 800;
+.instruction-audio__button[data-playing='true'] {
+  animation: audio-pulse 0.8s ease-in-out infinite alternate;
 }
 
 .activity-screen {
@@ -412,21 +409,21 @@ body {
   padding: clamp(1rem, 5vw, 2rem);
 }
 
-.activity-screen h1 {
-  margin: 0;
-}
-
 .activity-screen__back {
-  justify-self: start;
-  min-height: 3.5rem;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  justify-self: end;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 50%;
   background: #e6f4f5;
   color: var(--color-ink);
   cursor: pointer;
   font: inherit;
+  font-size: 2rem;
   font-weight: 900;
-  padding: 0.65rem 1rem;
+  padding: 0;
+  place-items: center;
 }
 
 .activity-screen__pattern,
@@ -866,6 +863,15 @@ body {
 @keyframes mascot-nod {
   50% {
     transform: rotate(-3deg) translateY(-0.2rem);
+  }
+}
+
+@keyframes audio-pulse {
+  from {
+    transform: scale(0.94);
+  }
+  to {
+    transform: scale(1.06);
   }
 }
 

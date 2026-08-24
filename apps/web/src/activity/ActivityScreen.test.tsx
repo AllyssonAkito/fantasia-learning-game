@@ -38,6 +38,15 @@ describe('ActivityScreen', () => {
       );
     }
     expect(screen.queryByText(/brincadeira \d+/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: activity.instruction.text }),
+    ).toHaveClass('visually-hidden');
+    expect(screen.getByRole('button', { name: 'Voltar' })).toHaveTextContent(
+      '×',
+    );
+    expect(
+      screen.getByRole('button', { name: 'Ouvir a instrução novamente' }),
+    ).toHaveTextContent(/🔊|🔉/);
     await waitFor(() => expect(audio.repeatInstruction).toHaveBeenCalled());
   });
 
