@@ -271,6 +271,11 @@ Não são utilizados frameworks ou bibliotecas de terceiros.
 
 ## Planejamento da plataforma
 
+- [Repositório público](https://github.com/AllyssonAkito/fantasia-learning-game)
+- [Project público — Learning Game — Product Development](https://github.com/users/AllyssonAkito/projects/2)
+- [Issue de fundação #1](https://github.com/AllyssonAkito/fantasia-learning-game/issues/1)
+- [Pull Request de planejamento #2](https://github.com/AllyssonAkito/fantasia-learning-game/pull/2)
+
 - [`docs/PRODUCT.md`](docs/PRODUCT.md) — visão, escopo e critérios do MVP.
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — fases e gates de entrega.
 - [`docs/BACKLOG.md`](docs/BACKLOG.md) — 14 Epics e decomposição executável.
