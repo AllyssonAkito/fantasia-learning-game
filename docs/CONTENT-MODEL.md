@@ -130,6 +130,11 @@ Um item nunca salta diretamente de `draft` para `published`. Retirar conteúdo i
 
 O CMS não faz parte do primeiro ciclo. Inicialmente, arquivos versionados no repositório podem cumprir o papel de catálogo.
 
+O catálogo inicial executável fica em `packages/content/src/mvp-catalog.ts` e
+possui 108 atividades. Sua matriz e seus checklists estão registrados em
+[`CONTENT-REVIEW.md`](CONTENT-REVIEW.md); `validatePublishableCatalog` faz a
+validação de quantidade, cobertura, schema de motor, áudio e assets no CI.
+
 ## Compatibilidade
 
 - schemas têm versão;

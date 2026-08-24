@@ -27,6 +27,16 @@ export {
 } from './editorial';
 export { CatalogIntegrityError, validateCatalogIntegrity } from './integrity';
 export { exampleCatalogSeed } from './examples';
+export { mvpAssets, mvpAssetById, type ContentAsset } from './mvp-assets';
+export {
+  mvpCatalogSeed,
+  mvpContentCoverage,
+  type ContentCoverageEntry,
+} from './mvp-catalog';
+export {
+  PublishValidationError,
+  validatePublishableCatalog,
+} from './publish-validation';
 export {
   buildLearningPathView,
   type LearningPathProgress,
