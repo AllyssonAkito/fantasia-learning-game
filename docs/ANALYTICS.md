@@ -83,11 +83,30 @@ Não apresentar diagnósticos, rótulos ou comparação pública entre crianças
 - inferência médica ou psicológica;
 - modelos adaptativos automatizados.
 
-## Pendências antes de produção
+## Implementação do MVP
 
-- revisão jurídica e de privacidade;
-- consentimento e controle do responsável;
-- política de retenção;
-- exportação e exclusão de dados;
-- definição de backend e jurisdição;
-- auditoria dos eventos implementados.
+O pacote `packages/telemetry` valida eventos na entrada, oferece adapter local
+sem backend, garante emissão única de início/conclusão/abandono e agrega as
+métricas acima de forma reproduzível. O schema estrito rejeita nome, e-mail,
+texto livre, localização, gravação, stack trace e qualquer campo não aprovado.
+
+## Retenção e exclusão
+
+- retenção local máxima: 30 dias;
+- limpeza por data ocorre ao iniciar a aplicação e antes de gerar resumos;
+- exclusão/arquivamento de perfil remove todos os eventos daquele ID;
+- exclusão da conta limpa o adapter inteiro;
+- não há transmissão para backend no MVP;
+- não há cookies de publicidade nem rastreamento entre sites.
+
+Uma futura sincronização exige nova Issue, consentimento verificável do
+responsável, revisão de jurisdição e atualização desta política antes de ser
+habilitada.
+
+## Auditoria de dados sensíveis
+
+Permitidos: IDs pseudônimos, IDs/versionamento de atividade, motor,
+dificuldade, tentativa, nível de dica, duração, resultado e valores de
+recompensa. Proibidos: nome da criança, data de nascimento, voz, resposta em
+texto livre, endereço, localização, e-mail, IP persistido ou identificadores de
+publicidade.
