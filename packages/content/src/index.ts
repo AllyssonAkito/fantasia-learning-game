@@ -24,3 +24,11 @@ export {
   canTransitionEditorialStatus,
   editorialTransitions,
 } from './editorial';
+export { CatalogIntegrityError, validateCatalogIntegrity } from './integrity';
+export { exampleCatalogSeed } from './examples';
+export {
+  buildLearningPathView,
+  type LearningPathProgress,
+  type LearningPathStop,
+  type LearningPathView,
+} from './learning-path';

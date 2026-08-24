@@ -74,7 +74,10 @@ describe('InMemoryContentCatalog', () => {
   it('ordena resultados e protege o catálogo contra mutação externa', () => {
     const later = { ...trail, id: 'trail.logic.later', order: 2 };
     const earlier = { ...trail, id: 'trail.logic.earlier', order: 1 };
-    const catalog = new InMemoryContentCatalog({ trails: [later, earlier] });
+    const catalog = new InMemoryContentCatalog({
+      courses: [course],
+      trails: [later, earlier],
+    });
 
     const result = catalog.getTrailsByCourse(course.id);
     result[0]!.title = 'Alterado fora';
@@ -83,12 +86,15 @@ describe('InMemoryContentCatalog', () => {
     expect(catalog.getTrailsByCourse(course.id)[0]!.title).toBe(common.title);
   });
 
-  it('recusa registros estruturalmente inválidos antes da consulta', () => {
+  it('recusa registros estruturalmente ou referencialmente inválidos', () => {
     expect(
       () =>
         new InMemoryContentCatalog({
           courses: [{ ...course, id: 'logic' }],
         }),
     ).toThrow();
+    expect(() => new InMemoryContentCatalog({ trails: [trail] })).toThrow(
+      'Referência ausente',
+    );
   });
 });

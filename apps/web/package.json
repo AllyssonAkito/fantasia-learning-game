@@ -12,6 +12,7 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@fantasia/content": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
