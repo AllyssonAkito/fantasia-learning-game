@@ -6,6 +6,8 @@ Um motor define interação, validação e estados. Uma atividade fornece conte�
 
 ## Contrato comum
 
+Os contratos executáveis ficam em `packages/engine-core`: `EngineRegistry` resolve motores por ID, `EvaluationResult` padroniza respostas e os utilitários de seed tornam sessões reproduzíveis.
+
 Todo motor deve:
 
 - receber conteúdo previamente validado;
@@ -132,6 +134,8 @@ O conteúdo fornece mensagens e assets; o motor decide quando apresentar cada n�
 ## Dificuldade
 
 A propriedade `difficulty` varia de `1` a `10`. Cada motor deve documentar como a escala altera a experiência.
+
+O core converte a escala nas faixas `intro`, `guided`, `practice`, `challenge` e `mastery`. O efeito específico continua declarado por motor: quantidade de opções/itens, proximidade dos distratores, extensão da sequência, quantidade de grupos ou peças e tempo até a dica. A dificuldade nunca remove acessibilidade nem transforma erro em punição.
 
 Exemplo para Sequência:
 
