@@ -246,6 +246,53 @@ body {
   box-shadow: 0 0.15rem 0 #358765;
 }
 
+.instruction-audio {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+
+.instruction-audio__button {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.55rem;
+  border: 0.16rem solid #fff;
+  border-radius: 1.15rem;
+  background: #fff2bf;
+  box-shadow: 0 0.25rem 0 #dca313;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.65rem 1rem;
+}
+
+.instruction-audio__button:focus-visible {
+  outline: 0.25rem solid var(--color-sun);
+  outline-offset: 0.2rem;
+}
+
+.instruction-audio__button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.instruction-audio__text {
+  margin: 0;
+  font-weight: 800;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .learning-path {
   width: min(38rem, calc(100vw - 2rem));
   padding: 1rem 0 3rem;

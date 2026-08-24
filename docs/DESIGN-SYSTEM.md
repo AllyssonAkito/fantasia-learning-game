@@ -89,6 +89,11 @@ Cada atividade pode definir:
 
 TTS é fallback aceitável. Áudio pré-gravado exige catálogo e revisão.
 
+O serviço central tenta o arquivo revisado, usa TTS `pt-BR` quando ele falha e
+mantém a instrução visível quando nenhum áudio existe. Efeitos usam os IDs
+`success`, `attempt`, `hint` e `reward`; durante fala, seu volume é reduzido para
+preservar a compreensão. Toda atividade expõe o controle “Ouvir de novo”.
+
 ## Movimento
 
 - feedback de toque: até 150 ms;
