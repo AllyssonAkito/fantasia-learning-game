@@ -419,6 +419,10 @@ body {
   animation: mascot-celebrate 0.8s ease-out;
 }
 
+.mascot--reduced-motion .mascot__portrait {
+  animation: none;
+}
+
 @keyframes mascot-nod {
   50% {
     transform: rotate(-3deg) translateY(-0.2rem);

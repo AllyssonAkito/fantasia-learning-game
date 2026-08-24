@@ -14,6 +14,7 @@
   "dependencies": {
     "@fantasia/content": "workspace:*",
     "@fantasia/domain": "workspace:*",
+    "@fantasia/engine-core": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

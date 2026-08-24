@@ -6,6 +6,7 @@ export interface MascotProps {
   avatarId: MascotAvatarId;
   state: MascotState;
   message?: string;
+  reducedMotion?: boolean;
 }
 
 const stateLabels: Record<MascotState, string> = {
@@ -15,12 +16,18 @@ const stateLabels: Record<MascotState, string> = {
   celebration: 'comemora com você',
 };
 
-export function Mascot({ avatarId, state, message }: MascotProps) {
+export function Mascot({
+  avatarId,
+  state,
+  message,
+  reducedMotion = false,
+}: MascotProps) {
   const mascot = mascotAssets[avatarId];
   return (
     <aside
       aria-label={`${mascot.label} ${stateLabels[state]}`}
-      className={`mascot mascot--${state}`}
+      className={`mascot mascot--${state}${reducedMotion ? ' mascot--reduced-motion' : ''}`}
+      data-motion={reducedMotion ? 'reduced' : 'full'}
       data-state={state}
     >
       <div className="mascot__portrait">
