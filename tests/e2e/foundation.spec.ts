@@ -9,4 +9,9 @@ test('abre a trilha infantil em viewport móvel com estado atual', async ({ page
     page.getByRole('button', { name: /vamos brincar.*pronto para brincar/i }),
   ).toBeEnabled();
   await expect(page.locator('main')).toBeInViewport();
+
+  await page.getByRole('button', { name: 'Abrir acesso do responsável' }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.getByRole('button', { name: 'Segure por 2 segundos' }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
 });

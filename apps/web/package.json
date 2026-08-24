@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@fantasia/content": "workspace:*",
+    "@fantasia/domain": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

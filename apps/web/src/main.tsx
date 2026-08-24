@@ -7,6 +7,7 @@ import {
 } from '@fantasia/content';
 
 import { AppShell } from './app/AppShell';
+import { AdultGate } from './adult/AdultGate';
 import { LearningPath } from './learning-path/LearningPath';
 import './styles.css';
 
@@ -24,6 +25,7 @@ const learningPath = buildLearningPathView(catalog, 'course.logic');
 createRoot(rootElement).render(
   <StrictMode>
     <AppShell
+      adultAccess={<AdultGate onUnlock={() => undefined} />}
       state={{
         status: 'ready',
         content: <LearningPath path={learningPath} />,
