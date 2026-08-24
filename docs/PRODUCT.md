@@ -142,6 +142,10 @@ Preparar arquitetura para exibir futuramente:
 
 O painel completo não é pré-requisito do primeiro ciclo do motor.
 
+O MVP oferece um resumo local protegido com tempo em atividades concluídas,
+dias de uso, quantidade concluída e sinais descritivos por área. A linguagem e
+o cálculo estão documentados em [`RESPONSIBLE-AREA.md`](RESPONSIBLE-AREA.md).
+
 ## Meta de conteúdo
 
 - 6 áreas;

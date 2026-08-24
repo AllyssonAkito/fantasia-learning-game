@@ -129,6 +129,9 @@ importers:
       '@fantasia/engine-core':
         specifier: workspace:*
         version: link:../../packages/engine-core
+      '@fantasia/telemetry':
+        specifier: workspace:*
+        version: link:../../packages/telemetry
       react:
         specifier: 'catalog:'
         version: 19.2.8

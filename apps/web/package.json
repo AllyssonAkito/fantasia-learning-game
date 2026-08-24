@@ -16,6 +16,7 @@
     "@fantasia/content": "workspace:*",
     "@fantasia/domain": "workspace:*",
     "@fantasia/engine-core": "workspace:*",
+    "@fantasia/telemetry": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
