@@ -1,0 +1,47 @@
+name: Epic
+description: Resultado amplo composto por Features relacionadas
+title: "[EPIC] "
+labels: ["type:epic"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+      description: Qual resultado de produto este Epic entrega?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Por que isso existe e qual problema resolve?
+    validations:
+      required: true
+  - type: textarea
+    id: outcomes
+    attributes:
+      label: Resultados esperados
+      description: Liste resultados observáveis, não tarefas técnicas.
+    validations:
+      required: true
+  - type: textarea
+    id: features
+    attributes:
+      label: Features previstas
+      description: Liste ou vincule as sub-issues.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de encerramento
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Fora de escopo
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependências e bloqueios
