@@ -148,6 +148,6 @@ Em 24 de agosto de 2026, o planejamento foi materializado publicamente no GitHub
 - 120 Issues abertas no Project, contando a Issue de fundação;
 - nove views salvas;
 - campos de Status, Work Type, Priority, Area, Phase, Effort, Target e Iteration;
-- Pull Request #2 aberto como draft, sem merge, aguardando revisão.
+- Pull Request #2 aberto para revisão, sem merge.
 
 As Issues usam o prefixo do identificador no título e registram metadados e dependências no corpo. O preenchimento em massa dos campos customizados é uma etapa operacional posterior; a hierarquia documental continua sendo a fonte de verdade até a criação das relações nativas de sub-issue.
