@@ -338,7 +338,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .reward-celebration,
   .reward-celebration__sparkles,
-  .mascot__portrait {
+  .mascot__portrait,
+  .activity-feedback {
     animation-duration: 1ms !important;
   }
   *,
@@ -432,6 +433,37 @@ body {
 @keyframes mascot-celebrate {
   50% {
     transform: translateY(-0.65rem) scale(1.04);
+  }
+}
+
+.activity-feedback {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 0.15rem solid #fff;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  color: var(--color-ink);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.activity-feedback--celebrate {
+  animation: feedback-pop 0.65s ease-out;
+}
+.activity-feedback--highlight {
+  outline: 0.3rem solid var(--color-sun);
+}
+.activity-feedback--demonstrate {
+  border-color: var(--color-sun);
+}
+
+@keyframes feedback-pop {
+  50% {
+    transform: scale(1.05);
   }
 }
 

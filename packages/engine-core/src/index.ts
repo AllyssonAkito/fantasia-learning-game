@@ -18,6 +18,11 @@ export {
 } from './evaluation';
 export { createSeededRandom, seededShuffle } from './random';
 export {
+  feedbackForAttempt,
+  type FeedbackCue,
+  type FeedbackVisual,
+} from './feedback-policy';
+export {
   hintForAttempt,
   type ActivityHint,
   type HintContent,
