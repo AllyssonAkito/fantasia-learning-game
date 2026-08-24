@@ -1,0 +1,41 @@
+name: Bug
+description: Comportamento incorreto e reproduzível
+title: "[BUG] "
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: O que aconteceu e qual era o esperado?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Como reproduzir
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto infantil ou de produto
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidências
+      description: Captura, log ou atividade afetada. Não inclua dados pessoais.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Teste de regressão
+    validations:
+      required: true

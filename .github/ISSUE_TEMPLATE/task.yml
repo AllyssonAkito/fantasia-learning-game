@@ -1,0 +1,53 @@
+name: Task
+description: Trabalho pequeno e verificável para uma Feature
+title: "[TASK] "
+labels: ["type:task"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+      description: Resultado concreto desta tarefa.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requisitos
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Fora de escopo
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependências
+  - type: textarea
+    id: tests
+    attributes:
+      label: Testes obrigatórios
+    validations:
+      required: true
+  - type: input
+    id: feature
+    attributes:
+      label: Feature pai
+      placeholder: "#123"
+    validations:
+      required: true

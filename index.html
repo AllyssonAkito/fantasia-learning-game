@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#8edcf2" />
+    <title>O Jardim da Cenoura</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-label="O Jardim da Cenoura">
+      <canvas id="game" width="1000" height="700" aria-label="Jardim onde o personagem procura cenourinhas escondidas"></canvas>
+
+      <section class="hud" aria-live="polite">
+        <div class="mission-pill">
+          <span class="mission-icon">🥕</span>
+          <div>
+            <small>MISSÃO</small>
+            <strong id="missionText">Encontre as cenourinhas!</strong>
+          </div>
+        </div>
+        <div class="counter-pill" aria-label="Cenourinhas encontradas">
+          <span class="carrot-mini">🥕</span>
+          <strong><span id="score">0</span> / 7</strong>
+        </div>
+      </section>
+
+      <div class="controls">
+        <button id="soundButton" class="round-button" type="button" aria-label="Desligar sons">🔊</button>
+      </div>
+
+      <div id="tapHint" class="tap-hint" aria-hidden="true">
+        <span class="tap-hand">☝️</span>
+        <span>Toque nos objetos para achar a cenoura!</span>
+      </div>
+
+      <section id="trailScreen" class="overlay trail-overlay visible" aria-labelledby="trailTitle">
+        <div class="trail-panel">
+          <header class="trail-header">
+            <div>
+              <p class="eyebrow">MINHAS AVENTURAS</p>
+              <h1 id="trailTitle">Trilha da<br />Cenoura</h1>
+            </div>
+            <div class="activity-count"><strong>9</strong><span>atividades</span></div>
+          </header>
+
+          <div class="trail-map" aria-label="Escolha uma atividade">
+            <div class="trail-path" aria-hidden="true"></div>
+
+            <button class="trail-node left" type="button" data-activity="hunt">
+              <span class="node-number">1</span>
+              <span class="node-card hunt-card">
+                <span class="node-art" aria-hidden="true">🌳 🥕 🌼</span>
+                <strong>Caça às Cenouras</strong>
+                <small>Procure nos objetos</small>
+              </span>
+            </button>
+
+            <button class="trail-node right" type="button" data-activity="puzzle-dog">
+              <span class="node-number">2</span>
+              <span class="node-card">
+                <img src="assets/characters/cachorrinho-chibi.png" alt="" />
+                <strong>Monte o Cachorrinho</strong>
+                <small>Encaixe as três partes</small>
+              </span>
+            </button>
+
+            <button class="trail-node left" type="button" data-activity="puzzle-bunny">
+              <span class="node-number">3</span>
+              <span class="node-card">
+                <img src="assets/characters/coelhinho-chibi.png" alt="" />
+                <strong>Monte o Coelhinho</strong>
+                <small>Encaixe as três partes</small>
+              </span>
+            </button>
+
+            <button class="trail-node right" type="button" data-activity="puzzle-yellow">
+              <span class="node-number">4</span>
+              <span class="node-card yellow-card">
+                <img src="assets/characters/amarelinho-chibi.svg" alt="" />
+                <strong>Monte o Amarelinho</strong>
+                <small>Encaixe as três partes</small>
+              </span>
+            </button>
+
+            <button class="trail-node left" type="button" data-activity="puzzle-pink-octopus">
+              <span class="node-number">5</span>
+              <span class="node-card pink-octopus-card">
+                <img src="assets/characters/polvinho-rosa-chibi.png" alt="" />
+                <strong>Monte o Polvinho Rosa</strong>
+                <small>Encaixe as três partes</small>
+              </span>
+            </button>
+
+            <button class="trail-node right" type="button" data-activity="puzzle-blue-octopus">
+              <span class="node-number">6</span>
+              <span class="node-card blue-octopus-card">
+                <img src="assets/characters/polvinho-azul-chibi.png" alt="" />
+                <strong>Monte o Polvinho Azul</strong>
+                <small>Encaixe as três partes</small>
+              </span>
+            </button>
+
+            <button class="trail-node left" type="button" data-activity="letter-hunt">
+              <span class="node-number">7</span>
+              <span class="node-card letter-hunt-card">
+                <span class="literacy-node-art" aria-hidden="true">A B C</span>
+                <strong>Caça-Letras</strong>
+                <small>Escute e ache a letra</small>
+              </span>
+            </button>
+
+            <button class="trail-node right" type="button" data-activity="name-builder">
+              <span class="node-number">8</span>
+              <span class="node-card name-card">
+                <span class="literacy-node-art name-art" aria-hidden="true">MELINA</span>
+                <strong>Meu nome é Melina</strong>
+                <small>Monte seu nome</small>
+              </span>
+            </button>
+
+            <button class="trail-node left" type="button" data-activity="initial-sound">
+              <span class="node-number">9</span>
+              <span class="node-card sound-card">
+                <span class="literacy-node-art" aria-hidden="true">🥕 C</span>
+                <strong>Qual é a primeira?</strong>
+                <small>Descubra o som inicial</small>
+              </span>
+            </button>
+
+            <div class="trail-finish" aria-hidden="true">⭐</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="startScreen" class="overlay" aria-labelledby="gameTitle">
+        <div class="start-card">
+          <button id="backToTrailFromStart" class="back-button" type="button" aria-label="Voltar para a trilha">←</button>
+          <p class="eyebrow">ESCOLHA SEU PERSONAGEM</p>
+          <h1 id="gameTitle">O Jardim<br />da Cenoura</h1>
+          <p class="intro-copy">Com quem você quer brincar?</p>
+          <div class="character-picker" role="radiogroup" aria-label="Escolha um personagem">
+            <button class="character-choice selected" type="button" role="radio" aria-checked="true" data-character="dog">
+              <img src="assets/characters/cachorrinho-chibi.png" alt="" />
+              <span>Cachorrinho</span>
+              <i aria-hidden="true">✓</i>
+            </button>
+            <button class="character-choice" type="button" role="radio" aria-checked="false" data-character="bunny">
+              <img src="assets/characters/coelhinho-chibi.png" alt="" />
+              <span>Coelhinho</span>
+              <i aria-hidden="true">✓</i>
+            </button>
+            <button class="character-choice" type="button" role="radio" aria-checked="false" data-character="yellow">
+              <img src="assets/characters/amarelinho-chibi.svg" alt="" />
+              <span>Amarelinho</span>
+              <i aria-hidden="true">✓</i>
+            </button>
+            <button class="character-choice" type="button" role="radio" aria-checked="false" data-character="pinkOctopus">
+              <img src="assets/characters/polvinho-rosa-chibi.png" alt="" />
+              <span>Polvinho Rosa</span>
+              <i aria-hidden="true">✓</i>
+            </button>
+            <button class="character-choice" type="button" role="radio" aria-checked="false" data-character="blueOctopus">
+              <img src="assets/characters/polvinho-azul-chibi.png" alt="" />
+              <span>Polvinho Azul</span>
+              <i aria-hidden="true">✓</i>
+            </button>
+          </div>
+          <button id="startButton" class="primary-button" type="button">
+            <span>▶</span> Vamos brincar!
+          </button>
+          <p class="little-note">As cenouras mudam de lugar em cada partida!</p>
+        </div>
+      </section>
+
+      <section id="puzzleScreen" class="overlay puzzle-overlay" aria-labelledby="puzzleTitle">
+        <div class="puzzle-card">
+          <button id="backToTrailFromPuzzle" class="back-button" type="button" aria-label="Voltar para a trilha">←</button>
+          <p class="eyebrow">LÓGICA</p>
+          <h2 id="puzzleTitle">Monte o personagem</h2>
+          <p id="puzzleSubtitle" class="puzzle-subtitle">Coloque as três partes na ordem certa</p>
+
+          <div class="puzzle-workspace">
+            <div class="pieces-area">
+              <strong>PEÇAS</strong>
+              <div id="puzzleTray" class="puzzle-tray" role="group" aria-label="Peças fora do quadro"></div>
+            </div>
+
+            <div id="puzzleStage" class="puzzle-stage">
+              <div id="puzzleBoard" class="puzzle-board" role="group" aria-label="Partes do personagem"></div>
+              <div id="puzzleSuccess" class="puzzle-success" aria-hidden="true">✓</div>
+            </div>
+          </div>
+
+          <div id="puzzleHelp" class="puzzle-help"><span>👆</span> Arraste ou toque na peça e depois no espaço</div>
+          <button id="puzzleContinueButton" class="primary-button puzzle-continue" type="button">
+            <span>✓</span> Continuar na trilha
+          </button>
+        </div>
+      </section>
+
+      <section id="literacyScreen" class="overlay literacy-overlay" aria-labelledby="literacyTitle">
+        <div class="literacy-card">
+          <button id="backToTrailFromLiteracy" class="back-button" type="button" aria-label="Voltar para a trilha">←</button>
+          <p id="literacyEyebrow" class="eyebrow">LETRAS</p>
+          <div id="literacyBuddy" class="literacy-buddy" aria-hidden="true">
+            <img src="assets/characters/polvinho-rosa-chibi.png" alt="" />
+          </div>
+          <h2 id="literacyTitle">Brincando com letras</h2>
+          <p id="literacyInstruction" class="literacy-instruction">Escute e escolha</p>
+          <button id="repeatLiteracyButton" class="repeat-button" type="button" aria-label="Ouvir novamente">🔊 Ouvir de novo</button>
+          <div class="literacy-progress" aria-label="Progresso da atividade">
+            <div id="literacyProgressFill"></div>
+          </div>
+          <div id="literacyPlayArea" class="literacy-play-area"></div>
+          <p id="literacyFeedback" class="literacy-feedback" aria-live="polite"></p>
+          <button id="literacyContinueButton" class="primary-button literacy-continue" type="button">
+            <span>⭐</span> Continuar na trilha
+          </button>
+        </div>
+      </section>
+
+      <section id="winScreen" class="overlay" aria-labelledby="winTitle">
+        <div class="win-card">
+          <div class="star-burst" aria-hidden="true">⭐</div>
+          <img id="winCharacter" src="assets/characters/cachorrinho-chibi.png" alt="Personagem feliz" />
+          <p class="eyebrow">VOCÊ CONSEGUIU!</p>
+          <h2 id="winTitle">Que legal!</h2>
+          <p>Todas as cenourinhas<br />voltaram para o jardim!</p>
+          <div class="win-carrots" aria-hidden="true">🥕 🥕 🥕</div>
+          <button id="againButton" class="primary-button" type="button">
+            <span>↻</span> Brincar de novo
+          </button>
+          <button id="changeCharacterButton" class="secondary-button" type="button">Trocar personagem</button>
+          <button id="backToTrailFromWin" class="secondary-button" type="button">Voltar à trilha</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

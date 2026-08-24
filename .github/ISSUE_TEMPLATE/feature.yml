@@ -1,0 +1,55 @@
+name: Feature
+description: Capacidade de produto que será decomposta em Tasks
+title: "[FEATURE] "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+      description: O que deve passar a existir?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Por que a Feature é necessária?
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requisitos
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+      description: Use itens verificáveis.
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Fora de escopo
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependências
+  - type: textarea
+    id: tests
+    attributes:
+      label: Estratégia de teste
+    validations:
+      required: true
+  - type: input
+    id: epic
+    attributes:
+      label: Epic pai
+      placeholder: "#123"
+    validations:
+      required: true
