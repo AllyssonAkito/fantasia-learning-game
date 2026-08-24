@@ -41,6 +41,8 @@ error
 
 ## Engines do MVP
 
+As implementações executáveis e os schemas de definição ficam em `packages/engines`. Todos usam o mesmo contrato de avaliação e são registrados de uma vez por `registerAllEngines`, sem condicionais em telas.
+
 ### Engine 01 — Escolha
 
 Pergunta com duas a quatro alternativas.
