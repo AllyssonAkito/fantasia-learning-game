@@ -112,6 +112,8 @@ Validar inicialmente:
 
 ## Tom de voz
 
+As frases aprovadas de produto ficam no catálogo central `packages/content/src/feedback-copy.ts`. Componentes recebem essas mensagens como conteúdo; não devem criar textos pedagógicos locais.
+
 Usar frases curtas:
 
 - “Toque no diferente.”

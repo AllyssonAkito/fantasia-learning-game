@@ -1,3 +1,4 @@
+export { feedbackCopyCatalog, type FeedbackCopyCatalog } from './feedback-copy';
 export {
   activitySchema,
   courseSchema,
