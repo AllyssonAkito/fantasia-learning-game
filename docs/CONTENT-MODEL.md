@@ -115,6 +115,17 @@ engine/
 Draft → Pedagogical Review → UX Review → QA → Published → Retired
 ```
 
+Os estados executáveis são:
+
+| Estado | Pode editar | Próximos estados |
+|---|---|---|
+| `draft` | sim | `review` |
+| `review` | sim | `draft`, `published` |
+| `published` | não | `retired` |
+| `retired` | não | nenhum |
+
+Um item nunca salta diretamente de `draft` para `published`. Retirar conteúdo impede novas sessões, mas não altera histórico. As transições ficam em `packages/content/src/editorial.ts`.
+
 O CMS não faz parte do primeiro ciclo. Inicialmente, arquivos versionados no repositório podem cumprir o papel de catálogo.
 
 ## Compatibilidade
