@@ -16,9 +16,9 @@
     "dev:prototype": "vite --host 0.0.0.0",
     "build": "pnpm -r --if-present build",
     "e2e": "playwright test",
-    "format": "prettier --write apps package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
-    "format:check": "prettier --check apps package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
-    "lint": "eslint apps --max-warnings 0",
+    "format": "prettier --write apps packages package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
+    "format:check": "prettier --check apps packages package.json pnpm-workspace.yaml tsconfig.base.json eslint.config.js playwright.config.ts",
+    "lint": "eslint apps packages --max-warnings 0",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },
