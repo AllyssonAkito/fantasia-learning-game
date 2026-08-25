@@ -50,11 +50,11 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   await expect(page.getByRole('button', { name: 'Voltar' })).toHaveText('×');
   await expect(
     page.getByRole('button', { name: 'Ouvir a instrução novamente' }),
-  ).toHaveText(/🔊|🔉/);
+  ).toHaveClass(/instruction-audio__button/);
   await expect(
-    page.getByRole('button', { name: '💜 coração roxo' }),
-  ).toHaveText('💜');
-  await page.getByRole('button', { name: '💜 coração roxo' }).click();
+    page.getByRole('button', { name: 'coração roxo' }).locator('img'),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'coração roxo' }).click();
   const completion = page.getByRole('dialog', { name: 'Você conseguiu!' });
   await expect(completion).toBeVisible();
   await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
@@ -94,7 +94,7 @@ test('respeita movimento reduzido na celebração', async ({ page }) => {
     .getByRole('button', { name: /padrões.*pronto para brincar/i })
     .click();
   await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
-  await page.getByRole('button', { name: '💜 coração roxo' }).click();
+  await page.getByRole('button', { name: 'coração roxo' }).click();
   const duration = await page
     .locator('.reward-celebration')
     .evaluate((element) => getComputedStyle(element).animationDuration);

@@ -9,13 +9,28 @@ describe('catálogo MVP', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
       activities: 108,
       areas: 6,
-      assets: 12,
+      assets: 18,
     });
     const counts = mvpContentCoverage.reduce<Record<string, number>>(
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
       {},
     );
     expect(Object.values(counts)).toEqual([18, 18, 18, 18, 18, 18]);
+  });
+
+  it('usa somente recortes do mesmo mascote nas atividades de montagem', () => {
+    const assemblyActivities = mvpCatalogSeed.activities!.filter(
+      ({ engine }) => engine === 'assembly',
+    );
+    expect(assemblyActivities).toHaveLength(12);
+    for (const activity of assemblyActivities) {
+      const pieceIds = activity.assets;
+      expect(pieceIds).toHaveLength(3);
+      expect(pieceIds.every((id) => id.startsWith('asset.character.'))).toBe(
+        true,
+      );
+      expect(new Set(pieceIds.map((id) => id.split('.')[2]))).toHaveLength(1);
+    }
   });
 
   it('mapeia área, habilidade, dificuldade e todos os motores', () => {

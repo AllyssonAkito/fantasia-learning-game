@@ -18,3 +18,10 @@ peixinho, cenoura, maçã, bola colorida e flor.
 Os arquivos distribuídos pelo aplicativo são WebP de `384 × 384 px` com canal
 alfa. A origem, o texto alternativo e as dimensões também ficam registrados no
 catálogo `packages/content/src/mvp-assets.ts`.
+
+## Recortes de personagens na montagem
+
+As atividades de montagem reutilizam, por recorte visual, as ilustrações
+originais `cachorrinho-chibi.png` e `coelhinho-chibi.png` do catálogo de
+personagens do projeto. As cópias distribuídas foram otimizadas para WebP de
+`512 × 512 px`; nenhuma imagem de terceiros foi adicionada.
