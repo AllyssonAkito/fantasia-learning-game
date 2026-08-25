@@ -40,6 +40,7 @@ export {
 export {
   buildLearningPathView,
   type LearningPathProgress,
+  type LearningPathCover,
   type LearningPathStop,
   type LearningPathView,
 } from './learning-path';

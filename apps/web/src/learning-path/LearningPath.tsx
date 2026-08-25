@@ -1,4 +1,5 @@
 import type { LearningPathView } from '@fantasia/content';
+import { LearningPathCover } from './LearningPathCover';
 
 export interface LearningPathProps {
   path: LearningPathView;
@@ -36,7 +37,7 @@ export function LearningPath({
             unlockAll && stop.state === 'locked' ? 'current' : stop.state;
           return (
             <button
-              aria-label={`${stop.label}. ${stateLabels[visualState]}`}
+              aria-label={`${index + 1}. ${stop.label}. ${stateLabels[visualState]}`}
               className={`path-stop path-stop--${visualState}`}
               data-level-id={stop.destinationId}
               disabled={visualState === 'locked'}
@@ -44,8 +45,11 @@ export function LearningPath({
               onClick={() => onSelect?.(stop.destinationId)}
               type="button"
             >
-              <span aria-hidden="true" className="path-stop__number">
-                {stop.state === 'completed' ? '✓' : index + 1}
+              <span aria-hidden="true" className="path-stop__cover">
+                <LearningPathCover cover={stop.cover} />
+                <span className="path-stop__number">
+                  {stop.state === 'completed' ? '✓' : index + 1}
+                </span>
               </span>
               <span>{stop.label}</span>
               <small>{stateLabels[visualState]}</small>

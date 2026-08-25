@@ -55,6 +55,11 @@ componente. A seleção inicial de Padrões prioriza amarelo, lilás, azul e
 personagens de tons suaves, evitando concentração de vermelho e laranja. Outras
 áreas recebem prévias específicas em entregas próprias.
 
+Na trilha inicial de Lógica, cada nível também antecipa sua mecânica: Padrões
+mostra a sequência curta, Montar mostra os três recortes alinhados e Descobrir
+mostra um fragmento circular em preto e branco. O número permanece como selo
+secundário sobre a capa.
+
 ## Componentes fundamentais
 
 - botão primário infantil;
