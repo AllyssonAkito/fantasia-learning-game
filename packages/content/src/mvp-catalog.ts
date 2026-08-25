@@ -203,7 +203,7 @@ const common = {
 
 const tokenPool = mvpAssets.map((asset) => ({
   id: asset.id,
-  label: `${asset.source} ${asset.alt}`,
+  label: asset.alt,
 }));
 
 function tokens(offset: number) {

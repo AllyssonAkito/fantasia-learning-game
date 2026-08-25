@@ -20,6 +20,19 @@
 - fundos com menos contraste que os elementos interativos;
 - ícones acompanhados de áudio ou rótulo quando necessário.
 
+## Ilustrações de atividade
+
+- objetos, formas, animais e personagens usam ilustrações infantis originais;
+- emojis e glifos Unicode não são usados como arte final das atividades;
+- a fonte canônica é `384 × 384 px`, WebP com transparência;
+- a renderização recomendada fica entre `88 × 88 px` e `128 × 128 px`;
+- a silhueta ocupa a maior parte do quadro, com volume suave e poucos detalhes;
+- cada asset precisa de texto alternativo curto e metadados de origem;
+- fundos e destinos não competem em contraste com a ilustração manipulável.
+
+As ilustrações ficam desacopladas do motor. O conteúdo referencia um ID estável,
+e a apresentação resolve arquivo, dimensões e alternativa textual pelo catálogo.
+
 ## Componentes fundamentais
 
 - botão primário infantil;
@@ -90,9 +103,11 @@ Cada atividade pode definir:
 TTS é fallback aceitável. Áudio pré-gravado exige catálogo e revisão.
 
 O serviço central tenta o arquivo revisado, usa TTS `pt-BR` quando ele falha e
-mantém a instrução visível quando nenhum áudio existe. Efeitos usam os IDs
+mantém a instrução disponível para tecnologia assistiva quando nenhum áudio
+existe. Efeitos usam os IDs
 `success`, `attempt`, `hint` e `reward`; durante fala, seu volume é reduzido para
-preservar a compreensão. Toda atividade expõe o controle “Ouvir de novo”.
+preservar a compreensão. Toda atividade expõe um botão de áudio sem texto
+visível, com nome acessível “Ouvir a instrução novamente”.
 
 ## Movimento
 

@@ -32,9 +32,10 @@ describe('ActivityScreen', () => {
     const presentation = createChoicePresentation(activity);
     for (const option of presentation.options) {
       const button = screen.getByRole('button', { name: option.label });
-      expect(button).toHaveTextContent(option.label.split(' ')[0]!);
-      expect(button).not.toHaveTextContent(
-        option.label.split(' ').slice(1).join(' '),
+      expect(button).toHaveTextContent('');
+      expect(button.querySelector('img')).toHaveAttribute(
+        'src',
+        expect.stringMatching(/\/assets\/activity\/.+\.webp$/),
       );
     }
     expect(screen.queryByText(/brincadeira \d+/i)).not.toBeInTheDocument();
@@ -46,7 +47,7 @@ describe('ActivityScreen', () => {
     );
     expect(
       screen.getByRole('button', { name: 'Ouvir a instrução novamente' }),
-    ).toHaveTextContent(/🔊|🔉/);
+    ).toHaveTextContent('');
     await waitFor(() => expect(audio.repeatInstruction).toHaveBeenCalled());
   });
 

@@ -11,14 +11,18 @@ import {
 
 export interface ChoicePresentation {
   prompt: string;
-  pattern: string[];
-  options: { id: string; label: string }[];
+  pattern: { id: string; label: string }[];
+  options: { id: string; label: string; assetId: string }[];
   evaluate: (answer: string) => boolean;
 }
 
 function assetLabel(id: string) {
   const asset = mvpAssetById.get(id);
-  return asset ? `${asset.source} ${asset.alt}` : id;
+  return asset?.alt ?? id;
+}
+
+function assetItem(id: string) {
+  return { id, label: assetLabel(id), assetId: id };
 }
 
 export function createChoicePresentation(
@@ -28,8 +32,8 @@ export function createChoicePresentation(
     const definition = activity.content as SequenceDefinition;
     return {
       prompt: definition.prompt,
-      pattern: definition.pattern.map(assetLabel),
-      options: definition.options,
+      pattern: definition.pattern.map(assetItem),
+      options: definition.options.map(({ id }) => assetItem(id)),
       evaluate: (answer) => sequenceEngine.evaluate(definition, answer).correct,
     };
   }
@@ -38,7 +42,7 @@ export function createChoicePresentation(
     return {
       prompt: definition.prompt,
       pattern: [],
-      options: definition.options,
+      options: definition.options.map(({ id }) => assetItem(id)),
       evaluate: (answer) => choiceEngine.evaluate(definition, answer).correct,
     };
   }
@@ -49,7 +53,8 @@ export function createChoicePresentation(
       pattern: [],
       options: definition.candidates.map(({ id, value }) => ({
         id,
-        label: `${assetLabel(id)} — ${value}`,
+        label: `${assetLabel(id)}, quantidade ${value}`,
+        assetId: id,
       })),
       evaluate: (answer) =>
         comparisonEngine.evaluate(definition, answer).correct,

@@ -21,8 +21,8 @@ export function ActivityFeedback({
       className={`activity-feedback activity-feedback--${cue.visual}`}
       data-blocks-flow="false"
     >
-      <span aria-hidden="true">
-        {cue.kind === 'correct' ? '✨' : cue.hintLevel === 3 ? '👀' : '💛'}
+      <span aria-hidden="true" className="activity-feedback__mark">
+        {cue.kind === 'correct' ? '✓' : cue.hintLevel === 3 ? '!' : '↻'}
       </span>
       {message}
     </output>

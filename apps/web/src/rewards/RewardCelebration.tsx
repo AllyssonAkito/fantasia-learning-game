@@ -17,7 +17,7 @@ export function RewardCelebration({
       role="status"
     >
       <span aria-hidden="true" className="reward-celebration__sparkles">
-        ✦ ⭐ ✦
+        ✦ ★ ✦
       </span>
       <h2 id={headingId}>Você conseguiu!</h2>
       <p>

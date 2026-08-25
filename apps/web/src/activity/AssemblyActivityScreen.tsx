@@ -10,6 +10,7 @@ import { assemblyEngine, type AssemblyDefinition } from '@fantasia/engines';
 import { InstructionAudioControl } from '../audio/InstructionAudioControl';
 import { ActivityFeedback } from '../feedback/ActivityFeedback';
 import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
+import { ActivityAsset } from './ActivityAsset';
 
 export interface AssemblyActivityScreenProps {
   activity: Activity;
@@ -20,7 +21,7 @@ export interface AssemblyActivityScreenProps {
 
 function pieceLabel(id: string) {
   const asset = mvpAssetById.get(id);
-  return asset ? `${asset.source} ${asset.alt}` : id;
+  return asset?.alt ?? id;
 }
 
 export function AssemblyActivityScreen({
@@ -123,9 +124,7 @@ export function AssemblyActivityScreen({
                 }
                 type="button"
               >
-                <span aria-hidden="true">
-                  {pieceLabel(piece.id).split(' ')[0]}
-                </span>
+                <ActivityAsset assetId={piece.id} decorative />
               </button>
             ))}
         </div>
@@ -143,7 +142,11 @@ export function AssemblyActivityScreen({
                 onDrop={(event) => drop(event, slot.slotId)}
                 type="button"
               >
-                {pieceId ? pieceLabel(pieceId).split(' ')[0] : index + 1}
+                {pieceId ? (
+                  <ActivityAsset assetId={pieceId} decorative />
+                ) : (
+                  index + 1
+                )}
               </button>
             );
           })}

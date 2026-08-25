@@ -1,44 +1,44 @@
 export interface ContentAsset {
   id: string;
-  kind: 'unicode-symbol';
+  kind: 'raster-image';
   source: string;
   alt: string;
-  width: 64;
-  height: 64;
-  license: 'Unicode Standard';
+  width: 384;
+  height: 384;
+  license: 'Original project artwork';
   licenseUrl: string;
-  legibility: 'verified-at-56px';
+  legibility: 'verified-at-96px';
 }
 
-const unicodeLicense = 'https://www.unicode.org/license.txt';
+const assetLicense = '/docs/ASSET-LICENSES.md#ilustracoes-de-atividade';
 
-function symbol(id: string, source: string, alt: string): ContentAsset {
+function illustration(id: string, alt: string): ContentAsset {
   return {
     id: `asset.symbol.${id}`,
-    kind: 'unicode-symbol',
-    source,
+    kind: 'raster-image',
+    source: `/assets/activity/${id}.webp`,
     alt,
-    width: 64,
-    height: 64,
-    license: 'Unicode Standard',
-    licenseUrl: unicodeLicense,
-    legibility: 'verified-at-56px',
+    width: 384,
+    height: 384,
+    license: 'Original project artwork',
+    licenseUrl: assetLicense,
+    legibility: 'verified-at-96px',
   };
 }
 
 export const mvpAssets = [
-  symbol('star', '⭐', 'estrela amarela'),
-  symbol('heart', '💜', 'coração roxo'),
-  symbol('circle', '🔵', 'círculo azul'),
-  symbol('square', '🟧', 'quadrado laranja'),
-  symbol('triangle', '🔺', 'triângulo vermelho'),
-  symbol('rabbit', '🐰', 'coelhinho'),
-  symbol('dog', '🐶', 'cachorrinho'),
-  symbol('fish', '🐟', 'peixinho'),
-  symbol('carrot', '🥕', 'cenoura'),
-  symbol('apple', '🍎', 'maçã'),
-  symbol('ball', '⚽', 'bola'),
-  symbol('flower', '🌼', 'flor'),
+  illustration('star', 'estrela amarela'),
+  illustration('heart', 'coração roxo'),
+  illustration('circle', 'círculo azul'),
+  illustration('square', 'quadrado laranja'),
+  illustration('triangle', 'triângulo vermelho'),
+  illustration('rabbit', 'coelhinho'),
+  illustration('dog', 'cachorrinho'),
+  illustration('fish', 'peixinho'),
+  illustration('carrot', 'cenoura'),
+  illustration('apple', 'maçã'),
+  illustration('ball', 'bola colorida'),
+  illustration('flower', 'flor amarela'),
 ] as const;
 
 export const mvpAssetById = new Map(
