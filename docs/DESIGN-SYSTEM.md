@@ -40,10 +40,10 @@ alto contraste e forma consistente. Elas não substituem ilustrações em jogos
 de objetos ou mascotes. Cenas compostas, como “bola acima do quadrado”, usam
 imagens do catálogo e nunca emojis do sistema operacional.
 
-Em “Adivinhe a imagem”, a pista aparece em uma janela circular ampliada e
-mostra somente um fragmento da ilustração. As respostas mostram as figuras
-completas. O recorte deve ser característico, mas não pode revelar o objeto
-inteiro.
+Em “Adivinhe a imagem”, as respostas completas aparecem em uma coluna à
+esquerda e a pista aparece à direita, em uma janela circular ampliada. A pista
+mostra em preto e branco somente um fragmento da ilustração. O recorte deve ser
+característico, mas não pode revelar o objeto inteiro.
 
 As ilustrações ficam desacopladas do motor. O conteúdo referencia um ID estável,
 e a apresentação resolve arquivo, dimensões e alternativa textual pelo catálogo.

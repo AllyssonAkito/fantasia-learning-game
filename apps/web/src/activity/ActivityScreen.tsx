@@ -61,6 +61,43 @@ function ChoiceActivityScreen({
     }
   }
 
+  const optionList = (
+    <div className="activity-screen__options" aria-label="Escolha uma resposta">
+      {presentation.options.map((option) => (
+        <button
+          aria-label={option.label}
+          disabled={complete}
+          key={option.id}
+          onClick={() => answer(option.id)}
+          type="button"
+        >
+          <span
+            className={
+              option.quantity
+                ? 'activity-option-visual activity-option-visual--quantity'
+                : 'activity-option-visual'
+            }
+            style={
+              option.scale
+                ? ({
+                    '--activity-option-scale': option.scale,
+                  } as CSSProperties)
+                : undefined
+            }
+          >
+            {Array.from({ length: option.quantity ?? 1 }, (_, index) => (
+              <ActivityAsset
+                assetId={option.assetId}
+                decorative
+                key={`${option.assetId}-${index}`}
+              />
+            ))}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <section className="activity-screen" aria-labelledby="activity-title">
       <button
@@ -75,66 +112,38 @@ function ChoiceActivityScreen({
         {activity.instruction.text}
       </h1>
       {presentation.clue ? (
-        <div
-          aria-label={`Pista: parte de ${presentation.clue.label}`}
-          className="activity-screen__visual-clue"
-          data-focus-x={presentation.clue.focusX}
-          data-focus-y={presentation.clue.focusY}
-        >
-          <ActivityAsset assetId={presentation.clue.assetId} decorative />
-        </div>
-      ) : presentation.pattern.length > 0 ? (
-        <div
-          className="activity-screen__pattern"
-          aria-label="Sequência para observar"
-        >
-          {presentation.pattern.map((item, index) => (
-            <span aria-label={item.label} key={`${item.id}-${index}`}>
-              <ActivityAsset assetId={item.id} decorative />
-            </span>
-          ))}
-          <span aria-label="parte que falta">?</span>
+        <div className="activity-screen__discovery-layout">
+          {optionList}
+          <div
+            aria-label={`Pista: parte de ${presentation.clue.label}`}
+            className="activity-screen__visual-clue"
+            data-focus-x={presentation.clue.focusX}
+            data-focus-y={presentation.clue.focusY}
+            data-visual-mode="grayscale"
+          >
+            <ActivityAsset assetId={presentation.clue.assetId} decorative />
+          </div>
         </div>
       ) : (
-        <p className="visually-hidden">{presentation.prompt}</p>
-      )}
-      <div
-        className="activity-screen__options"
-        aria-label="Escolha uma resposta"
-      >
-        {presentation.options.map((option) => (
-          <button
-            aria-label={option.label}
-            disabled={complete}
-            key={option.id}
-            onClick={() => answer(option.id)}
-            type="button"
-          >
-            <span
-              className={
-                option.quantity
-                  ? 'activity-option-visual activity-option-visual--quantity'
-                  : 'activity-option-visual'
-              }
-              style={
-                option.scale
-                  ? ({
-                      '--activity-option-scale': option.scale,
-                    } as CSSProperties)
-                  : undefined
-              }
+        <>
+          {presentation.pattern.length > 0 ? (
+            <div
+              className="activity-screen__pattern"
+              aria-label="Sequência para observar"
             >
-              {Array.from({ length: option.quantity ?? 1 }, (_, index) => (
-                <ActivityAsset
-                  assetId={option.assetId}
-                  decorative
-                  key={`${option.assetId}-${index}`}
-                />
+              {presentation.pattern.map((item, index) => (
+                <span aria-label={item.label} key={`${item.id}-${index}`}>
+                  <ActivityAsset assetId={item.id} decorative />
+                </span>
               ))}
-            </span>
-          </button>
-        ))}
-      </div>
+              <span aria-label="parte que falta">?</span>
+            </div>
+          ) : (
+            <p className="visually-hidden">{presentation.prompt}</p>
+          )}
+          {optionList}
+        </>
+      )}
       {feedback ? (
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}

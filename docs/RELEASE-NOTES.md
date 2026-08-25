@@ -11,8 +11,9 @@
 ## Correções
 
 - “Padrões” permanece como completar sequência;
-- “Descobrir” agora mostra somente um fragmento ampliado e pede para reconhecer
-  a imagem completa, evitando repetição de mecânica entre os níveis.
+- “Descobrir” agora mostra somente um fragmento ampliado em preto e branco à
+  direita e organiza as imagens completas em uma coluna selecionável à esquerda,
+  evitando repetição de mecânica entre os níveis.
 
 ## Montagem visual
 

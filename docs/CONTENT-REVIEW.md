@@ -28,22 +28,22 @@ Cada nível contém seis tarefas e combina pelo menos quatro motores e três ár
 As escolhas evoluem de duas para três e quatro alternativas quando o motor
 permite, sem exigir leitura autônoma.
 
-| Nível | Foco | Brincadeiras |
-| --- | --- | --- |
-| Reconhecer | identificar uma característica | forma, uso, padrão AB, dois grupos, pequena quantidade e montagem do cachorrinho |
-| Relacionar | ligar pistas e posições | intruso, associação por arraste, padrão AAB, memória de três imagens, acima/abaixo e completar MELINA |
-| Combinar | considerar mais de uma regra | dois atributos, três grupos, padrão ABC, três associações, tamanho/quantidade e ordenar MELINA |
+| Nível      | Foco                           | Brincadeiras                                                                                          |
+| ---------- | ------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| Reconhecer | identificar uma característica | forma, uso, padrão AB, dois grupos, pequena quantidade e montagem do cachorrinho                      |
+| Relacionar | ligar pistas e posições        | intruso, associação por arraste, padrão AAB, memória de três imagens, acima/abaixo e completar MELINA |
+| Combinar   | considerar mais de uma regra   | dois atributos, três grupos, padrão ABC, três associações, tamanho/quantidade e ordenar MELINA        |
 
 O nome MELINA aparece em dois dos três níveis como reconhecimento visual e
 ordenação de peças, sempre com instrução em português brasileiro e apoio visual.
 
 ## Categorias da trilha inicial de Lógica
 
-| Nível | Regra principal | Apresentação |
-| --- | --- | --- |
-| Padrões | prever o próximo item | sequência AB com lacuna final |
-| Montar | ordenar partes | três recortes do mesmo mascote |
-| Descobrir | reconhecer o todo pela parte | fragmento ampliado e imagens completas como respostas |
+| Nível     | Regra principal              | Apresentação                                                                    |
+| --------- | ---------------------------- | ------------------------------------------------------------------------------- |
+| Padrões   | prever o próximo item        | sequência AB com lacuna final                                                   |
+| Montar    | ordenar partes               | três recortes do mesmo mascote                                                  |
+| Descobrir | reconhecer o todo pela parte | respostas em coluna à esquerda e fragmento ampliado em preto e branco à direita |
 
 Os três níveis não compartilham a mesma regra cognitiva. Reuso de motor é
 permitido no catálogo geral, mas níveis vizinhos não podem ser diferenciados

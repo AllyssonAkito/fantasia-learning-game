@@ -489,9 +489,30 @@ body {
   place-items: center;
 }
 
+.activity-screen__discovery-layout {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.72fr) minmax(11rem, 1.28fr);
+  gap: clamp(0.8rem, 3vw, 1.6rem);
+  align-items: center;
+}
+
+.activity-screen__discovery-layout .activity-screen__options {
+  grid-template-columns: 1fr;
+  align-content: center;
+}
+
+.activity-screen__discovery-layout .activity-screen__options button {
+  min-height: clamp(4.75rem, 12vw, 6.5rem);
+}
+
+.activity-screen__discovery-layout .activity-screen__options .activity-asset {
+  width: min(100%, 6rem);
+  height: clamp(4rem, 10vw, 5.75rem);
+}
+
 .activity-screen__visual-clue {
   display: grid;
-  width: clamp(8.5rem, 27vw, 11rem);
+  width: min(100%, clamp(10.5rem, 29vw, 14rem));
   aspect-ratio: 1;
   overflow: hidden;
   border: 0.35rem solid #fff;
@@ -501,6 +522,10 @@ body {
     0 0 0 0.22rem #79bdc9,
     0 0.4rem 0 #5f9eab;
   place-items: center;
+}
+
+.activity-screen__visual-clue[data-visual-mode='grayscale'] .activity-asset {
+  filter: grayscale(1) contrast(1.08);
 }
 
 .activity-screen__visual-clue .activity-asset {
@@ -659,6 +684,21 @@ body {
 .activity-screen__options button:disabled {
   cursor: default;
   opacity: 0.7;
+}
+
+@media (max-width: 30rem) {
+  .activity-screen__discovery-layout {
+    grid-template-columns: minmax(5.5rem, 0.76fr) minmax(8.5rem, 1.24fr);
+    gap: 0.65rem;
+  }
+
+  .activity-screen__discovery-layout .activity-screen__options {
+    gap: 0.55rem;
+  }
+
+  .activity-screen__discovery-layout .activity-screen__options button {
+    min-height: 4.5rem;
+  }
 }
 
 .activity-option-visual {

@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { AudioService } from '@fantasia/audio';
 import { mvpCatalogSeed } from '@fantasia/content';
@@ -105,10 +111,17 @@ describe('ActivityScreen', () => {
     );
     expect(clue).toHaveAttribute('data-focus-x');
     expect(clue).toHaveAttribute('data-focus-y');
+    expect(clue).toHaveAttribute('data-visual-mode', 'grayscale');
     expect(clue.querySelector('img')).toHaveAttribute(
       'src',
       expect.stringMatching(/\/assets\/activity\/.+\.webp$/),
     );
+    const layout = clue.closest<HTMLElement>(
+      '.activity-screen__discovery-layout',
+    )!;
+    expect(layout.firstElementChild).toHaveClass('activity-screen__options');
+    expect(layout.lastElementChild).toBe(clue);
+    expect(within(layout).getAllByRole('button')).toHaveLength(3);
     expect(
       screen.queryByLabelText('Sequência para observar'),
     ).not.toBeInTheDocument();
