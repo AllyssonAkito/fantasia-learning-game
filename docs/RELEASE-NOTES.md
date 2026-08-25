@@ -10,6 +10,10 @@
 
 ## Correções
 
+- as seis capas de Padrões agora antecipam a sequência real de cada tarefa, em
+  vez de repetir o mesmo ícone genérico;
+- Padrões troca a concentração de vermelho e laranja por amarelo, lilás, azul e
+  personagens suaves;
 - “Padrões” permanece como completar sequência;
 - “Descobrir” agora mostra somente um fragmento ampliado em preto e branco à
   direita e organiza as imagens completas em uma coluna selecionável à esquerda,

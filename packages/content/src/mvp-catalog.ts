@@ -214,6 +214,66 @@ function tokens(offset: number) {
 
 const assemblyCharacters = ['dog', 'bunny'] as const;
 
+const patternChallenges = [
+  {
+    firstId: 'asset.symbol.star',
+    secondId: 'asset.symbol.heart',
+    distractorId: 'asset.symbol.circle',
+  },
+  {
+    firstId: 'asset.symbol.heart',
+    secondId: 'asset.symbol.circle',
+    distractorId: 'asset.symbol.flower',
+  },
+  {
+    firstId: 'asset.symbol.circle',
+    secondId: 'asset.symbol.flower',
+    distractorId: 'asset.symbol.rabbit',
+  },
+  {
+    firstId: 'asset.symbol.flower',
+    secondId: 'asset.symbol.rabbit',
+    distractorId: 'asset.symbol.dog',
+  },
+  {
+    firstId: 'asset.symbol.rabbit',
+    secondId: 'asset.symbol.dog',
+    distractorId: 'asset.symbol.fish',
+  },
+  {
+    firstId: 'asset.symbol.dog',
+    secondId: 'asset.symbol.fish',
+    distractorId: 'asset.symbol.star',
+  },
+] as const;
+
+function patternChallenge(index: number) {
+  return patternChallenges[index % patternChallenges.length]!;
+}
+
+function patternAssetIds(index: number) {
+  const challenge = patternChallenge(index);
+  return [challenge.firstId, challenge.secondId, challenge.distractorId];
+}
+
+function patternContent(difficulty: number, index: number) {
+  const challenge = patternChallenge(index);
+  return {
+    difficulty,
+    prompt: 'O que vem depois?',
+    pattern: [challenge.firstId, challenge.secondId, challenge.firstId],
+    options: [
+      challenge.secondId,
+      challenge.firstId,
+      challenge.distractorId,
+    ].map((id) => ({
+      id,
+      label: mvpAssets.find((asset) => asset.id === id)!.alt,
+    })),
+    expectedId: challenge.secondId,
+  };
+}
+
 const deductionChallenges = [
   {
     clueId: 'asset.symbol.rabbit',
@@ -419,8 +479,10 @@ for (const [areaOrder, area] of areas.entries()) {
     for (let index = 0; index < 6; index += 1) {
       const difficulty = index + 1;
       const offset = areaOrder * 3 + skillOrder + index;
-      const content =
-        skill.id === 'deduction'
+      const isPatternsActivity = area.id === 'logic' && skill.id === 'patterns';
+      const content = isPatternsActivity
+        ? patternContent(difficulty, index)
+        : skill.id === 'deduction'
           ? deductionContent(difficulty, index)
           : engineContent(skill.engine, difficulty, offset);
       activities.push({
@@ -442,8 +504,9 @@ for (const [areaOrder, area] of areas.entries()) {
           stars: difficulty <= 2 ? 1 : difficulty <= 4 ? 2 : 3,
           coins: 2,
         },
-        assets:
-          skill.id === 'deduction'
+        assets: isPatternsActivity
+          ? patternAssetIds(index)
+          : skill.id === 'deduction'
             ? [...deductionChallenges[index]!.optionIds]
             : skill.engine === 'assembly'
               ? characterPieces(offset).map((piece) => piece.id)

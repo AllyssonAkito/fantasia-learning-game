@@ -41,7 +41,7 @@ ordenação de peças, sempre com instrução em português brasileiro e apoio v
 
 | Nível     | Regra principal              | Apresentação                                                                    |
 | --------- | ---------------------------- | ------------------------------------------------------------------------------- |
-| Padrões   | prever o próximo item        | sequência AB com lacuna final                                                   |
+| Padrões   | prever o próximo item        | sequência AB com lacuna final, capa derivada e paleta suave                     |
 | Montar    | ordenar partes               | três recortes do mesmo mascote                                                  |
 | Descobrir | reconhecer o todo pela parte | respostas em coluna à esquerda e fragmento ampliado em preto e branco à direita |
 

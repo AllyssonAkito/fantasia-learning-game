@@ -48,6 +48,13 @@ característico, mas não pode revelar o objeto inteiro.
 As ilustrações ficam desacopladas do motor. O conteúdo referencia um ID estável,
 e a apresentação resolve arquivo, dimensões e alternativa textual pelo catálogo.
 
+Na grade de tarefas, a capa antecipa a brincadeira usando uma amostra derivada
+do conteúdo da própria atividade. Em Padrões, a miniatura mostra três elementos
+da sequência e uma lacuna final; não usa ícone genérico nem duplica conteúdo no
+componente. A seleção inicial de Padrões prioriza amarelo, lilás, azul e
+personagens de tons suaves, evitando concentração de vermelho e laranja. Outras
+áreas recebem prévias específicas em entregas próprias.
+
 ## Componentes fundamentais
 
 - botão primário infantil;

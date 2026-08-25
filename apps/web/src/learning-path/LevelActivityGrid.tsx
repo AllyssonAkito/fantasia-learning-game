@@ -1,17 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import type { Activity } from '@fantasia/content';
 import type { LearningPathProgressStore } from './LearningPathProgressStore';
-
-const engineIcons = {
-  choice: '🔎',
-  drag: '☝️',
-  sequence: '🧩',
-  association: '🤝',
-  classification: '🧺',
-  memory: '🧠',
-  comparison: '⚖️',
-  assembly: '🧸',
-} as const;
+import { LevelTaskCover } from './LevelTaskCover';
 
 export interface LevelActivityGridProps {
   activities: readonly Activity[];
@@ -69,7 +59,7 @@ export function LevelActivityGrid({
               type="button"
             >
               <span aria-hidden="true" className="level-task__picture">
-                {engineIcons[activity.engine]}
+                <LevelTaskCover activity={activity} />
               </span>
               <span className="level-task__title">Tarefa {index + 1}</span>
               <small>{state}</small>
