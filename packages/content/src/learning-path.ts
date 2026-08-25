@@ -3,6 +3,8 @@ import type { Activity } from './schemas';
 import {
   assemblyDefinitionSchema,
   choiceDefinitionSchema,
+  classificationDefinitionSchema,
+  memoryDefinitionSchema,
   sequenceDefinitionSchema,
 } from '@fantasia/engines';
 
@@ -22,6 +24,13 @@ export interface LearningPathStop {
 export type LearningPathCover =
   | { kind: 'sequence'; assetIds: string[] }
   | { kind: 'assembly'; pieceIds: string[] }
+  | { kind: 'search'; assetIds: string[] }
+  | { kind: 'memory'; assetIds: string[] }
+  | {
+      kind: 'classification';
+      itemIds: string[];
+      targetIds: string[];
+    }
   | {
       kind: 'clue';
       assetId: string;
@@ -40,6 +49,32 @@ export type LearningPathView =
 
 function buildLevelCover(activity: Activity | undefined) {
   if (!activity) return undefined;
+  const isAttentionActivity = activity.levelId.startsWith('level.attention.');
+  if (isAttentionActivity && activity.engine === 'choice') {
+    const parsed = choiceDefinitionSchema.safeParse(activity.content);
+    if (!parsed.success) return undefined;
+    return {
+      kind: 'search' as const,
+      assetIds: parsed.data.options.map(({ id }) => id),
+    };
+  }
+  if (isAttentionActivity && activity.engine === 'memory') {
+    const parsed = memoryDefinitionSchema.safeParse(activity.content);
+    if (!parsed.success) return undefined;
+    return {
+      kind: 'memory' as const,
+      assetIds: parsed.data.expected.slice(0, 2),
+    };
+  }
+  if (isAttentionActivity && activity.engine === 'classification') {
+    const parsed = classificationDefinitionSchema.safeParse(activity.content);
+    if (!parsed.success) return undefined;
+    return {
+      kind: 'classification' as const,
+      itemIds: Object.keys(parsed.data.assignments).slice(0, 3),
+      targetIds: parsed.data.groups.map(({ id }) => id),
+    };
+  }
   if (activity.engine === 'sequence') {
     const parsed = sequenceDefinitionSchema.safeParse(activity.content);
     if (!parsed.success) return undefined;
@@ -99,8 +134,7 @@ export function buildLearningPathView(
         ...(cover ? { cover } : {}),
         state: completed.has(level.id)
           ? 'completed'
-          : explicitUnlocked?.has(level.id) ||
-              (!explicitUnlocked && index === 0)
+          : explicitUnlocked?.has(level.id) || index === 0
             ? 'current'
             : 'locked',
       };

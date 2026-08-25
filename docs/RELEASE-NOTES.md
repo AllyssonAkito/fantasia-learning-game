@@ -2,6 +2,11 @@
 
 ## Novidades
 
+- disponibiliza a escolha visual entre as áreas Lógica e Atenção no Nível 1;
+- adiciona em Atenção as fases Procurar 1, Detalhes 1 e Separar 1, com seis
+  tarefas curadas em cada fase;
+- substitui as capas genéricas de Atenção por prévias ilustradas da busca,
+  memória visual e classificação;
 - identifica todas as 21 fases existentes como Nível 1 no rótulo infantil;
 - adiciona três níveis com seis tarefas cada: Reconhecer, Relacionar e Combinar;
 - distribui os oito motores em brincadeiras variadas, com dificuldade e número de alternativas crescentes;

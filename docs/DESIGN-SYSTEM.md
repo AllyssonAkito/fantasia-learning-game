@@ -60,6 +60,11 @@ mostra a sequência curta, Montar mostra os três recortes alinhados e Descobrir
 mostra um fragmento circular em preto e branco. O número permanece como selo
 secundário sobre a capa.
 
+Na área Atenção, Procurar mostra as alternativas ilustradas, Detalhes antecipa
+uma pequena sequência parcialmente encoberta e Separar mostra figuras e dois
+destinos visuais. A entrada do Nível 1 oferece cartões ilustrados separados para
+Lógica e Atenção; voltar da trilha retorna a essa escolha sem apagar progresso.
+
 ## Componentes fundamentais
 
 - botão primário infantil;

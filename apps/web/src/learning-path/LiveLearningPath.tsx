@@ -7,6 +7,7 @@ export interface LiveLearningPathProps {
   catalog: ContentCatalog;
   courseId: string;
   store: LearningPathProgressStore;
+  onBack?: () => void;
   onSelect?: (levelId: string) => void;
   unlockAll?: boolean;
 }
@@ -15,6 +16,7 @@ export function LiveLearningPath({
   catalog,
   courseId,
   store,
+  onBack,
   onSelect,
   unlockAll = false,
 }: LiveLearningPathProps) {
@@ -25,6 +27,7 @@ export function LiveLearningPath({
   );
   return (
     <LearningPath
+      onBack={onBack}
       onSelect={onSelect}
       path={buildLearningPathView(catalog, courseId, progress)}
       unlockAll={unlockAll}
