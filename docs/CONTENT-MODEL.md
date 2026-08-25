@@ -110,6 +110,11 @@ Os IDs `asset.symbol.*` permanecem estáveis por compatibilidade editorial,
 embora o tipo de apresentação seja uma imagem rasterizada. A interface usa o
 texto alternativo como nome acessível e não exibe texto nas escolhas infantis.
 
+Recortes de montagem usam IDs `asset.character.<personagem>.<parte>` e podem
+declarar `crop` como `top`, `middle` ou `bottom`. As três partes de uma
+atividade sempre apontam para a mesma ilustração original; o recorte é uma
+decisão de apresentação e não duplica a mecânica no conteúdo.
+
 ## Regras
 
 - `content` é validado pelo schema do motor.

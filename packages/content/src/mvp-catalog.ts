@@ -212,6 +212,17 @@ function tokens(offset: number) {
   );
 }
 
+const assemblyCharacters = ['dog', 'bunny'] as const;
+
+function characterPieces(offset: number) {
+  const character = assemblyCharacters[offset % assemblyCharacters.length]!;
+  return (['top', 'middle', 'bottom'] as const).map((crop, order) => ({
+    id: `asset.character.${character}.${crop}`,
+    slotId: crop,
+    order,
+  }));
+}
+
 function engineContent(engine: EngineId, difficulty: number, offset: number) {
   const [first, second, third] = tokens(offset);
   const base = { difficulty, prompt: 'Observe as figuras e escolha.' };
@@ -280,11 +291,7 @@ function engineContent(engine: EngineId, difficulty: number, offset: number) {
     case 'assembly':
       return {
         ...base,
-        pieces: [
-          { id: first!.id, slotId: 'top', order: 0 },
-          { id: second!.id, slotId: 'middle', order: 1 },
-          { id: third!.id, slotId: 'bottom', order: 2 },
-        ],
+        pieces: characterPieces(offset),
         snapTolerance: difficulty <= 3 ? 48 : 32,
         resetOnIncorrect: true,
       };
@@ -339,6 +346,7 @@ for (const [areaOrder, area] of areas.entries()) {
     for (let index = 0; index < 6; index += 1) {
       const difficulty = index + 1;
       const offset = areaOrder * 3 + skillOrder + index;
+      const content = engineContent(skill.engine, difficulty, offset);
       activities.push({
         ...common,
         id: `activity.${area.id}.${skill.id}.${String(index + 1).padStart(3, '0')}`,
@@ -348,7 +356,7 @@ for (const [areaOrder, area] of areas.entries()) {
         engine: skill.engine,
         difficulty,
         instruction: { text: skill.instruction, ttsFallback: true },
-        content: engineContent(skill.engine, difficulty, offset),
+        content,
         hints: [
           { type: 'encourage' },
           { type: 'highlight-region' },
@@ -358,9 +366,12 @@ for (const [areaOrder, area] of areas.entries()) {
           stars: difficulty <= 2 ? 1 : difficulty <= 4 ? 2 : 3,
           coins: 2,
         },
-        assets: tokens(offset)
-          .slice(0, 3)
-          .map((token) => token.id),
+        assets:
+          skill.engine === 'assembly'
+            ? characterPieces(offset).map((piece) => piece.id)
+            : tokens(offset)
+                .slice(0, 3)
+                .map((token) => token.id),
       });
     }
   }

@@ -1,3 +1,12 @@
+# Próxima versão — montagem visual
+
+## Melhorias
+
+- atividades “Montar” agora usam três recortes grandes do mesmo mascote;
+- peças ficam fora do quadro, à esquerda, e destinos não mostram números;
+- suporte equivalente para arrastar com mouse/toque e encaixar por toque;
+- composição completa incorreta devolve todas as peças para nova tentativa.
+
 # Fantasia 1.0.4
 
 ## Melhorias

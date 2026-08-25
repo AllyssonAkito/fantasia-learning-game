@@ -12,6 +12,22 @@ export function ActivityAsset({
   const asset = mvpAssetById.get(assetId);
   if (!asset) return <span aria-hidden="true">?</span>;
 
+  if (asset.crop) {
+    return (
+      <span
+        aria-hidden={decorative || undefined}
+        className="activity-asset-slice"
+        data-crop={asset.crop}
+      >
+        <img
+          alt={decorative ? '' : asset.alt}
+          draggable={false}
+          src={asset.source}
+        />
+      </span>
+    );
+  }
+
   return (
     <img
       alt={decorative ? '' : asset.alt}

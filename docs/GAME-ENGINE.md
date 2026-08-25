@@ -123,6 +123,12 @@ Exemplos:
 - completar padrão visual;
 - encaixar partes de uma figura.
 
+Na apresentação infantil aprovada, as peças são recortes horizontais de uma
+única ilustração de mascote. Elas começam fora do quadro, à esquerda; podem ser
+arrastadas ou selecionadas por toque e encaixadas de cima para baixo. O quadro
+não exibe números. Se a composição completa estiver fora de ordem, todas as
+peças retornam juntas para uma nova tentativa.
+
 ## Estratégia de erro e dica
 
 ```text

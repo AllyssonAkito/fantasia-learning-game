@@ -30,6 +30,11 @@
 - cada asset precisa de texto alternativo curto e metadados de origem;
 - fundos e destinos não competem em contraste com a ilustração manipulável.
 
+Nas atividades de montagem, os três recortes devem preservar escala e
+alinhamento do mesmo personagem. As peças ficam na coluna esquerda e o quadro
+de composição na direita, sem números, letras ou símbolos substituindo a
+imagem. Arrastar e toque sequencial são alternativas equivalentes.
+
 As ilustrações ficam desacopladas do motor. O conteúdo referencia um ID estável,
 e a apresentação resolve arquivo, dimensões e alternativa textual pelo catálogo.
 
