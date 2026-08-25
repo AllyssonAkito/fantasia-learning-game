@@ -10,6 +10,8 @@
 
 ## Correções
 
+- a trilha inicial de Lógica agora apresenta capas reais para Padrões, Montar e
+  Descobrir, mantendo o número como selo secundário;
 - as seis capas de Padrões agora antecipam a sequência real de cada tarefa, em
   vez de repetir o mesmo ícone genérico;
 - Padrões troca a concentração de vermelho e laranja por amarelo, lilás, azul e

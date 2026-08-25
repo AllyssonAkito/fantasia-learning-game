@@ -32,6 +32,11 @@ Todos os IDs são globais, em minúsculas, separados por ponto e não carregam t
 
 Curso, trilha e nível podem declarar `presentation` com rótulo curto e ícone destinados à criança. O modelo de navegação recebe somente esses campos, o destino opaco e o estado `current`, `locked` ou `completed`; títulos internos e nomes da taxonomia não são renderizados.
 
+A visão da trilha pode incluir uma `cover` derivada da primeira atividade do
+nível. A capa expõe somente os IDs necessários para uma prévia de sequência,
+montagem ou pista parcial; respostas e regras de avaliação não chegam ao
+componente de navegação.
+
 `schemaVersion` é um inteiro positivo. `contentVersion` usa SemVer e identifica a revisão executada. Conteúdo publicado é imutável; correções geram nova revisão sem reescrever o histórico.
 
 ## Activity

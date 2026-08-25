@@ -1203,7 +1203,7 @@ body {
 .path-stop {
   display: grid;
   min-height: 5.5rem;
-  grid-template-columns: 3.5rem 1fr;
+  grid-template-columns: clamp(7rem, 25vw, 9rem) 1fr;
   align-items: center;
   gap: 0.2rem 1rem;
   border: 0.22rem solid #fff;
@@ -1217,6 +1217,116 @@ body {
   font-weight: 800;
   padding: 0.75rem 1rem;
   text-align: left;
+}
+
+.path-stop__cover {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 5.5rem;
+  grid-row: span 2;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #eaf8fa;
+  place-items: center;
+}
+
+.path-cover {
+  display: grid;
+  width: 100%;
+  height: 5.5rem;
+  place-items: center;
+}
+
+.path-cover--sequence {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.2rem;
+  padding: 0.45rem;
+}
+
+.path-cover__sequence-item,
+.path-cover__sequence-gap {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.55rem;
+  background: rgb(255 255 255 / 72%);
+  place-items: center;
+}
+
+.path-cover--sequence .activity-asset {
+  width: 100%;
+  height: auto;
+}
+
+.path-cover__sequence-gap {
+  border: 0.15rem dashed #79bdc9;
+  background: rgb(255 255 255 / 48%);
+}
+
+.path-cover--assembly {
+  width: 4.7rem;
+  height: 5.2rem;
+  grid-template-rows: repeat(3, 1fr);
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: #fff;
+}
+
+.path-cover__assembly-piece {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.path-cover--assembly .activity-asset-slice {
+  height: 100%;
+  min-height: 0;
+}
+
+.path-cover--clue {
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  border: 0.22rem solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.15rem #79bdc9;
+}
+
+.path-cover--clue .activity-asset {
+  --path-clue-x: center;
+  --path-clue-y: center;
+
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  filter: grayscale(1) contrast(1.08);
+  transform: scale(2.35);
+  transform-origin: var(--path-clue-x) var(--path-clue-y);
+}
+
+.path-cover--clue[data-focus-x='left'] .activity-asset {
+  --path-clue-x: left;
+}
+
+.path-cover--clue[data-focus-x='right'] .activity-asset {
+  --path-clue-x: right;
+}
+
+.path-cover--clue[data-focus-y='top'] .activity-asset {
+  --path-clue-y: top;
+}
+
+.path-cover--clue[data-focus-y='bottom'] .activity-asset {
+  --path-clue-y: bottom;
+}
+
+.path-cover--fallback {
+  width: 3.75rem;
+  height: 3.75rem;
+  border: 0.18rem dashed #79bdc9;
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 60%);
 }
 
 .path-stop:nth-child(even) {
@@ -1233,12 +1343,16 @@ body {
 }
 
 .path-stop__number {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.25rem;
   display: grid;
-  width: 3.5rem;
-  height: 3.5rem;
-  grid-row: span 2;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 50%;
   background: var(--color-sun);
+  box-shadow: 0 0.12rem 0 rgb(75 112 119 / 25%);
+  font-size: 0.85rem;
   place-items: center;
 }
 

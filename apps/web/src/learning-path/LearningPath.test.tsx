@@ -31,12 +31,12 @@ describe('LearningPath', () => {
 
     expect(
       screen.getByRole('button', {
-        name: 'Primeira estrela. Pronto para brincar',
+        name: '1. Primeira estrela. Pronto para brincar',
       }),
     ).toBeEnabled();
     expect(
       screen.getByRole('button', {
-        name: 'Segunda estrela. Bloqueado por enquanto',
+        name: '2. Segunda estrela. Bloqueado por enquanto',
       }),
     ).toBeDisabled();
   });
@@ -71,8 +71,74 @@ describe('LearningPath', () => {
 
     expect(
       screen.getByRole('button', {
-        name: 'Segunda estrela. Pronto para brincar',
+        name: '1. Segunda estrela. Pronto para brincar',
       }),
     ).toBeEnabled();
+  });
+
+  it('mostra capas diferentes para Padrões, Montar e Descobrir', () => {
+    const { container } = render(
+      <LearningPath
+        path={{
+          status: 'ready',
+          courseLabel: 'Lógica',
+          courseIcon: 'icon.blocks',
+          stops: [
+            {
+              destinationId: 'level.logic.patterns.01',
+              label: 'Padrões',
+              icon: 'icon.blocks',
+              state: 'current',
+              cover: {
+                kind: 'sequence',
+                assetIds: [
+                  'asset.symbol.star',
+                  'asset.symbol.heart',
+                  'asset.symbol.star',
+                ],
+              },
+            },
+            {
+              destinationId: 'level.logic.ordering.01',
+              label: 'Montar',
+              icon: 'icon.blocks',
+              state: 'locked',
+              cover: {
+                kind: 'assembly',
+                pieceIds: [
+                  'asset.character.dog.top',
+                  'asset.character.dog.middle',
+                  'asset.character.dog.bottom',
+                ],
+              },
+            },
+            {
+              destinationId: 'level.logic.deduction.01',
+              label: 'Descobrir',
+              icon: 'icon.blocks',
+              state: 'locked',
+              cover: {
+                kind: 'clue',
+                assetId: 'asset.symbol.rabbit',
+                focusX: 'right',
+                focusY: 'top',
+              },
+            },
+          ],
+        }}
+      />,
+    );
+
+    expect(container.querySelectorAll('[data-cover]')).toHaveLength(3);
+    expect(
+      container.querySelector('[data-cover="sequence"] img'),
+    ).toHaveAttribute('src', '/assets/activity/star.webp');
+    expect(
+      container.querySelectorAll('[data-cover="assembly"] img'),
+    ).toHaveLength(3);
+    expect(container.querySelector('[data-cover="clue"] img')).toHaveAttribute(
+      'src',
+      '/assets/activity/rabbit.webp',
+    );
   });
 });

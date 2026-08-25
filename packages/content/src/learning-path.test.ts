@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { InMemoryContentCatalog } from './catalog';
 import { buildLearningPathView } from './learning-path';
+import { mvpCatalogSeed } from './mvp-catalog';
 import type { ContentCatalogSeed } from './catalog';
 
 const seed: ContentCatalogSeed = {
@@ -88,5 +89,40 @@ describe('buildLearningPathView', () => {
     expect(
       buildLearningPathView(new InMemoryContentCatalog(), 'course.logic'),
     ).toEqual({ status: 'empty', stops: [] });
+  });
+
+  it('deriva as capas de Lógica da primeira atividade de cada nível', () => {
+    const view = buildLearningPathView(
+      new InMemoryContentCatalog(mvpCatalogSeed),
+      'course.logic',
+    );
+
+    expect(view.status).toBe('ready');
+    if (view.status !== 'ready') return;
+    expect(view.stops.slice(0, 3).map(({ cover }) => cover?.kind)).toEqual([
+      'sequence',
+      'assembly',
+      'clue',
+    ]);
+    expect(view.stops[0]!.cover).toEqual({
+      kind: 'sequence',
+      assetIds: [
+        'asset.symbol.star',
+        'asset.symbol.heart',
+        'asset.symbol.star',
+      ],
+    });
+    expect(view.stops[1]!.cover).toMatchObject({
+      kind: 'assembly',
+      pieceIds: [
+        expect.stringContaining('.top'),
+        expect.stringContaining('.middle'),
+        expect.stringContaining('.bottom'),
+      ],
+    });
+    expect(view.stops[2]!.cover).toMatchObject({
+      kind: 'clue',
+      assetId: 'asset.symbol.rabbit',
+    });
   });
 });
