@@ -32,6 +32,11 @@ Todos os IDs são globais, em minúsculas, separados por ponto e não carregam t
 
 Curso, trilha e nível podem declarar `presentation` com rótulo curto e ícone destinados à criança. O modelo de navegação recebe somente esses campos, o destino opaco e o estado `current`, `locked` ou `completed`; títulos internos e nomes da taxonomia não são renderizados.
 
+O rótulo infantil do nível termina com seu número editorial: `Padrões 1`,
+`Montar 1` e `Descobrir 1`. O número faz parte do conteúdo, não é concatenado
+pela interface, e permite adicionar revisões futuras como `Padrões 2` sem
+alterar os componentes de navegação.
+
 A visão da trilha pode incluir uma `cover` derivada da primeira atividade do
 nível. A capa expõe somente os IDs necessários para uma prévia de sequência,
 montagem ou pista parcial; respostas e regras de avaliação não chegam ao

@@ -201,6 +201,10 @@ const common = {
   status: 'published',
 } as const;
 
+function numberedLevelLabel(label: string, levelNumber = 1) {
+  return `${label} ${levelNumber}`;
+}
+
 const tokenPool = mvpAssets.map((asset) => ({
   id: asset.id,
   label: asset.alt,
@@ -473,7 +477,7 @@ for (const [areaOrder, area] of areas.entries()) {
       title: skill.title,
       order: 0,
       difficulty: skillOrder * 2 + 1,
-      presentation: { label: skill.label, icon: area.icon },
+      presentation: { label: numberedLevelLabel(skill.label), icon: area.icon },
     });
 
     for (let index = 0; index < 6; index += 1) {
@@ -1071,7 +1075,10 @@ for (const [levelOrder, blueprint] of expansionLevels.entries()) {
     title: blueprint.title,
     order: 0,
     difficulty: blueprint.difficulty,
-    presentation: { label: blueprint.label, icon: 'icon.star' },
+    presentation: {
+      label: numberedLevelLabel(blueprint.label),
+      icon: 'icon.star',
+    },
   });
   for (const activity of blueprint.activities) {
     activities.push({

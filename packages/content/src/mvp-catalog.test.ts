@@ -43,6 +43,26 @@ describe('catálogo MVP', () => {
     ).toEqual(new Set([1, 2, 3, 4, 5, 6]));
   });
 
+  it('identifica todas as fases publicadas como Nível 1', () => {
+    const levels = mvpCatalogSeed.levels!;
+    expect(levels).toHaveLength(21);
+    expect(
+      levels.every(({ presentation }) => presentation?.label.endsWith(' 1')),
+    ).toBe(true);
+    expect(
+      levels
+        .filter(({ skillId }) => skillId.startsWith('skill.logic.'))
+        .map(({ presentation }) => presentation!.label),
+    ).toEqual([
+      'Padrões 1',
+      'Montar 1',
+      'Descobrir 1',
+      'Reconhecer 1',
+      'Relacionar 1',
+      'Combinar 1',
+    ]);
+  });
+
   it('carrega a hierarquia completa no repositório de conteúdo', () => {
     const catalog = new InMemoryContentCatalog(mvpCatalogSeed);
     expect(catalog.getTrailsByCourse('course.logic')).toHaveLength(1);

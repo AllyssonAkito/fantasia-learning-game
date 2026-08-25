@@ -2,6 +2,7 @@
 
 ## Novidades
 
+- identifica todas as 21 fases existentes como Nível 1 no rótulo infantil;
 - adiciona três níveis com seis tarefas cada: Reconhecer, Relacionar e Combinar;
 - distribui os oito motores em brincadeiras variadas, com dificuldade e número de alternativas crescentes;
 - inclui completar e ordenar o nome MELINA com peças grandes e instrução falada;
