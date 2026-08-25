@@ -11,6 +11,12 @@ import {
 
 export interface ChoicePresentation {
   prompt: string;
+  clue?: {
+    assetId: string;
+    label: string;
+    focusX: 'left' | 'center' | 'right';
+    focusY: 'top' | 'center' | 'bottom';
+  };
   pattern: { id: string; label: string }[];
   options: {
     id: string;
@@ -47,6 +53,12 @@ export function createChoicePresentation(
     const definition = activity.content as ChoiceDefinition;
     return {
       prompt: definition.prompt,
+      clue: definition.clue
+        ? {
+            ...definition.clue,
+            label: assetLabel(definition.clue.assetId),
+          }
+        : undefined,
       pattern: [],
       options: definition.options.map(({ id }) => assetItem(id)),
       evaluate: (answer) => choiceEngine.evaluate(definition, answer).correct,

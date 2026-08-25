@@ -10,8 +10,9 @@
 
 ## Correções
 
-- a fase “Qual completa?” agora mostra uma sequência visual, uma lacuna clara e
-  alternativas grandes; não existem mais respostas soltas sem contexto.
+- “Padrões” permanece como completar sequência;
+- “Descobrir” agora mostra somente um fragmento ampliado e pede para reconhecer
+  a imagem completa, evitando repetição de mecânica entre os níveis.
 
 ## Montagem visual
 

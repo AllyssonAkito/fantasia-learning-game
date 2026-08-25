@@ -37,6 +37,18 @@ permite, sem exigir leitura autônoma.
 O nome MELINA aparece em dois dos três níveis como reconhecimento visual e
 ordenação de peças, sempre com instrução em português brasileiro e apoio visual.
 
+## Categorias da trilha inicial de Lógica
+
+| Nível | Regra principal | Apresentação |
+| --- | --- | --- |
+| Padrões | prever o próximo item | sequência AB com lacuna final |
+| Montar | ordenar partes | três recortes do mesmo mascote |
+| Descobrir | reconhecer o todo pela parte | fragmento ampliado e imagens completas como respostas |
+
+Os três níveis não compartilham a mesma regra cognitiva. Reuso de motor é
+permitido no catálogo geral, mas níveis vizinhos não podem ser diferenciados
+apenas pelo texto ou pelos assets.
+
 ## Checklist de assets aplicado
 
 - origem e licença registradas;

@@ -48,8 +48,8 @@ const areas: readonly AreaBlueprint[] = [
         id: 'deduction',
         title: 'Dedução visual',
         label: 'Descobrir',
-        engine: 'sequence',
-        instruction: 'Qual completa a brincadeira?',
+        engine: 'choice',
+        instruction: 'Que figura está escondida?',
       },
     ],
   },
@@ -214,6 +214,79 @@ function tokens(offset: number) {
 
 const assemblyCharacters = ['dog', 'bunny'] as const;
 
+const deductionChallenges = [
+  {
+    clueId: 'asset.symbol.rabbit',
+    focusX: 'right',
+    focusY: 'top',
+    optionIds: ['asset.symbol.rabbit', 'asset.symbol.dog', 'asset.symbol.fish'],
+  },
+  {
+    clueId: 'asset.symbol.dog',
+    focusX: 'center',
+    focusY: 'top',
+    optionIds: ['asset.symbol.dog', 'asset.symbol.rabbit', 'asset.symbol.ball'],
+  },
+  {
+    clueId: 'asset.symbol.fish',
+    focusX: 'right',
+    focusY: 'center',
+    optionIds: [
+      'asset.symbol.fish',
+      'asset.symbol.flower',
+      'asset.symbol.ball',
+    ],
+  },
+  {
+    clueId: 'asset.symbol.carrot',
+    focusX: 'center',
+    focusY: 'top',
+    optionIds: [
+      'asset.symbol.carrot',
+      'asset.symbol.apple',
+      'asset.symbol.flower',
+    ],
+  },
+  {
+    clueId: 'asset.symbol.apple',
+    focusX: 'right',
+    focusY: 'top',
+    optionIds: [
+      'asset.symbol.apple',
+      'asset.symbol.ball',
+      'asset.symbol.circle',
+    ],
+  },
+  {
+    clueId: 'asset.symbol.flower',
+    focusX: 'left',
+    focusY: 'center',
+    optionIds: [
+      'asset.symbol.flower',
+      'asset.symbol.star',
+      'asset.symbol.carrot',
+    ],
+  },
+] as const;
+
+function deductionContent(difficulty: number, index: number) {
+  const challenge = deductionChallenges[index % deductionChallenges.length]!;
+  return {
+    difficulty,
+    prompt: 'Descubra qual figura aparece no recorte.',
+    clue: {
+      assetId: challenge.clueId,
+      focusX: challenge.focusX,
+      focusY: challenge.focusY,
+    },
+    options: challenge.optionIds.map((id) => ({
+      id,
+      label: mvpAssets.find((asset) => asset.id === id)!.alt,
+    })),
+    correctOptionId: challenge.clueId,
+  };
+}
+
 function characterPieces(offset: number) {
   const character = assemblyCharacters[offset % assemblyCharacters.length]!;
   return (['top', 'middle', 'bottom'] as const).map((crop, order) => ({
@@ -346,7 +419,10 @@ for (const [areaOrder, area] of areas.entries()) {
     for (let index = 0; index < 6; index += 1) {
       const difficulty = index + 1;
       const offset = areaOrder * 3 + skillOrder + index;
-      const content = engineContent(skill.engine, difficulty, offset);
+      const content =
+        skill.id === 'deduction'
+          ? deductionContent(difficulty, index)
+          : engineContent(skill.engine, difficulty, offset);
       activities.push({
         ...common,
         id: `activity.${area.id}.${skill.id}.${String(index + 1).padStart(3, '0')}`,
@@ -367,11 +443,13 @@ for (const [areaOrder, area] of areas.entries()) {
           coins: 2,
         },
         assets:
-          skill.engine === 'assembly'
-            ? characterPieces(offset).map((piece) => piece.id)
-            : tokens(offset)
-                .slice(0, 3)
-                .map((token) => token.id),
+          skill.id === 'deduction'
+            ? [...deductionChallenges[index]!.optionIds]
+            : skill.engine === 'assembly'
+              ? characterPieces(offset).map((piece) => piece.id)
+              : tokens(offset)
+                  .slice(0, 3)
+                  .map((token) => token.id),
       });
     }
   }

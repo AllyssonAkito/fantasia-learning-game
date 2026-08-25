@@ -489,6 +489,47 @@ body {
   place-items: center;
 }
 
+.activity-screen__visual-clue {
+  display: grid;
+  width: clamp(8.5rem, 27vw, 11rem);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 0.35rem solid #fff;
+  border-radius: 50%;
+  background: #dff5f8;
+  box-shadow:
+    0 0 0 0.22rem #79bdc9,
+    0 0.4rem 0 #5f9eab;
+  place-items: center;
+}
+
+.activity-screen__visual-clue .activity-asset {
+  --clue-origin-x: center;
+  --clue-origin-y: center;
+
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  transform: scale(2.45);
+  transform-origin: var(--clue-origin-x) var(--clue-origin-y);
+}
+
+.activity-screen__visual-clue[data-focus-x='left'] .activity-asset {
+  --clue-origin-x: left;
+}
+
+.activity-screen__visual-clue[data-focus-x='right'] .activity-asset {
+  --clue-origin-x: right;
+}
+
+.activity-screen__visual-clue[data-focus-y='top'] .activity-asset {
+  --clue-origin-y: top;
+}
+
+.activity-screen__visual-clue[data-focus-y='bottom'] .activity-asset {
+  --clue-origin-y: bottom;
+}
+
 .activity-asset {
   display: block;
   width: min(100%, 7.5rem);

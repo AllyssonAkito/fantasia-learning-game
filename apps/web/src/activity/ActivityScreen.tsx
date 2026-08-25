@@ -74,7 +74,16 @@ function ChoiceActivityScreen({
       <h1 className="visually-hidden" id="activity-title">
         {activity.instruction.text}
       </h1>
-      {presentation.pattern.length > 0 ? (
+      {presentation.clue ? (
+        <div
+          aria-label={`Pista: parte de ${presentation.clue.label}`}
+          className="activity-screen__visual-clue"
+          data-focus-x={presentation.clue.focusX}
+          data-focus-y={presentation.clue.focusY}
+        >
+          <ActivityAsset assetId={presentation.clue.assetId} decorative />
+        </div>
+      ) : presentation.pattern.length > 0 ? (
         <div
           className="activity-screen__pattern"
           aria-label="Sequência para observar"

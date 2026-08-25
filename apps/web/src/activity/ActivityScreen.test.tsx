@@ -84,4 +84,33 @@ describe('ActivityScreen', () => {
     fireEvent.click(continueButton);
     expect(onComplete).toHaveBeenCalledOnce();
   });
+
+  it('mostra somente um fragmento como pista na fase Descobrir', () => {
+    const deduction = mvpCatalogSeed.activities!.find(
+      ({ levelId }) => levelId === 'level.logic.deduction.01',
+    )!;
+
+    render(
+      <ActivityScreen
+        activity={deduction}
+        audio={audio}
+        onBack={vi.fn()}
+        onComplete={vi.fn()}
+      />,
+    );
+
+    const presentation = createChoicePresentation(deduction);
+    const clue = screen.getByLabelText(
+      `Pista: parte de ${presentation.clue!.label}`,
+    );
+    expect(clue).toHaveAttribute('data-focus-x');
+    expect(clue).toHaveAttribute('data-focus-y');
+    expect(clue.querySelector('img')).toHaveAttribute(
+      'src',
+      expect.stringMatching(/\/assets\/activity\/.+\.webp$/),
+    );
+    expect(
+      screen.queryByLabelText('Sequência para observar'),
+    ).not.toBeInTheDocument();
+  });
 });

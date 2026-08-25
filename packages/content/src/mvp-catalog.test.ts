@@ -59,22 +59,30 @@ describe('catálogo MVP', () => {
     }
   });
 
-  it('apresenta contexto visual em todas as tarefas do nível Descobrir', () => {
+  it('diferencia Descobrir de Padrões com pistas de imagem parcial', () => {
     const deductionActivities = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.deduction.01',
     );
 
     expect(deductionActivities).toHaveLength(6);
     for (const activity of deductionActivities) {
-      expect(activity.engine).toBe('sequence');
+      expect(activity.engine).toBe('choice');
       expect(activity.content).toMatchObject({
-        pattern: expect.arrayContaining([expect.any(String)]),
-        expectedId: expect.any(String),
+        clue: {
+          assetId: expect.any(String),
+          focusX: expect.stringMatching(/left|center|right/),
+          focusY: expect.stringMatching(/top|center|bottom/),
+        },
+        correctOptionId: expect.any(String),
         options: expect.arrayContaining([
           expect.objectContaining({ id: expect.any(String) }),
         ]),
       });
     }
+    expect(
+      new Set(deductionActivities.map(({ content }) => JSON.stringify(content)))
+        .size,
+    ).toBe(6);
   });
 
   it('distribui a expansão em três níveis variados e progressivos', () => {

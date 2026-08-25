@@ -121,6 +121,11 @@ usam `composite-image`, que combina assets já licenciados sem colocar marcaçã
 de tela dentro do conteúdo. Esses tipos continuam sendo resolvidos pelo mesmo
 catálogo e não transformam letras ou composições em lógica do motor.
 
+O motor de escolha pode receber uma `clue` opcional com `assetId`, `focusX` e
+`focusY`. A apresentação amplia apenas essa região da ilustração; o conteúdo
+continua declarando a resposta em `correctOptionId`. Esse recurso diferencia
+reconhecimento por fragmento de uma sequência incompleta.
+
 ## Regras
 
 - `content` é validado pelo schema do motor.
