@@ -1,4 +1,19 @@
-# Próxima versão — montagem visual
+# Próxima versão — trilha progressiva
+
+## Novidades
+
+- adiciona três níveis com seis tarefas cada: Reconhecer, Relacionar e Combinar;
+- distribui os oito motores em brincadeiras variadas, com dificuldade e número de alternativas crescentes;
+- inclui completar e ordenar o nome MELINA com peças grandes e instrução falada;
+- adiciona associação e classificação por toque ou arraste, além de memória visual;
+- mantém as escolhas sem texto, com imagens originais e áudio em português brasileiro.
+
+## Correções
+
+- a fase “Qual completa?” agora mostra uma sequência visual, uma lacuna clara e
+  alternativas grandes; não existem mais respostas soltas sem contexto.
+
+## Montagem visual
 
 ## Melhorias
 

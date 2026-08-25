@@ -154,8 +154,8 @@ o cálculo estão documentados em [`RESPONSIBLE-AREA.md`](RESPONSIBLE-AREA.md).
 
 - 6 áreas;
 - 8 motores;
-- 15 a 20 exercícios por área;
-- aproximadamente 100 a 120 atividades configuradas.
+- 18 a 24 exercícios por área após a primeira expansão;
+- 126 atividades configuradas, incluindo três níveis variados de seis tarefas.
 
 ## Fora de escopo inicial
 
@@ -163,7 +163,8 @@ O catálogo inicial de itens cosméticos é conquistado apenas por conclusão de
 
 - IA em produção;
 - CMS completo;
-- alfabetização no primeiro MVP da plataforma;
+- currículo completo de alfabetização; a primeira expansão limita-se a
+  reconhecer e ordenar as letras do nome MELINA;
 - conteúdo de terceiros;
 - ranking e competição global;
 - monetização complexa;

@@ -27,6 +27,11 @@ pnpm dev
 
 O Vite informa no terminal a URL local. O comando aceita conexões da rede local para validação em celular ou tablet; não exponha essa porta diretamente na internet.
 
+Enquanto a expansão #162 estiver em revisão, o modo `development` libera todos
+os níveis da trilha para QA. O desbloqueio é definido por
+`qaUnlockAllLevels`, não persiste progresso e permanece desligado em `test` e
+`production`; portanto, nunca entra no site público.
+
 Para gerar o artefato estático:
 
 ```bash

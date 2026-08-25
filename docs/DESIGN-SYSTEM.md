@@ -35,6 +35,11 @@ alinhamento do mesmo personagem. As peças ficam na coluna esquerda e o quadro
 de composição na direita, sem números, letras ou símbolos substituindo a
 imagem. Arrastar e toque sequencial são alternativas equivalentes.
 
+Letras usadas como objeto pedagógico aparecem em peças gráficas grandes, com
+alto contraste e forma consistente. Elas não substituem ilustrações em jogos
+de objetos ou mascotes. Cenas compostas, como “bola acima do quadrado”, usam
+imagens do catálogo e nunca emojis do sistema operacional.
+
 As ilustrações ficam desacopladas do motor. O conteúdo referencia um ID estável,
 e a apresentação resolve arquivo, dimensões e alternativa textual pelo catálogo.
 

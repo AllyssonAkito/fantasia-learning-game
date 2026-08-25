@@ -48,7 +48,7 @@ const areas: readonly AreaBlueprint[] = [
         id: 'deduction',
         title: 'Dedução visual',
         label: 'Descobrir',
-        engine: 'choice',
+        engine: 'sequence',
         instruction: 'Qual completa a brincadeira?',
       },
     ],
@@ -374,6 +374,579 @@ for (const [areaOrder, area] of areas.entries()) {
                 .map((token) => token.id),
       });
     }
+  }
+}
+
+interface ExpansionLevelBlueprint {
+  id: 'journey-a' | 'journey-b' | 'journey-c';
+  label: string;
+  title: string;
+  difficulty: number;
+  activities: readonly Omit<
+    Activity,
+    | 'schemaVersion'
+    | 'contentVersion'
+    | 'status'
+    | 'levelId'
+    | 'hints'
+    | 'reward'
+  >[];
+}
+
+const expansionLevels: readonly ExpansionLevelBlueprint[] = [
+  {
+    id: 'journey-a',
+    label: 'Reconhecer',
+    title: 'Reconhecer imagens e padrões',
+    difficulty: 2,
+    activities: [
+      {
+        id: 'activity.shapes.journey-a.001',
+        title: 'Reconhecer a forma redonda',
+        order: 0,
+        engine: 'choice',
+        difficulty: 1,
+        instruction: { text: 'Toque na figura redonda.', ttsFallback: true },
+        content: {
+          difficulty: 1,
+          prompt: 'Toque na figura redonda.',
+          options: [
+            { id: 'asset.symbol.circle', label: 'círculo azul' },
+            { id: 'asset.symbol.triangle', label: 'triângulo vermelho' },
+          ],
+          correctOptionId: 'asset.symbol.circle',
+        },
+        assets: ['asset.symbol.circle', 'asset.symbol.triangle'],
+      },
+      {
+        id: 'activity.association.journey-a.002',
+        title: 'Juntar amigos e objetos',
+        order: 1,
+        engine: 'association',
+        difficulty: 2,
+        instruction: {
+          text: 'Leve cada objeto até o amigo certo.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 2,
+          prompt: 'Leve cada objeto até o amigo certo.',
+          mode: 'one-to-one',
+          relations: {
+            'asset.symbol.carrot': 'asset.symbol.rabbit',
+            'asset.symbol.ball': 'asset.symbol.dog',
+          },
+        },
+        assets: [
+          'asset.symbol.carrot',
+          'asset.symbol.rabbit',
+          'asset.symbol.ball',
+          'asset.symbol.dog',
+        ],
+      },
+      {
+        id: 'activity.logic.journey-a.003',
+        title: 'Continuar sequência alternada',
+        order: 2,
+        engine: 'sequence',
+        difficulty: 2,
+        instruction: { text: 'O que vem depois?', ttsFallback: true },
+        content: {
+          difficulty: 2,
+          prompt: 'O que vem depois?',
+          pattern: [
+            'asset.symbol.star',
+            'asset.symbol.heart',
+            'asset.symbol.star',
+          ],
+          options: [
+            { id: 'asset.symbol.star', label: 'estrela amarela' },
+            { id: 'asset.symbol.heart', label: 'coração roxo' },
+          ],
+          expectedId: 'asset.symbol.heart',
+        },
+        assets: ['asset.symbol.star', 'asset.symbol.heart'],
+      },
+      {
+        id: 'activity.attention.journey-a.004',
+        title: 'Separar pelas formas parecidas',
+        order: 3,
+        engine: 'classification',
+        difficulty: 2,
+        instruction: {
+          text: 'Junte as figuras com formas parecidas.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 2,
+          prompt: 'Junte as figuras com formas parecidas.',
+          groups: [
+            { id: 'asset.symbol.circle', label: 'grupo redondo' },
+            { id: 'asset.symbol.triangle', label: 'grupo pontudo' },
+          ],
+          assignments: {
+            'asset.symbol.apple': 'asset.symbol.circle',
+            'asset.symbol.ball': 'asset.symbol.circle',
+            'asset.symbol.carrot': 'asset.symbol.triangle',
+          },
+        },
+        assets: [
+          'asset.symbol.circle',
+          'asset.symbol.triangle',
+          'asset.symbol.apple',
+          'asset.symbol.ball',
+          'asset.symbol.carrot',
+        ],
+      },
+      {
+        id: 'activity.numbers.journey-a.005',
+        title: 'Comparar quantidades pequenas',
+        order: 4,
+        engine: 'comparison',
+        difficulty: 2,
+        instruction: { text: 'Qual grupo tem mais?', ttsFallback: true },
+        content: {
+          difficulty: 2,
+          prompt: 'Qual grupo tem mais?',
+          dimension: 'quantity',
+          candidates: [
+            { id: 'asset.symbol.apple', value: 2 },
+            { id: 'asset.symbol.carrot', value: 3 },
+          ],
+          expectedId: 'asset.symbol.carrot',
+        },
+        assets: ['asset.symbol.apple', 'asset.symbol.carrot'],
+      },
+      {
+        id: 'activity.memory.journey-a.006',
+        title: 'Montar o cachorrinho',
+        order: 5,
+        engine: 'assembly',
+        difficulty: 2,
+        instruction: {
+          text: 'Monte o cachorrinho de cima para baixo.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 2,
+          prompt: 'Monte o cachorrinho de cima para baixo.',
+          pieces: characterPieces(0),
+          snapTolerance: 48,
+          resetOnIncorrect: true,
+        },
+        assets: characterPieces(0).map((piece) => piece.id),
+      },
+    ],
+  },
+  {
+    id: 'journey-b',
+    label: 'Relacionar',
+    title: 'Relacionar ideias e posições',
+    difficulty: 4,
+    activities: [
+      {
+        id: 'activity.attention.journey-b.001',
+        title: 'Encontrar o diferente',
+        order: 0,
+        engine: 'choice',
+        difficulty: 3,
+        instruction: { text: 'Qual não é um animal?', ttsFallback: true },
+        content: {
+          difficulty: 3,
+          prompt: 'Qual não é um animal?',
+          options: [
+            { id: 'asset.symbol.rabbit', label: 'coelhinho' },
+            { id: 'asset.symbol.dog', label: 'cachorrinho' },
+            { id: 'asset.symbol.carrot', label: 'cenoura' },
+          ],
+          correctOptionId: 'asset.symbol.carrot',
+        },
+        assets: [
+          'asset.symbol.rabbit',
+          'asset.symbol.dog',
+          'asset.symbol.carrot',
+        ],
+      },
+      {
+        id: 'activity.association.journey-b.002',
+        title: 'Levar objetos aos amigos',
+        order: 1,
+        engine: 'drag',
+        difficulty: 3,
+        instruction: {
+          text: 'Arraste cada objeto até o amigo certo.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 3,
+          prompt: 'Arraste cada objeto até o amigo certo.',
+          items: [
+            { id: 'asset.symbol.carrot', targetId: 'asset.symbol.rabbit' },
+            { id: 'asset.symbol.ball', targetId: 'asset.symbol.dog' },
+          ],
+          targets: [
+            { id: 'asset.symbol.rabbit', label: 'coelhinho' },
+            { id: 'asset.symbol.dog', label: 'cachorrinho' },
+          ],
+        },
+        assets: [
+          'asset.symbol.carrot',
+          'asset.symbol.rabbit',
+          'asset.symbol.ball',
+          'asset.symbol.dog',
+        ],
+      },
+      {
+        id: 'activity.logic.journey-b.003',
+        title: 'Continuar sequência AAB',
+        order: 2,
+        engine: 'sequence',
+        difficulty: 4,
+        instruction: { text: 'O que vem depois?', ttsFallback: true },
+        content: {
+          difficulty: 4,
+          prompt: 'O que vem depois?',
+          pattern: [
+            'asset.symbol.star',
+            'asset.symbol.star',
+            'asset.symbol.heart',
+            'asset.symbol.star',
+            'asset.symbol.star',
+          ],
+          options: [
+            { id: 'asset.symbol.star', label: 'estrela amarela' },
+            { id: 'asset.symbol.heart', label: 'coração roxo' },
+            { id: 'asset.symbol.circle', label: 'círculo azul' },
+          ],
+          expectedId: 'asset.symbol.heart',
+        },
+        assets: [
+          'asset.symbol.star',
+          'asset.symbol.heart',
+          'asset.symbol.circle',
+        ],
+      },
+      {
+        id: 'activity.memory.journey-b.004',
+        title: 'Lembrar três figuras',
+        order: 3,
+        engine: 'memory',
+        difficulty: 4,
+        instruction: {
+          text: 'Olhe as figuras e depois toque na mesma ordem.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 4,
+          prompt: 'Olhe as figuras e depois toque na mesma ordem.',
+          mode: 'sequence',
+          expected: [
+            'asset.symbol.flower',
+            'asset.symbol.apple',
+            'asset.symbol.ball',
+          ],
+          revealMs: 1800,
+        },
+        assets: [
+          'asset.symbol.flower',
+          'asset.symbol.apple',
+          'asset.symbol.ball',
+        ],
+      },
+      {
+        id: 'activity.shapes.journey-b.005',
+        title: 'Reconhecer acima e abaixo',
+        order: 4,
+        engine: 'choice',
+        difficulty: 4,
+        instruction: {
+          text: 'Onde a bola está acima do quadrado?',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 4,
+          prompt: 'Onde a bola está acima do quadrado?',
+          options: [
+            {
+              id: 'asset.scene.ball-above-square',
+              label: 'bola acima do quadrado',
+            },
+            {
+              id: 'asset.scene.ball-below-square',
+              label: 'bola abaixo do quadrado',
+            },
+          ],
+          correctOptionId: 'asset.scene.ball-above-square',
+        },
+        assets: [
+          'asset.scene.ball-above-square',
+          'asset.scene.ball-below-square',
+        ],
+      },
+      {
+        id: 'activity.numbers.journey-b.006',
+        title: 'Completar o nome Melina',
+        order: 5,
+        engine: 'sequence',
+        difficulty: 4,
+        instruction: {
+          text: 'Melina. Qual letra completa o nome? M, E, L, I, N...',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 4,
+          prompt: 'Qual letra completa o nome Melina?',
+          pattern: [
+            'asset.letter.m',
+            'asset.letter.e',
+            'asset.letter.l',
+            'asset.letter.i',
+            'asset.letter.n',
+          ],
+          options: [
+            { id: 'asset.letter.a', label: 'letra A' },
+            { id: 'asset.letter.m', label: 'letra M' },
+            { id: 'asset.letter.n', label: 'letra N' },
+          ],
+          expectedId: 'asset.letter.a',
+        },
+        assets: [
+          'asset.letter.m',
+          'asset.letter.e',
+          'asset.letter.l',
+          'asset.letter.i',
+          'asset.letter.n',
+          'asset.letter.a',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'journey-c',
+    label: 'Combinar',
+    title: 'Combinar atributos e sequências',
+    difficulty: 6,
+    activities: [
+      {
+        id: 'activity.shapes.journey-c.001',
+        title: 'Escolher com dois atributos',
+        order: 0,
+        engine: 'choice',
+        difficulty: 5,
+        instruction: {
+          text: 'Qual figura é vermelha e redonda?',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 5,
+          prompt: 'Qual figura é vermelha e redonda?',
+          options: [
+            { id: 'asset.symbol.apple', label: 'maçã vermelha redonda' },
+            { id: 'asset.symbol.ball', label: 'bola colorida redonda' },
+            { id: 'asset.symbol.triangle', label: 'triângulo vermelho' },
+            { id: 'asset.symbol.flower', label: 'flor amarela' },
+          ],
+          correctOptionId: 'asset.symbol.apple',
+        },
+        assets: [
+          'asset.symbol.apple',
+          'asset.symbol.ball',
+          'asset.symbol.triangle',
+          'asset.symbol.flower',
+        ],
+      },
+      {
+        id: 'activity.attention.journey-c.002',
+        title: 'Separar em três grupos',
+        order: 1,
+        engine: 'classification',
+        difficulty: 5,
+        instruction: {
+          text: 'Junte cada figura com a forma parecida.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 5,
+          prompt: 'Junte cada figura com a forma parecida.',
+          groups: [
+            { id: 'asset.symbol.circle', label: 'grupo redondo' },
+            { id: 'asset.symbol.square', label: 'grupo quadrado' },
+            { id: 'asset.symbol.triangle', label: 'grupo triangular' },
+          ],
+          assignments: {
+            'asset.symbol.ball': 'asset.symbol.circle',
+            'asset.symbol.apple': 'asset.symbol.circle',
+            'asset.symbol.square': 'asset.symbol.square',
+            'asset.symbol.carrot': 'asset.symbol.triangle',
+          },
+        },
+        assets: [
+          'asset.symbol.circle',
+          'asset.symbol.square',
+          'asset.symbol.triangle',
+          'asset.symbol.ball',
+          'asset.symbol.apple',
+          'asset.symbol.carrot',
+        ],
+      },
+      {
+        id: 'activity.logic.journey-c.003',
+        title: 'Continuar sequência ABC',
+        order: 2,
+        engine: 'sequence',
+        difficulty: 6,
+        instruction: { text: 'O que vem depois?', ttsFallback: true },
+        content: {
+          difficulty: 6,
+          prompt: 'O que vem depois?',
+          pattern: [
+            'asset.symbol.star',
+            'asset.symbol.heart',
+            'asset.symbol.circle',
+            'asset.symbol.star',
+            'asset.symbol.heart',
+          ],
+          options: [
+            { id: 'asset.symbol.star', label: 'estrela amarela' },
+            { id: 'asset.symbol.heart', label: 'coração roxo' },
+            { id: 'asset.symbol.circle', label: 'círculo azul' },
+            { id: 'asset.symbol.square', label: 'quadrado laranja' },
+          ],
+          expectedId: 'asset.symbol.circle',
+        },
+        assets: [
+          'asset.symbol.star',
+          'asset.symbol.heart',
+          'asset.symbol.circle',
+          'asset.symbol.square',
+        ],
+      },
+      {
+        id: 'activity.association.journey-c.004',
+        title: 'Relacionar três formas parecidas',
+        order: 3,
+        engine: 'association',
+        difficulty: 6,
+        instruction: {
+          text: 'Leve cada objeto até a forma parecida.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 6,
+          prompt: 'Leve cada objeto até a forma parecida.',
+          mode: 'one-to-one',
+          relations: {
+            'asset.symbol.carrot': 'asset.symbol.triangle',
+            'asset.symbol.ball': 'asset.symbol.circle',
+            'asset.symbol.flower': 'asset.symbol.star',
+          },
+        },
+        assets: [
+          'asset.symbol.carrot',
+          'asset.symbol.triangle',
+          'asset.symbol.ball',
+          'asset.symbol.circle',
+          'asset.symbol.flower',
+          'asset.symbol.star',
+        ],
+      },
+      {
+        id: 'activity.numbers.journey-c.005',
+        title: 'Comparar tamanhos',
+        order: 4,
+        engine: 'comparison',
+        difficulty: 6,
+        instruction: { text: 'Qual figura é maior?', ttsFallback: true },
+        content: {
+          difficulty: 6,
+          prompt: 'Qual figura é maior?',
+          dimension: 'size',
+          candidates: [
+            { id: 'asset.symbol.flower', value: 2 },
+            { id: 'asset.symbol.apple', value: 3 },
+            { id: 'asset.symbol.ball', value: 4 },
+            { id: 'asset.symbol.star', value: 1 },
+          ],
+          expectedId: 'asset.symbol.ball',
+        },
+        assets: [
+          'asset.symbol.flower',
+          'asset.symbol.apple',
+          'asset.symbol.ball',
+          'asset.symbol.star',
+        ],
+      },
+      {
+        id: 'activity.memory.journey-c.006',
+        title: 'Ordenar as letras de Melina',
+        order: 5,
+        engine: 'memory',
+        difficulty: 6,
+        instruction: {
+          text: 'Melina. Toque nas letras na ordem: M, E, L, I, N, A.',
+          ttsFallback: true,
+        },
+        content: {
+          difficulty: 6,
+          prompt: 'Toque nas letras do nome Melina na ordem.',
+          mode: 'sequence',
+          expected: [
+            'asset.letter.m',
+            'asset.letter.e',
+            'asset.letter.l',
+            'asset.letter.i',
+            'asset.letter.n',
+            'asset.letter.a',
+          ],
+          revealMs: 2400,
+        },
+        assets: [
+          'asset.letter.m',
+          'asset.letter.e',
+          'asset.letter.l',
+          'asset.letter.i',
+          'asset.letter.n',
+          'asset.letter.a',
+        ],
+      },
+    ],
+  },
+] as const;
+
+for (const [levelOrder, blueprint] of expansionLevels.entries()) {
+  const skillId = `skill.logic.${blueprint.id}`;
+  const levelId = `level.logic.${blueprint.id}.01`;
+  skills.push({
+    ...common,
+    id: skillId,
+    trailId: 'trail.logic.adventure',
+    title: blueprint.title,
+    order: levelOrder + 3,
+  });
+  levels.push({
+    ...common,
+    id: levelId,
+    skillId,
+    title: blueprint.title,
+    order: 0,
+    difficulty: blueprint.difficulty,
+    presentation: { label: blueprint.label, icon: 'icon.star' },
+  });
+  for (const activity of blueprint.activities) {
+    activities.push({
+      ...common,
+      ...activity,
+      levelId,
+      hints: [
+        { type: 'encourage' },
+        { type: 'highlight-region' },
+        { type: 'demonstrate-logic' },
+      ],
+      reward: {
+        stars: activity.difficulty <= 2 ? 1 : activity.difficulty <= 4 ? 2 : 3,
+        coins: 2,
+      },
+    });
   }
 }
 

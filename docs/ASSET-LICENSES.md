@@ -25,3 +25,10 @@ As atividades de montagem reutilizam, por recorte visual, as ilustrações
 originais `cachorrinho-chibi.png` e `coelhinho-chibi.png` do catálogo de
 personagens do projeto. As cópias distribuídas foram otimizadas para WebP de
 `512 × 512 px`; nenhuma imagem de terceiros foi adicionada.
+
+## Peças de letras e cenas compostas
+
+As peças M, E, L, I, N e A e as cenas espaciais da expansão #162 são
+composições gráficas produzidas pelo próprio aplicativo. Elas reutilizam
+tipografia, cores e ilustrações já registradas no catálogo e não incorporam
+arte, emoji ou arquivo de terceiros.

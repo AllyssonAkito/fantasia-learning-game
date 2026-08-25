@@ -115,6 +115,12 @@ declarar `crop` como `top`, `middle` ou `bottom`. As três partes de uma
 atividade sempre apontam para a mesma ilustração original; o recorte é uma
 decisão de apresentação e não duplica a mecânica no conteúdo.
 
+As atividades de alfabetização inicial usam `letter-tile`: uma peça gráfica
+com uma única letra, cor editorial e nome acessível. Cenas espaciais simples
+usam `composite-image`, que combina assets já licenciados sem colocar marcação
+de tela dentro do conteúdo. Esses tipos continuam sendo resolvidos pelo mesmo
+catálogo e não transformam letras ou composições em lógica do motor.
+
 ## Regras
 
 - `content` é validado pelo schema do motor.
@@ -159,8 +165,9 @@ Um item nunca salta diretamente de `draft` para `published`. Retirar conteúdo i
 
 O CMS não faz parte do primeiro ciclo. Inicialmente, arquivos versionados no repositório podem cumprir o papel de catálogo.
 
-O catálogo inicial executável fica em `packages/content/src/mvp-catalog.ts` e
-possui 108 atividades. Sua matriz e seus checklists estão registrados em
+O catálogo executável fica em `packages/content/src/mvp-catalog.ts` e possui
+126 atividades após a primeira expansão de três níveis variados. Sua matriz e
+seus checklists estão registrados em
 [`CONTENT-REVIEW.md`](CONTENT-REVIEW.md); `validatePublishableCatalog` faz a
 validação de quantidade, cobertura, schema de motor, áudio e assets no CI.
 

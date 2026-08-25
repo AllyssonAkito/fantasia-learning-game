@@ -2,7 +2,7 @@
 
 ## Resultado
 
-O catálogo `1.0.0` contém 108 atividades publicadas: 18 em cada uma das áreas
+O catálogo contém 126 atividades publicadas: 21 em cada uma das áreas
 Lógica, Atenção, Associação, Números, Formas e percepção e Memória. A matriz
 executável relaciona área, habilidade, dificuldade e motor, cobrindo os oito
 motores reutilizáveis.
@@ -22,6 +22,21 @@ Esta revisão é editorial de produto, não diagnóstico nem certificação clí
 Uma revisão pedagógica externa futura deve gerar nova versão editorial, sem
 reescrever o histórico da versão `1.0.0`.
 
+## Primeira expansão progressiva
+
+Cada nível contém seis tarefas e combina pelo menos quatro motores e três áreas.
+As escolhas evoluem de duas para três e quatro alternativas quando o motor
+permite, sem exigir leitura autônoma.
+
+| Nível | Foco | Brincadeiras |
+| --- | --- | --- |
+| Reconhecer | identificar uma característica | forma, uso, padrão AB, dois grupos, pequena quantidade e montagem do cachorrinho |
+| Relacionar | ligar pistas e posições | intruso, associação por arraste, padrão AAB, memória de três imagens, acima/abaixo e completar MELINA |
+| Combinar | considerar mais de uma regra | dois atributos, três grupos, padrão ABC, três associações, tamanho/quantidade e ordenar MELINA |
+
+O nome MELINA aparece em dois dos três níveis como reconhecimento visual e
+ordenação de peças, sempre com instrução em português brasileiro e apoio visual.
+
 ## Checklist de assets aplicado
 
 - origem e licença registradas;
@@ -31,7 +46,8 @@ reescrever o histórico da versão `1.0.0`.
 - nenhuma dependência de cor isolada para comunicar resposta;
 - referência ausente bloqueia a suíte de testes.
 
-O MVP usa apenas símbolos Unicode licenciados conforme o catálogo em
+O catálogo usa ilustrações originais, recortes de mascotes, composições visuais e
+peças tipográficas próprias conforme o catálogo em
 `packages/content/src/mvp-assets.ts`. Fotografias familiares continuam no
 protótipo preservado e não são distribuídas pelo novo catálogo.
 
@@ -39,8 +55,8 @@ protótipo preservado e não são distribuídas pelo novo catálogo.
 
 `validatePublishableCatalog` bloqueia o CI quando:
 
-- o total sai da faixa de 100–120;
-- alguma área sai da faixa de 15–20;
+- o total sai da faixa de 120–150;
+- alguma área sai da faixa de 18–24;
 - uma definição não corresponde ao schema do motor;
 - conteúdo deixa de estar publicado ou audível;
 - um asset está ausente ou falha no checklist mínimo.

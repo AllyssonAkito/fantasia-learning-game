@@ -1,7 +1,7 @@
 export interface ContentAsset {
   id: string;
-  kind: 'raster-image';
-  source: string;
+  kind: 'raster-image' | 'letter-tile' | 'composite-image';
+  source?: string;
   alt: string;
   width: number;
   height: number;
@@ -9,6 +9,12 @@ export interface ContentAsset {
   licenseUrl: string;
   legibility: 'verified-at-96px';
   crop?: 'top' | 'middle' | 'bottom';
+  letter?: string;
+  tone?: 'sun' | 'sky' | 'berry' | 'mint' | 'coral' | 'lilac';
+  components?: readonly {
+    assetId: string;
+    position: 'top' | 'bottom';
+  }[];
 }
 
 const assetLicense = '/docs/ASSET-LICENSES.md#ilustracoes-de-atividade';
@@ -50,6 +56,44 @@ function characterPiece(
   };
 }
 
+function letterTile(
+  letter: 'M' | 'E' | 'L' | 'I' | 'N' | 'A',
+  tone: NonNullable<ContentAsset['tone']>,
+): ContentAsset {
+  return {
+    id: `asset.letter.${letter.toLowerCase()}`,
+    kind: 'letter-tile',
+    alt: `letra ${letter}`,
+    letter,
+    tone,
+    width: 384,
+    height: 384,
+    license: 'Original project artwork',
+    licenseUrl: assetLicense,
+    legibility: 'verified-at-96px',
+  };
+}
+
+function positionScene(
+  id: 'above' | 'below',
+  positions: readonly ['top' | 'bottom', 'top' | 'bottom'],
+): ContentAsset {
+  return {
+    id: `asset.scene.ball-${id}-square`,
+    kind: 'composite-image',
+    alt: `bola ${id === 'above' ? 'acima' : 'abaixo'} do quadrado`,
+    components: [
+      { assetId: 'asset.symbol.ball', position: positions[0] },
+      { assetId: 'asset.symbol.square', position: positions[1] },
+    ],
+    width: 384,
+    height: 384,
+    license: 'Original project artwork',
+    licenseUrl: assetLicense,
+    legibility: 'verified-at-96px',
+  };
+}
+
 export const mvpAssets = [
   illustration('star', 'estrela amarela'),
   illustration('heart', 'coração roxo'),
@@ -69,6 +113,14 @@ export const mvpAssets = [
   characterPiece('bunny', 'coelhinho', 'top'),
   characterPiece('bunny', 'coelhinho', 'middle'),
   characterPiece('bunny', 'coelhinho', 'bottom'),
+  letterTile('M', 'berry'),
+  letterTile('E', 'sky'),
+  letterTile('L', 'mint'),
+  letterTile('I', 'coral'),
+  letterTile('N', 'lilac'),
+  letterTile('A', 'sun'),
+  positionScene('above', ['top', 'bottom']),
+  positionScene('below', ['bottom', 'top']),
 ] as const;
 
 export const mvpAssetById = new Map(

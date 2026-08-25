@@ -12,7 +12,13 @@ import {
 export interface ChoicePresentation {
   prompt: string;
   pattern: { id: string; label: string }[];
-  options: { id: string; label: string; assetId: string }[];
+  options: {
+    id: string;
+    label: string;
+    assetId: string;
+    quantity?: number;
+    scale?: number;
+  }[];
   evaluate: (answer: string) => boolean;
 }
 
@@ -55,6 +61,14 @@ export function createChoicePresentation(
         id,
         label: `${assetLabel(id)}, quantidade ${value}`,
         assetId: id,
+        quantity:
+          definition.dimension === 'quantity'
+            ? Math.min(5, Math.max(1, Math.round(value)))
+            : undefined,
+        scale:
+          definition.dimension === 'size'
+            ? Math.min(1, 0.45 + value * 0.12)
+            : undefined,
       })),
       evaluate: (answer) =>
         comparisonEngine.evaluate(definition, answer).correct,

@@ -8,6 +8,7 @@ export interface LiveLearningPathProps {
   courseId: string;
   store: LearningPathProgressStore;
   onSelect?: (levelId: string) => void;
+  unlockAll?: boolean;
 }
 
 export function LiveLearningPath({
@@ -15,6 +16,7 @@ export function LiveLearningPath({
   courseId,
   store,
   onSelect,
+  unlockAll = false,
 }: LiveLearningPathProps) {
   const progress = useSyncExternalStore(
     store.subscribe,
@@ -25,6 +27,7 @@ export function LiveLearningPath({
     <LearningPath
       onSelect={onSelect}
       path={buildLearningPathView(catalog, courseId, progress)}
+      unlockAll={unlockAll}
     />
   );
 }

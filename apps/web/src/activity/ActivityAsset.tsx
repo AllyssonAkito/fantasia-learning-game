@@ -12,6 +12,36 @@ export function ActivityAsset({
   const asset = mvpAssetById.get(assetId);
   if (!asset) return <span aria-hidden="true">?</span>;
 
+  if (asset.kind === 'letter-tile') {
+    return (
+      <span
+        aria-hidden={decorative || undefined}
+        className="activity-letter-tile"
+        data-tone={asset.tone}
+      >
+        {asset.letter}
+      </span>
+    );
+  }
+
+  if (asset.kind === 'composite-image') {
+    return (
+      <span
+        aria-hidden={decorative || undefined}
+        className="activity-composite-image"
+      >
+        {asset.components?.map((component) => (
+          <span
+            className={`activity-composite-image__part activity-composite-image__part--${component.position}`}
+            key={`${component.assetId}-${component.position}`}
+          >
+            <ActivityAsset assetId={component.assetId} decorative />
+          </span>
+        ))}
+      </span>
+    );
+  }
+
   if (asset.crop) {
     return (
       <span
@@ -34,7 +64,7 @@ export function ActivityAsset({
       className="activity-asset"
       draggable={false}
       height={asset.height}
-      src={asset.source}
+      src={asset.source!}
       width={asset.width}
     />
   );

@@ -48,4 +48,31 @@ describe('LearningPath', () => {
       'Novas aventuras estão chegando',
     );
   });
+
+  it('libera níveis bloqueados somente quando o modo de QA é solicitado', () => {
+    render(
+      <LearningPath
+        path={{
+          status: 'ready',
+          courseLabel: 'Lógica',
+          courseIcon: 'icon.blocks',
+          stops: [
+            {
+              destinationId: 'level.logic.path.02',
+              label: 'Segunda estrela',
+              icon: 'icon.star',
+              state: 'locked',
+            },
+          ],
+        }}
+        unlockAll
+      />,
+    );
+
+    expect(
+      screen.getByRole('button', {
+        name: 'Segunda estrela. Pronto para brincar',
+      }),
+    ).toBeEnabled();
+  });
 });

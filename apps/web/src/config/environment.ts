@@ -3,6 +3,7 @@ export type AppMode = 'development' | 'test' | 'production';
 export interface AppEnvironment {
   mode: AppMode;
   isProduction: boolean;
+  qaUnlockAllLevels: boolean;
   telemetryEnabled: boolean;
 }
 
@@ -22,6 +23,7 @@ export function createEnvironment(mode: string): AppEnvironment {
   return {
     mode: normalizedMode,
     isProduction: normalizedMode === 'production',
+    qaUnlockAllLevels: normalizedMode === 'development',
     telemetryEnabled: false,
   };
 }
