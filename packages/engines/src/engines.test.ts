@@ -39,6 +39,27 @@ describe('oito motores reutilizáveis', () => {
     ).toBe(false);
   });
 
+  it('aceita uma pista visual parcial sem misturá-la à resposta', () => {
+    const definition = {
+      ...base,
+      clue: {
+        assetId: 'coelhinho',
+        focusX: 'right' as const,
+        focusY: 'top' as const,
+      },
+      options: [
+        { id: 'coelhinho', label: 'Coelhinho' },
+        { id: 'cachorrinho', label: 'Cachorrinho' },
+      ],
+      correctOptionId: 'coelhinho',
+    };
+
+    expect(choiceDefinitionSchema.parse(definition).clue).toEqual(
+      definition.clue,
+    );
+    expect(choiceEngine.evaluate(definition, 'coelhinho').correct).toBe(true);
+  });
+
   it('avalia arrastar e alternativa por seleção para múltiplos destinos', () => {
     const definition = {
       ...base,

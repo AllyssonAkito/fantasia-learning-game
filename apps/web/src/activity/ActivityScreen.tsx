@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type CSSProperties } from 'react';
 import type { AudioService } from '@fantasia/audio';
 import type { Activity } from '@fantasia/content';
 import { feedbackCopyCatalog } from '@fantasia/content';
@@ -9,6 +9,8 @@ import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
 import { ActivityAsset } from './ActivityAsset';
 import { createChoicePresentation } from './activity-presentation';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
+import { MemoryActivityScreen } from './MemoryActivityScreen';
+import { PlacementActivityScreen } from './PlacementActivityScreen';
 
 const attemptMessages = [
   feedbackCopyCatalog.attempts.first,
@@ -59,6 +61,43 @@ function ChoiceActivityScreen({
     }
   }
 
+  const optionList = (
+    <div className="activity-screen__options" aria-label="Escolha uma resposta">
+      {presentation.options.map((option) => (
+        <button
+          aria-label={option.label}
+          disabled={complete}
+          key={option.id}
+          onClick={() => answer(option.id)}
+          type="button"
+        >
+          <span
+            className={
+              option.quantity
+                ? 'activity-option-visual activity-option-visual--quantity'
+                : 'activity-option-visual'
+            }
+            style={
+              option.scale
+                ? ({
+                    '--activity-option-scale': option.scale,
+                  } as CSSProperties)
+                : undefined
+            }
+          >
+            {Array.from({ length: option.quantity ?? 1 }, (_, index) => (
+              <ActivityAsset
+                assetId={option.assetId}
+                decorative
+                key={`${option.assetId}-${index}`}
+              />
+            ))}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <section className="activity-screen" aria-labelledby="activity-title">
       <button
@@ -72,37 +111,39 @@ function ChoiceActivityScreen({
       <h1 className="visually-hidden" id="activity-title">
         {activity.instruction.text}
       </h1>
-      {presentation.pattern.length > 0 ? (
-        <div
-          className="activity-screen__pattern"
-          aria-label="Sequência para observar"
-        >
-          {presentation.pattern.map((item, index) => (
-            <span aria-label={item.label} key={`${item.id}-${index}`}>
-              <ActivityAsset assetId={item.id} decorative />
-            </span>
-          ))}
-          <span aria-label="parte que falta">?</span>
+      {presentation.clue ? (
+        <div className="activity-screen__discovery-layout">
+          {optionList}
+          <div
+            aria-label={`Pista: parte de ${presentation.clue.label}`}
+            className="activity-screen__visual-clue"
+            data-focus-x={presentation.clue.focusX}
+            data-focus-y={presentation.clue.focusY}
+            data-visual-mode="grayscale"
+          >
+            <ActivityAsset assetId={presentation.clue.assetId} decorative />
+          </div>
         </div>
       ) : (
-        <p className="visually-hidden">{presentation.prompt}</p>
+        <>
+          {presentation.pattern.length > 0 ? (
+            <div
+              className="activity-screen__pattern"
+              aria-label="Sequência para observar"
+            >
+              {presentation.pattern.map((item, index) => (
+                <span aria-label={item.label} key={`${item.id}-${index}`}>
+                  <ActivityAsset assetId={item.id} decorative />
+                </span>
+              ))}
+              <span aria-label="parte que falta">?</span>
+            </div>
+          ) : (
+            <p className="visually-hidden">{presentation.prompt}</p>
+          )}
+          {optionList}
+        </>
       )}
-      <div
-        className="activity-screen__options"
-        aria-label="Escolha uma resposta"
-      >
-        {presentation.options.map((option) => (
-          <button
-            aria-label={option.label}
-            disabled={complete}
-            key={option.id}
-            onClick={() => answer(option.id)}
-            type="button"
-          >
-            <ActivityAsset assetId={option.assetId} decorative />
-          </button>
-        ))}
-      </div>
       {feedback ? (
         <ActivityFeedback cue={feedback.cue} message={feedback.message} />
       ) : null}
@@ -123,9 +164,18 @@ function ChoiceActivityScreen({
 }
 
 export function ActivityScreen(props: ActivityScreenProps) {
-  return props.activity.engine === 'assembly' ? (
-    <AssemblyActivityScreen {...props} />
-  ) : (
-    <ChoiceActivityScreen {...props} />
-  );
+  if (props.activity.engine === 'assembly') {
+    return <AssemblyActivityScreen {...props} />;
+  }
+  if (
+    props.activity.engine === 'drag' ||
+    props.activity.engine === 'association' ||
+    props.activity.engine === 'classification'
+  ) {
+    return <PlacementActivityScreen {...props} />;
+  }
+  if (props.activity.engine === 'memory') {
+    return <MemoryActivityScreen {...props} />;
+  }
+  return <ChoiceActivityScreen {...props} />;
 }

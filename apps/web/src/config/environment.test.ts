@@ -9,6 +9,7 @@ describe('createEnvironment', () => {
       expect(createEnvironment(mode)).toEqual({
         mode,
         isProduction: mode === 'production',
+        qaUnlockAllLevels: mode === 'development',
         telemetryEnabled: false,
       });
     },

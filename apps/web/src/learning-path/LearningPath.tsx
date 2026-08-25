@@ -3,6 +3,7 @@ import type { LearningPathView } from '@fantasia/content';
 export interface LearningPathProps {
   path: LearningPathView;
   onSelect?: (levelId: string) => void;
+  unlockAll?: boolean;
 }
 
 const stateLabels = {
@@ -11,7 +12,11 @@ const stateLabels = {
   locked: 'Bloqueado por enquanto',
 } as const;
 
-export function LearningPath({ path, onSelect }: LearningPathProps) {
+export function LearningPath({
+  path,
+  onSelect,
+  unlockAll = false,
+}: LearningPathProps) {
   if (path.status === 'empty') {
     return (
       <section aria-live="polite" className="path-empty" role="status">
@@ -26,23 +31,27 @@ export function LearningPath({ path, onSelect }: LearningPathProps) {
       <p className="learning-path__eyebrow">Sua aventura</p>
       <h1 id="learning-path-title">{path.courseLabel}</h1>
       <div aria-label="Caminho de atividades" className="learning-path__stops">
-        {path.stops.map((stop, index) => (
-          <button
-            aria-label={`${stop.label}. ${stateLabels[stop.state]}`}
-            className={`path-stop path-stop--${stop.state}`}
-            data-level-id={stop.destinationId}
-            disabled={stop.state === 'locked'}
-            key={stop.destinationId}
-            onClick={() => onSelect?.(stop.destinationId)}
-            type="button"
-          >
-            <span aria-hidden="true" className="path-stop__number">
-              {stop.state === 'completed' ? '✓' : index + 1}
-            </span>
-            <span>{stop.label}</span>
-            <small>{stateLabels[stop.state]}</small>
-          </button>
-        ))}
+        {path.stops.map((stop, index) => {
+          const visualState =
+            unlockAll && stop.state === 'locked' ? 'current' : stop.state;
+          return (
+            <button
+              aria-label={`${stop.label}. ${stateLabels[visualState]}`}
+              className={`path-stop path-stop--${visualState}`}
+              data-level-id={stop.destinationId}
+              disabled={visualState === 'locked'}
+              key={stop.destinationId}
+              onClick={() => onSelect?.(stop.destinationId)}
+              type="button"
+            >
+              <span aria-hidden="true" className="path-stop__number">
+                {stop.state === 'completed' ? '✓' : index + 1}
+              </span>
+              <span>{stop.label}</span>
+              <small>{stateLabels[visualState]}</small>
+            </button>
+          );
+        })}
       </div>
     </section>
   );

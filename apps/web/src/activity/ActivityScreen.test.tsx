@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { AudioService } from '@fantasia/audio';
 import { mvpCatalogSeed } from '@fantasia/content';
@@ -83,5 +89,41 @@ describe('ActivityScreen', () => {
     expect(continueButton).toHaveFocus();
     fireEvent.click(continueButton);
     expect(onComplete).toHaveBeenCalledOnce();
+  });
+
+  it('mostra somente um fragmento como pista na fase Descobrir', () => {
+    const deduction = mvpCatalogSeed.activities!.find(
+      ({ levelId }) => levelId === 'level.logic.deduction.01',
+    )!;
+
+    render(
+      <ActivityScreen
+        activity={deduction}
+        audio={audio}
+        onBack={vi.fn()}
+        onComplete={vi.fn()}
+      />,
+    );
+
+    const presentation = createChoicePresentation(deduction);
+    const clue = screen.getByLabelText(
+      `Pista: parte de ${presentation.clue!.label}`,
+    );
+    expect(clue).toHaveAttribute('data-focus-x');
+    expect(clue).toHaveAttribute('data-focus-y');
+    expect(clue).toHaveAttribute('data-visual-mode', 'grayscale');
+    expect(clue.querySelector('img')).toHaveAttribute(
+      'src',
+      expect.stringMatching(/\/assets\/activity\/.+\.webp$/),
+    );
+    const layout = clue.closest<HTMLElement>(
+      '.activity-screen__discovery-layout',
+    )!;
+    expect(layout.firstElementChild).toHaveClass('activity-screen__options');
+    expect(layout.lastElementChild).toBe(clue);
+    expect(within(layout).getAllByRole('button')).toHaveLength(3);
+    expect(
+      screen.queryByLabelText('Sequência para observar'),
+    ).not.toBeInTheDocument();
   });
 });

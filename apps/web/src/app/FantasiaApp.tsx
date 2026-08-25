@@ -12,6 +12,7 @@ import { LiveLearningPath } from '../learning-path/LiveLearningPath';
 import { LevelActivityGrid } from '../learning-path/LevelActivityGrid';
 import type { LearningPathProgressStore } from '../learning-path/LearningPathProgressStore';
 import { AppShell } from './AppShell';
+import { environment } from '../config/environment';
 
 export interface FantasiaAppProps {
   catalog: ContentCatalog;
@@ -83,6 +84,7 @@ export function FantasiaApp({
                   setActivityId(undefined);
                 }}
                 store={progressStore}
+                unlockAll={environment.qaUnlockAllLevels}
               />
             ),
         }}

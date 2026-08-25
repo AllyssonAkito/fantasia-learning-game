@@ -10,6 +10,13 @@ import { z } from 'zod';
 const id = z.string().min(1);
 const difficulty = z.number().int().min(1).max(10);
 const option = z.object({ id, label: z.string().min(1) }).strict();
+const visualClue = z
+  .object({
+    assetId: id,
+    focusX: z.enum(['left', 'center', 'right']),
+    focusY: z.enum(['top', 'center', 'bottom']),
+  })
+  .strict();
 const base = z.object({ difficulty, prompt: z.string().min(1) });
 
 function parseAndEvaluate<Definition, Answer>(
@@ -29,7 +36,11 @@ function parseAndEvaluate<Definition, Answer>(
 }
 
 export const choiceDefinitionSchema = base
-  .extend({ options: z.array(option).min(2).max(4), correctOptionId: id })
+  .extend({
+    options: z.array(option).min(2).max(4),
+    correctOptionId: id,
+    clue: visualClue.optional(),
+  })
   .strict()
   .refine(
     (value) => value.options.some((item) => item.id === value.correctOptionId),

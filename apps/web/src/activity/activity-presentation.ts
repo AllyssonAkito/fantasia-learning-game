@@ -11,8 +11,20 @@ import {
 
 export interface ChoicePresentation {
   prompt: string;
+  clue?: {
+    assetId: string;
+    label: string;
+    focusX: 'left' | 'center' | 'right';
+    focusY: 'top' | 'center' | 'bottom';
+  };
   pattern: { id: string; label: string }[];
-  options: { id: string; label: string; assetId: string }[];
+  options: {
+    id: string;
+    label: string;
+    assetId: string;
+    quantity?: number;
+    scale?: number;
+  }[];
   evaluate: (answer: string) => boolean;
 }
 
@@ -41,6 +53,12 @@ export function createChoicePresentation(
     const definition = activity.content as ChoiceDefinition;
     return {
       prompt: definition.prompt,
+      clue: definition.clue
+        ? {
+            ...definition.clue,
+            label: assetLabel(definition.clue.assetId),
+          }
+        : undefined,
       pattern: [],
       options: definition.options.map(({ id }) => assetItem(id)),
       evaluate: (answer) => choiceEngine.evaluate(definition, answer).correct,
@@ -55,6 +73,14 @@ export function createChoicePresentation(
         id,
         label: `${assetLabel(id)}, quantidade ${value}`,
         assetId: id,
+        quantity:
+          definition.dimension === 'quantity'
+            ? Math.min(5, Math.max(1, Math.round(value)))
+            : undefined,
+        scale:
+          definition.dimension === 'size'
+            ? Math.min(1, 0.45 + value * 0.12)
+            : undefined,
       })),
       evaluate: (answer) =>
         comparisonEngine.evaluate(definition, answer).correct,

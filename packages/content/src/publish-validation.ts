@@ -20,9 +20,9 @@ export function validatePublishableCatalog(
   const assetIds = new Set(assets.map((asset) => asset.id));
   const counts = new Map<string, number>();
 
-  if (activities.length < 100 || activities.length > 120) {
+  if (activities.length < 120 || activities.length > 150) {
     issues.push(
-      `quantidade esperada entre 100 e 120; recebida ${activities.length}`,
+      `quantidade esperada entre 120 e 150; recebida ${activities.length}`,
     );
   }
 
@@ -54,8 +54,8 @@ export function validatePublishableCatalog(
     'memory',
   ]) {
     const count = counts.get(area) ?? 0;
-    if (count < 15 || count > 20)
-      issues.push(`${area} precisa de 15–20 atividades; recebeu ${count}`);
+    if (count < 18 || count > 24)
+      issues.push(`${area} precisa de 18–24 atividades; recebeu ${count}`);
   }
 
   for (const asset of assets) {
