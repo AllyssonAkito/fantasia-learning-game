@@ -351,6 +351,220 @@ function deductionContent(difficulty: number, index: number) {
   };
 }
 
+const attentionSearchChallenges = [
+  {
+    targetId: 'asset.symbol.carrot',
+    optionIds: [
+      'asset.symbol.flower',
+      'asset.symbol.carrot',
+      'asset.symbol.ball',
+    ],
+    title: 'Ache a cenoura',
+  },
+  {
+    targetId: 'asset.symbol.rabbit',
+    optionIds: ['asset.symbol.rabbit', 'asset.symbol.dog', 'asset.symbol.fish'],
+    title: 'Ache o coelhinho',
+  },
+  {
+    targetId: 'asset.symbol.flower',
+    optionIds: [
+      'asset.symbol.star',
+      'asset.symbol.heart',
+      'asset.symbol.flower',
+    ],
+    title: 'Ache a flor',
+  },
+  {
+    targetId: 'asset.symbol.ball',
+    optionIds: [
+      'asset.symbol.circle',
+      'asset.symbol.ball',
+      'asset.symbol.apple',
+    ],
+    title: 'Ache a bola',
+  },
+  {
+    targetId: 'asset.symbol.fish',
+    optionIds: ['asset.symbol.rabbit', 'asset.symbol.fish', 'asset.symbol.dog'],
+    title: 'Ache o peixinho',
+  },
+  {
+    targetId: 'asset.symbol.apple',
+    optionIds: [
+      'asset.symbol.carrot',
+      'asset.symbol.ball',
+      'asset.symbol.apple',
+    ],
+    title: 'Ache a maçã',
+  },
+] as const;
+
+const attentionDetailChallenges = [
+  ['asset.symbol.star', 'asset.symbol.heart'],
+  ['asset.symbol.rabbit', 'asset.symbol.dog'],
+  ['asset.symbol.flower', 'asset.symbol.circle', 'asset.symbol.flower'],
+  ['asset.symbol.carrot', 'asset.symbol.ball', 'asset.symbol.apple'],
+  [
+    'asset.symbol.fish',
+    'asset.symbol.rabbit',
+    'asset.symbol.dog',
+    'asset.symbol.fish',
+  ],
+  [
+    'asset.symbol.star',
+    'asset.symbol.circle',
+    'asset.symbol.flower',
+    'asset.symbol.heart',
+  ],
+] as const;
+
+const attentionClassificationChallenges = [
+  {
+    title: 'Animais e comidas',
+    instruction:
+      'Coloque os animais com o coelhinho e as comidas com a cenoura.',
+    groups: [
+      { id: 'asset.symbol.rabbit', label: 'animais' },
+      { id: 'asset.symbol.carrot', label: 'comidas' },
+    ],
+    assignments: {
+      'asset.symbol.dog': 'asset.symbol.rabbit',
+      'asset.symbol.fish': 'asset.symbol.rabbit',
+      'asset.symbol.apple': 'asset.symbol.carrot',
+    },
+  },
+  {
+    title: 'Animais e outras coisas',
+    instruction:
+      'Coloque os animais com o cachorrinho e as outras coisas com a bola.',
+    groups: [
+      { id: 'asset.symbol.dog', label: 'animais' },
+      { id: 'asset.symbol.ball', label: 'outras coisas' },
+    ],
+    assignments: {
+      'asset.symbol.rabbit': 'asset.symbol.dog',
+      'asset.symbol.fish': 'asset.symbol.dog',
+      'asset.symbol.flower': 'asset.symbol.ball',
+      'asset.symbol.star': 'asset.symbol.ball',
+    },
+  },
+  {
+    title: 'Comidas e outras coisas',
+    instruction:
+      'Coloque as comidas com a cenoura e as outras coisas com a estrela.',
+    groups: [
+      { id: 'asset.symbol.carrot', label: 'comidas' },
+      { id: 'asset.symbol.star', label: 'outras coisas' },
+    ],
+    assignments: {
+      'asset.symbol.apple': 'asset.symbol.carrot',
+      'asset.symbol.ball': 'asset.symbol.star',
+      'asset.symbol.flower': 'asset.symbol.star',
+      'asset.symbol.dog': 'asset.symbol.star',
+    },
+  },
+  {
+    title: 'Natureza e formas',
+    instruction:
+      'Coloque as coisas da natureza com a flor e as formas com o círculo.',
+    groups: [
+      { id: 'asset.symbol.flower', label: 'natureza' },
+      { id: 'asset.symbol.circle', label: 'formas' },
+    ],
+    assignments: {
+      'asset.symbol.apple': 'asset.symbol.flower',
+      'asset.symbol.carrot': 'asset.symbol.flower',
+      'asset.symbol.square': 'asset.symbol.circle',
+      'asset.symbol.triangle': 'asset.symbol.circle',
+    },
+  },
+  {
+    title: 'Redondos e pontudos',
+    instruction:
+      'Coloque os redondos com o círculo e os pontudos com o triângulo.',
+    groups: [
+      { id: 'asset.symbol.circle', label: 'redondos' },
+      { id: 'asset.symbol.triangle', label: 'pontudos' },
+    ],
+    assignments: {
+      'asset.symbol.ball': 'asset.symbol.circle',
+      'asset.symbol.apple': 'asset.symbol.circle',
+      'asset.symbol.star': 'asset.symbol.triangle',
+    },
+  },
+  {
+    title: 'Animais e plantas',
+    instruction: 'Coloque os animais com o coelhinho e as plantas com a flor.',
+    groups: [
+      { id: 'asset.symbol.rabbit', label: 'animais' },
+      { id: 'asset.symbol.flower', label: 'plantas' },
+    ],
+    assignments: {
+      'asset.symbol.dog': 'asset.symbol.rabbit',
+      'asset.symbol.fish': 'asset.symbol.rabbit',
+      'asset.symbol.carrot': 'asset.symbol.flower',
+      'asset.symbol.apple': 'asset.symbol.flower',
+    },
+  },
+] as const;
+
+function assetOption(id: string) {
+  return {
+    id,
+    label: mvpAssets.find((asset) => asset.id === id)!.alt,
+  };
+}
+
+function attentionActivity(skillId: string, difficulty: number, index: number) {
+  if (skillId === 'visual-search') {
+    const challenge = attentionSearchChallenges[index]!;
+    return {
+      title: challenge.title,
+      instruction: `${challenge.title}.`,
+      content: {
+        difficulty,
+        prompt: `${challenge.title}.`,
+        options: challenge.optionIds.map(assetOption),
+        correctOptionId: challenge.targetId,
+      },
+      assets: [...challenge.optionIds],
+    };
+  }
+
+  if (skillId === 'details') {
+    const expected = attentionDetailChallenges[index]!;
+    return {
+      title: `Lembre ${expected.length} figuras`,
+      instruction: 'Olhe bem. Depois, toque nas figuras na mesma ordem.',
+      content: {
+        difficulty,
+        prompt: 'Toque nas figuras na mesma ordem.',
+        mode: 'sequence' as const,
+        expected: [...expected],
+        revealMs: Math.max(1600, 3300 - difficulty * 250),
+      },
+      assets: [...new Set(expected)],
+    };
+  }
+
+  const challenge = attentionClassificationChallenges[index]!;
+  return {
+    title: challenge.title,
+    instruction: challenge.instruction,
+    content: {
+      difficulty,
+      prompt: challenge.instruction,
+      groups: [...challenge.groups],
+      assignments: { ...challenge.assignments },
+    },
+    assets: [
+      ...challenge.groups.map(({ id }) => id),
+      ...Object.keys(challenge.assignments),
+    ],
+  };
+}
+
 function characterPieces(offset: number) {
   const character = assemblyCharacters[offset % assemblyCharacters.length]!;
   return (['top', 'middle', 'bottom'] as const).map((crop, order) => ({
@@ -484,20 +698,29 @@ for (const [areaOrder, area] of areas.entries()) {
       const difficulty = index + 1;
       const offset = areaOrder * 3 + skillOrder + index;
       const isPatternsActivity = area.id === 'logic' && skill.id === 'patterns';
-      const content = isPatternsActivity
-        ? patternContent(difficulty, index)
-        : skill.id === 'deduction'
-          ? deductionContent(difficulty, index)
-          : engineContent(skill.engine, difficulty, offset);
+      const curatedAttentionActivity =
+        area.id === 'attention'
+          ? attentionActivity(skill.id, difficulty, index)
+          : undefined;
+      const content =
+        curatedAttentionActivity?.content ??
+        (isPatternsActivity
+          ? patternContent(difficulty, index)
+          : skill.id === 'deduction'
+            ? deductionContent(difficulty, index)
+            : engineContent(skill.engine, difficulty, offset));
       activities.push({
         ...common,
         id: `activity.${area.id}.${skill.id}.${String(index + 1).padStart(3, '0')}`,
         levelId,
-        title: `${skill.title} ${index + 1}`,
+        title: curatedAttentionActivity?.title ?? `${skill.title} ${index + 1}`,
         order: index,
         engine: skill.engine,
         difficulty,
-        instruction: { text: skill.instruction, ttsFallback: true },
+        instruction: {
+          text: curatedAttentionActivity?.instruction ?? skill.instruction,
+          ttsFallback: true,
+        },
         content,
         hints: [
           { type: 'encourage' },
@@ -508,15 +731,17 @@ for (const [areaOrder, area] of areas.entries()) {
           stars: difficulty <= 2 ? 1 : difficulty <= 4 ? 2 : 3,
           coins: 2,
         },
-        assets: isPatternsActivity
-          ? patternAssetIds(index)
-          : skill.id === 'deduction'
-            ? [...deductionChallenges[index]!.optionIds]
-            : skill.engine === 'assembly'
-              ? characterPieces(offset).map((piece) => piece.id)
-              : tokens(offset)
-                  .slice(0, 3)
-                  .map((token) => token.id),
+        assets:
+          curatedAttentionActivity?.assets ??
+          (isPatternsActivity
+            ? patternAssetIds(index)
+            : skill.id === 'deduction'
+              ? [...deductionChallenges[index]!.optionIds]
+              : skill.engine === 'assembly'
+                ? characterPieces(offset).map((piece) => piece.id)
+                : tokens(offset)
+                    .slice(0, 3)
+                    .map((token) => token.id)),
       });
     }
   }

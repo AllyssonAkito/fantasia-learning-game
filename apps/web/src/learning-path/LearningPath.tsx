@@ -3,6 +3,7 @@ import { LearningPathCover } from './LearningPathCover';
 
 export interface LearningPathProps {
   path: LearningPathView;
+  onBack?: () => void;
   onSelect?: (levelId: string) => void;
   unlockAll?: boolean;
 }
@@ -15,6 +16,7 @@ const stateLabels = {
 
 export function LearningPath({
   path,
+  onBack,
   onSelect,
   unlockAll = false,
 }: LearningPathProps) {
@@ -29,6 +31,16 @@ export function LearningPath({
 
   return (
     <section aria-labelledby="learning-path-title" className="learning-path">
+      {onBack ? (
+        <button
+          aria-label="Voltar para o Nível 1"
+          className="learning-path__back"
+          onClick={onBack}
+          type="button"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+      ) : null}
       <p className="learning-path__eyebrow">Sua aventura</p>
       <h1 id="learning-path-title">{path.courseLabel}</h1>
       <div aria-label="Caminho de atividades" className="learning-path__stops">

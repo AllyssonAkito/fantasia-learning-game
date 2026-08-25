@@ -10,6 +10,7 @@ import {
 } from '../adult/ResponsibleArea';
 import { LiveLearningPath } from '../learning-path/LiveLearningPath';
 import { LevelActivityGrid } from '../learning-path/LevelActivityGrid';
+import { CourseSelection } from '../learning-path/CourseSelection';
 import type { LearningPathProgressStore } from '../learning-path/LearningPathProgressStore';
 import { AppShell } from './AppShell';
 import { environment } from '../config/environment';
@@ -30,6 +31,7 @@ export function FantasiaApp({
   audio,
 }: FantasiaAppProps) {
   const [adultAreaOpen, setAdultAreaOpen] = useState(false);
+  const [courseId, setCourseId] = useState<string>();
   const [levelId, setLevelId] = useState<string>();
   const [activityId, setActivityId] = useState<string>();
   const levelActivities = levelId ? catalog.getActivitiesByLevel(levelId) : [];
@@ -37,9 +39,9 @@ export function FantasiaApp({
     ? levelActivities.find(({ id }) => id === activityId)
     : undefined;
 
-  const nextLevel = (completedLevelId: string) => {
+  const nextLevel = (activeCourseId: string, completedLevelId: string) => {
     const levels = catalog
-      .getTrailsByCourse('course.logic')
+      .getTrailsByCourse(activeCourseId)
       .flatMap((trail) => catalog.getSkillsByTrail(trail.id))
       .flatMap((skill) => catalog.getLevelsBySkill(skill.id));
     const index = levels.findIndex(({ id }) => id === completedLevelId);
@@ -62,7 +64,7 @@ export function FantasiaApp({
                     activity.id,
                     levelId,
                     levelActivities.map(({ id }) => id),
-                    nextLevel(levelId),
+                    courseId ? nextLevel(courseId, levelId) : undefined,
                   );
                   setActivityId(undefined);
                   if (levelComplete) setLevelId(undefined);
@@ -75,16 +77,29 @@ export function FantasiaApp({
                 onSelect={setActivityId}
                 store={progressStore}
               />
-            ) : (
+            ) : courseId ? (
               <LiveLearningPath
                 catalog={catalog}
-                courseId="course.logic"
+                courseId={courseId}
+                onBack={() => {
+                  setCourseId(undefined);
+                  setLevelId(undefined);
+                  setActivityId(undefined);
+                }}
                 onSelect={(selectedLevelId) => {
                   setLevelId(selectedLevelId);
                   setActivityId(undefined);
                 }}
                 store={progressStore}
                 unlockAll={environment.qaUnlockAllLevels}
+              />
+            ) : (
+              <CourseSelection
+                onSelect={(selectedCourseId) => {
+                  setCourseId(selectedCourseId);
+                  setLevelId(undefined);
+                  setActivityId(undefined);
+                }}
               />
             ),
         }}

@@ -4,17 +4,21 @@ import { mvpCatalogSeed } from '@fantasia/content';
 import { LevelTaskCover } from './LevelTaskCover';
 
 describe('LevelTaskCover', () => {
-  it('mantém um fallback seguro para áreas ainda não especializadas', () => {
+  it.each([
+    ['level.attention.visual-search.01', 'attention-search'],
+    ['level.attention.details.01', 'attention-memory'],
+    ['level.attention.focus.01', 'attention-classification'],
+  ])('usa capa ilustrada em %s', (levelId, previewKind) => {
     const activity = mvpCatalogSeed.activities!.find(
-      ({ levelId }) => levelId === 'level.attention.visual-search.01',
+      (candidate) => candidate.levelId === levelId,
     )!;
     const { container } = render(<LevelTaskCover activity={activity} />);
 
     expect(
-      container.querySelector('[data-preview-kind="fallback"]'),
+      container.querySelector(`[data-preview-kind="${previewKind}"]`),
     ).toBeInTheDocument();
     expect(
-      container.querySelector('[data-preview-kind="pattern"]'),
+      container.querySelector('[data-preview-kind="fallback"]'),
     ).not.toBeInTheDocument();
   });
 });

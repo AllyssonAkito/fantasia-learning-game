@@ -127,6 +127,61 @@ describe('catálogo MVP', () => {
     );
   });
 
+  it('publica as três fases de Atenção com seis desafios específicos', () => {
+    const attentionLevels = mvpCatalogSeed.levels!.filter(({ skillId }) =>
+      skillId.startsWith('skill.attention.'),
+    );
+    expect(
+      attentionLevels.map(({ presentation }) => presentation!.label),
+    ).toEqual(['Procurar 1', 'Detalhes 1', 'Separar 1']);
+
+    const search = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.attention.visual-search.01',
+    );
+    const details = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.attention.details.01',
+    );
+    const classification = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.attention.focus.01',
+    );
+
+    expect([search.length, details.length, classification.length]).toEqual([
+      6, 6, 6,
+    ]);
+    expect(search.every(({ engine }) => engine === 'choice')).toBe(true);
+    expect(
+      search.every(({ content }) => {
+        const definition = content as {
+          options: { id: string }[];
+          correctOptionId: string;
+        };
+        return (
+          definition.options.length === 3 &&
+          definition.options.some(({ id }) => id === definition.correctOptionId)
+        );
+      }),
+    ).toBe(true);
+    expect(details.every(({ engine }) => engine === 'memory')).toBe(true);
+    expect(
+      details.map(
+        ({ content }) => (content as { expected: string[] }).expected.length,
+      ),
+    ).toEqual([2, 2, 3, 3, 4, 4]);
+    expect(
+      classification.every(({ engine, content }) => {
+        const definition = content as {
+          groups: { id: string }[];
+          assignments: Record<string, string>;
+        };
+        return (
+          engine === 'classification' &&
+          definition.groups.length === 2 &&
+          Object.keys(definition.assignments).length >= 3
+        );
+      }),
+    ).toBe(true);
+  });
+
   it('distribui a expansão em três níveis variados e progressivos', () => {
     const expansion = ['journey-a', 'journey-b', 'journey-c'].map((journey) =>
       mvpCatalogSeed.activities!.filter(({ levelId }) =>

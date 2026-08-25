@@ -45,6 +45,7 @@ describe('FantasiaApp', () => {
         progressStore={new LearningPathProgressStore()}
       />,
     );
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir Lógica' }));
     fireEvent.click(
       screen.getByRole('button', {
         name: /Padrões.*Pronto para brincar/i,
@@ -81,5 +82,66 @@ describe('FantasiaApp', () => {
     expect(
       screen.getByRole('button', { name: /Montar.*Pronto para brincar/i }),
     ).toBeEnabled();
+  });
+
+  it('abre Atenção, conclui Procurar e libera Detalhes na mesma área', () => {
+    render(
+      <FantasiaApp
+        audio={audio}
+        catalog={new InMemoryContentCatalog(mvpCatalogSeed)}
+        profiles={[]}
+        progressStore={new LearningPathProgressStore()}
+      />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir Atenção' }));
+    expect(screen.getByRole('heading', { name: 'Atenção' })).toBeVisible();
+    fireEvent.click(
+      screen.getByRole('button', {
+        name: /Procurar 1.*Pronto para brincar/i,
+      }),
+    );
+
+    const activities = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.attention.visual-search.01',
+    );
+    for (const [index, activity] of activities.entries()) {
+      fireEvent.click(
+        screen.getByRole('button', {
+          name: new RegExp(`Atividade ${index + 1}.*Pronta`, 'i'),
+        }),
+      );
+      const definition = activity.content as {
+        options: { id: string; label: string }[];
+        correctOptionId: string;
+      };
+      const label = definition.options.find(
+        ({ id }) => id === definition.correctOptionId,
+      )!.label;
+      fireEvent.click(screen.getByRole('button', { name: label }));
+      fireEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+    }
+
+    expect(
+      screen.getByRole('button', { name: /Procurar 1.*Concluído/i }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole('button', { name: /Detalhes 1.*Pronto para brincar/i }),
+    ).toBeEnabled();
+  });
+
+  it('volta da trilha de Atenção para a escolha do Nível 1', () => {
+    render(
+      <FantasiaApp
+        audio={audio}
+        catalog={new InMemoryContentCatalog(mvpCatalogSeed)}
+        profiles={[]}
+        progressStore={new LearningPathProgressStore()}
+      />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir Atenção' }));
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Voltar para o Nível 1' }),
+    );
+    expect(screen.getByRole('heading', { name: 'Nível 1' })).toBeVisible();
   });
 });

@@ -45,6 +45,15 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
 9. Pedir ao responsável para abrir o resumo e explicar com suas próprias
    palavras o que cada número significa.
 
+## Roteiro complementar de Atenção
+
+1. Na entrada do Nível 1, observar se diferencia os cartões Lógica e Atenção.
+2. Abrir Atenção e observar se inicia Procurar 1 sem instrução textual do adulto.
+3. Confirmar que a instrução falada identifica a figura procurada.
+4. Em Detalhes 1, observar se espera as figuras serem encobertas antes de tocar.
+5. Em Separar 1, testar arrastar e depois repetir usando somente toque.
+6. Voltar à escolha de área e confirmar que o progresso continua visível.
+
 ## Registro de observação
 
 Usar apenas: tarefa, compreendeu sem ajuda (`sim/parcial/não`), tempo em faixa

@@ -49,6 +49,18 @@ Os três níveis não compartilham a mesma regra cognitiva. Reuso de motor é
 permitido no catálogo geral, mas níveis vizinhos não podem ser diferenciados
 apenas pelo texto ou pelos assets.
 
+## Categorias da área Atenção
+
+| Nível      | Regra principal                  | Apresentação                                                    |
+| ---------- | -------------------------------- | --------------------------------------------------------------- |
+| Procurar 1 | localizar uma figura indicada    | três ilustrações grandes com posição do alvo variada            |
+| Detalhes 1 | observar e repetir uma sequência | duas a quatro figuras, com tempo de observação progressivo      |
+| Separar 1  | agrupar por característica       | figuras móveis à esquerda e dois exemplos visuais como destinos |
+
+As 18 tarefas de Atenção usam conteúdo curado, instrução em português
+brasileiro e capas derivadas de cada atividade. A grade não usa emojis como
+substituto das ilustrações.
+
 ## Checklist de assets aplicado
 
 - origem e licença registradas;

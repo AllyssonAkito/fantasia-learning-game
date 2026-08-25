@@ -1,5 +1,10 @@
 import type { Activity } from '@fantasia/content';
-import type { SequenceDefinition } from '@fantasia/engines';
+import type {
+  ChoiceDefinition,
+  ClassificationDefinition,
+  MemoryDefinition,
+  SequenceDefinition,
+} from '@fantasia/engines';
 import { ActivityAsset } from '../activity/ActivityAsset';
 
 const engineIcons = {
@@ -38,6 +43,64 @@ export function LevelTaskCover({ activity }: LevelTaskCoverProps) {
           </span>
         ))}
         <span className="level-task__pattern-gap" />
+      </span>
+    );
+  }
+
+  if (activity.levelId === 'level.attention.visual-search.01') {
+    const definition = activity.content as ChoiceDefinition;
+    return (
+      <span
+        className="level-task__attention-search"
+        data-preview-kind="attention-search"
+      >
+        {definition.options.map(({ id }) => (
+          <span key={id}>
+            <ActivityAsset assetId={id} decorative />
+          </span>
+        ))}
+      </span>
+    );
+  }
+
+  if (activity.levelId === 'level.attention.details.01') {
+    const definition = activity.content as MemoryDefinition;
+    return (
+      <span
+        className="level-task__attention-memory"
+        data-preview-kind="attention-memory"
+      >
+        {definition.expected.slice(0, 3).map((assetId, index) => (
+          <span key={`${assetId}-${index}`}>
+            <ActivityAsset assetId={assetId} decorative />
+          </span>
+        ))}
+        <span className="level-task__attention-memory-hidden" />
+      </span>
+    );
+  }
+
+  if (activity.levelId === 'level.attention.focus.01') {
+    const definition = activity.content as ClassificationDefinition;
+    return (
+      <span
+        className="level-task__attention-classification"
+        data-preview-kind="attention-classification"
+      >
+        <span className="level-task__attention-classification-items">
+          {Object.keys(definition.assignments)
+            .slice(0, 3)
+            .map((assetId) => (
+              <ActivityAsset assetId={assetId} decorative key={assetId} />
+            ))}
+        </span>
+        <span className="level-task__attention-classification-targets">
+          {definition.groups.map(({ id }) => (
+            <span key={id}>
+              <ActivityAsset assetId={id} decorative />
+            </span>
+          ))}
+        </span>
       </span>
     );
   }

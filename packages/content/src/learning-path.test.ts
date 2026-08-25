@@ -125,4 +125,44 @@ describe('buildLearningPathView', () => {
       assetId: 'asset.symbol.rabbit',
     });
   });
+
+  it('deriva capas próprias para as três fases de Atenção', () => {
+    const view = buildLearningPathView(
+      new InMemoryContentCatalog(mvpCatalogSeed),
+      'course.attention',
+    );
+
+    expect(view.status).toBe('ready');
+    if (view.status !== 'ready') return;
+    expect(view.stops.map(({ label }) => label)).toEqual([
+      'Procurar 1',
+      'Detalhes 1',
+      'Separar 1',
+    ]);
+    expect(view.stops.map(({ cover }) => cover?.kind)).toEqual([
+      'search',
+      'memory',
+      'classification',
+    ]);
+    expect(view.stops[0]!.cover).toMatchObject({
+      kind: 'search',
+      assetIds: expect.arrayContaining(['asset.symbol.carrot']),
+    });
+    expect(view.stops[2]!.cover).toMatchObject({
+      kind: 'classification',
+      targetIds: ['asset.symbol.rabbit', 'asset.symbol.carrot'],
+    });
+  });
+
+  it('mantém a primeira fase de cada área disponível com progresso em outra área', () => {
+    const view = buildLearningPathView(
+      new InMemoryContentCatalog(mvpCatalogSeed),
+      'course.attention',
+      { unlockedLevelIds: new Set(['level.logic.ordering.01']) },
+    );
+
+    expect(view.status).toBe('ready');
+    if (view.status !== 'ready') return;
+    expect(view.stops[0]!.state).toBe('current');
+  });
 });

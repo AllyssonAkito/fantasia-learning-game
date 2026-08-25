@@ -35,6 +35,50 @@ export function LearningPathCover({ cover }: LearningPathCoverProps) {
       </span>
     );
   }
+  if (cover.kind === 'search') {
+    return (
+      <span className="path-cover path-cover--search" data-cover="search">
+        {cover.assetIds.map((assetId) => (
+          <span className="path-cover__search-item" key={assetId}>
+            <ActivityAsset assetId={assetId} decorative />
+          </span>
+        ))}
+      </span>
+    );
+  }
+  if (cover.kind === 'memory') {
+    return (
+      <span className="path-cover path-cover--memory" data-cover="memory">
+        {cover.assetIds.map((assetId, index) => (
+          <span className="path-cover__memory-item" key={`${assetId}-${index}`}>
+            <ActivityAsset assetId={assetId} decorative />
+          </span>
+        ))}
+        <span className="path-cover__memory-hidden" />
+      </span>
+    );
+  }
+  if (cover.kind === 'classification') {
+    return (
+      <span
+        className="path-cover path-cover--classification"
+        data-cover="classification"
+      >
+        <span className="path-cover__classification-items">
+          {cover.itemIds.map((assetId) => (
+            <ActivityAsset assetId={assetId} decorative key={assetId} />
+          ))}
+        </span>
+        <span className="path-cover__classification-targets">
+          {cover.targetIds.map((assetId) => (
+            <span key={assetId}>
+              <ActivityAsset assetId={assetId} decorative />
+            </span>
+          ))}
+        </span>
+      </span>
+    );
+  }
   return (
     <span
       className="path-cover path-cover--clue"
