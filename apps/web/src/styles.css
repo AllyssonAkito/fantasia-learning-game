@@ -1083,6 +1083,40 @@ body {
   place-items: center;
 }
 
+.level-task__pattern-preview {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.2rem, 1vw, 0.45rem);
+  align-items: center;
+  padding: 0.55rem;
+}
+
+.level-task__pattern-item,
+.level-task__pattern-gap {
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 1;
+  border-radius: 0.7rem;
+  background: rgb(255 255 255 / 72%);
+  place-items: center;
+}
+
+.level-task__pattern-preview .activity-asset {
+  width: 100%;
+  height: auto;
+  max-height: 3.8rem;
+}
+
+.level-task__pattern-gap {
+  border: 0.18rem dashed #79bdc9;
+  background: rgb(255 255 255 / 48%);
+}
+
+.level-task__engine-icon {
+  line-height: 1;
+}
+
 .level-task__title {
   font-weight: 900;
 }
@@ -1135,6 +1169,10 @@ body {
 
   .level-task {
     min-height: 9rem;
+  }
+
+  .level-task__pattern-preview {
+    padding: 0.35rem;
   }
 }
 

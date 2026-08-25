@@ -10,6 +10,8 @@
 
 ## Correções
 
+- as seis capas de Padrões agora antecipam a sequência real de cada tarefa, em
+  vez de repetir o mesmo ícone genérico;
 - “Padrões” permanece como completar sequência;
 - “Descobrir” agora mostra somente um fragmento ampliado em preto e branco à
   direita e organiza as imagens completas em uma coluna selecionável à esquerda,

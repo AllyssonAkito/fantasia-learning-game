@@ -31,6 +31,23 @@ describe('LevelActivityGrid', () => {
       screen.getByRole('button', { name: /Atividade 2.*Bloqueada/i }),
     ).toBeDisabled();
 
+    const previews = document.querySelectorAll('[data-preview-kind="pattern"]');
+    expect(previews).toHaveLength(6);
+    const firstPreview = previews[0]!;
+    expect(
+      Array.from(firstPreview.querySelectorAll('img')).map((image) =>
+        image.getAttribute('src'),
+      ),
+    ).toEqual([
+      '/assets/activity/star.webp',
+      '/assets/activity/heart.webp',
+      '/assets/activity/star.webp',
+    ]);
+    expect(
+      firstPreview.querySelector('.level-task__pattern-gap'),
+    ).toBeInTheDocument();
+    expect(screen.queryByText('🧩')).not.toBeInTheDocument();
+
     act(() => {
       store.completeActivity(
         activities[0]!.id,
