@@ -1,4 +1,14 @@
-# Fantasia 1.0.3
+# Fantasia 1.0.4
+
+## Melhorias
+
+- substitui emojis das atividades por 12 ilustrações originais em WebP;
+- amplia imagens de padrões, alternativas e peças de montagem;
+- preserva nomes acessíveis sem exibir textos nas escolhas;
+- troca o emoji do controle de áudio por um ícone desenhado em CSS;
+- documenta formato, origem e regra editorial dos novos assets.
+
+## Versão anterior — 1.0.3
 
 ## Melhorias
 

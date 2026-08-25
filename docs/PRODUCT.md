@@ -17,6 +17,10 @@ O MVP deve validar:
 - feedback acolhedor;
 - capacidade de produzir conteúdo sem alterar código.
 
+As atividades usam ilustrações grandes, infantis e originais. Emojis não fazem
+parte da linguagem visual final dos objetos selecionáveis; áudio, imagem e
+reação comunicam o objetivo sem exigir leitura autônoma.
+
 ## Público inicial
 
 - crianças em idade pré-escolar e início da educação básica;

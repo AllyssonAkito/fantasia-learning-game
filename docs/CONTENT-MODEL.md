@@ -20,13 +20,13 @@ Cada entidade possui identificador estável, versão de schema, versão editoria
 
 ## Identidade e relações
 
-| Entidade | Prefixo de ID | Relação obrigatória |
-|---|---|---|
-| `Course` | `course.` | raiz |
-| `Trail` | `trail.` | `courseId` |
-| `Skill` | `skill.` | `trailId` |
-| `Level` | `level.` | `skillId` |
-| `Activity` | `activity.` | `levelId` e `engine` |
+| Entidade   | Prefixo de ID | Relação obrigatória  |
+| ---------- | ------------- | -------------------- |
+| `Course`   | `course.`     | raiz                 |
+| `Trail`    | `trail.`      | `courseId`           |
+| `Skill`    | `skill.`      | `trailId`            |
+| `Level`    | `level.`      | `skillId`            |
+| `Activity` | `activity.`   | `levelId` e `engine` |
 
 Todos os IDs são globais, em minúsculas, separados por ponto e não carregam textos exibidos. Referências ausentes, IDs duplicados, ciclos ou relações fora da hierarquia invalidam o catálogo antes do build.
 
@@ -72,26 +72,50 @@ Curso, trilha e nível podem declarar `presentation` com rótulo curto e ícone 
 
 ## Campos comuns obrigatórios
 
-| Campo | Finalidade |
-|---|---|
-| `id` | identidade permanente |
-| `schemaVersion` | versão do formato do registro |
-| `contentVersion` | revisão editorial em SemVer |
-| `status` | `draft`, `review`, `published`, `retired` |
-| `engine` | motor registrado |
-| `levelId` | nível e caminho pedagógico relacionados |
-| `difficulty` | escala interna de 1 a 10 |
-| `instruction` | texto e áudio |
-| `content` | payload específico do motor |
-| `hints` | progressão de ajuda |
-| `reward` | estrelas e moedas |
-| `assets` | recursos necessários |
+| Campo            | Finalidade                                |
+| ---------------- | ----------------------------------------- |
+| `id`             | identidade permanente                     |
+| `schemaVersion`  | versão do formato do registro             |
+| `contentVersion` | revisão editorial em SemVer               |
+| `status`         | `draft`, `review`, `published`, `retired` |
+| `engine`         | motor registrado                          |
+| `levelId`        | nível e caminho pedagógico relacionados   |
+| `difficulty`     | escala interna de 1 a 10                  |
+| `instruction`    | texto e áudio                             |
+| `content`        | payload específico do motor               |
+| `hints`          | progressão de ajuda                       |
+| `reward`         | estrelas e moedas                         |
+| `assets`         | recursos necessários                      |
+
+## Assets visuais
+
+O catálogo resolve a apresentação visual por ID; atividades e motores não
+incluem emojis, caminhos de arquivo ou marcação de imagem em seus payloads.
+
+```json
+{
+  "id": "asset.symbol.rabbit",
+  "kind": "raster-image",
+  "source": "/assets/activity/rabbit.webp",
+  "alt": "coelhinho",
+  "width": 384,
+  "height": 384,
+  "license": "Original project artwork",
+  "licenseUrl": "/docs/ASSET-LICENSES.md#ilustracoes-de-atividade",
+  "legibility": "verified-at-96px"
+}
+```
+
+Os IDs `asset.symbol.*` permanecem estáveis por compatibilidade editorial,
+embora o tipo de apresentação seja uma imagem rasterizada. A interface usa o
+texto alternativo como nome acessível e não exibe texto nas escolhas infantis.
 
 ## Regras
 
 - `content` é validado pelo schema do motor.
 - `correctAnswer` não deve estar duplicado em lógica de UI.
 - todo asset possui ID, tipo, dimensões e texto alternativo quando aplicável;
+- emojis e glifos Unicode não são aceitos como arte final de atividades;
 - instrução sonora é obrigatória ou deve ter fallback TTS;
 - atividades publicadas são imutáveis; correções geram nova versão;
 - IDs não carregam textos exibidos para a criança;
@@ -119,12 +143,12 @@ Draft → Pedagogical Review → UX Review → QA → Published → Retired
 
 Os estados executáveis são:
 
-| Estado | Pode editar | Próximos estados |
-|---|---|---|
-| `draft` | sim | `review` |
-| `review` | sim | `draft`, `published` |
-| `published` | não | `retired` |
-| `retired` | não | nenhum |
+| Estado      | Pode editar | Próximos estados     |
+| ----------- | ----------- | -------------------- |
+| `draft`     | sim         | `review`             |
+| `review`    | sim         | `draft`, `published` |
+| `published` | não         | `retired`            |
+| `retired`   | não         | nenhum               |
 
 Um item nunca salta diretamente de `draft` para `published`. Retirar conteúdo impede novas sessões, mas não altera histórico. As transições ficam em `packages/content/src/editorial.ts`.
 

@@ -396,6 +396,53 @@ body {
   animation: audio-pulse 0.8s ease-in-out infinite alternate;
 }
 
+.instruction-audio__glyph {
+  position: relative;
+  display: block;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.instruction-audio__glyph::before {
+  position: absolute;
+  width: 0.42rem;
+  height: 0.72rem;
+  border-radius: 0.18rem 0 0 0.18rem;
+  background: currentColor;
+  content: '';
+  inset: 0.54rem auto auto 0.08rem;
+}
+
+.instruction-audio__glyph::after {
+  position: absolute;
+  width: 0.82rem;
+  height: 1.25rem;
+  background: currentColor;
+  clip-path: polygon(0 32%, 100% 0, 100% 100%, 0 68%);
+  content: '';
+  inset: 0.27rem auto auto 0.38rem;
+}
+
+.instruction-audio__waves::before,
+.instruction-audio__waves::after {
+  position: absolute;
+  border-right: 0.16rem solid currentColor;
+  border-radius: 50%;
+  content: '';
+}
+
+.instruction-audio__waves::before {
+  width: 0.48rem;
+  height: 0.82rem;
+  inset: 0.48rem 0.18rem auto auto;
+}
+
+.instruction-audio__waves::after {
+  width: 0.74rem;
+  height: 1.28rem;
+  inset: 0.25rem -0.04rem auto auto;
+}
+
 .activity-screen {
   display: grid;
   width: min(42rem, calc(100vw - 2rem));
@@ -429,21 +476,31 @@ body {
 .activity-screen__pattern,
 .activity-screen__options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr));
   gap: 0.75rem;
 }
 
 .activity-screen__pattern span {
   display: grid;
-  min-height: 5rem;
+  min-height: clamp(6rem, 17vw, 8rem);
   border-radius: 1.2rem;
   background: #eaf8fa;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   place-items: center;
 }
 
+.activity-asset {
+  display: block;
+  width: min(100%, 7.5rem);
+  height: clamp(5.25rem, 16vw, 7.5rem);
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
 .activity-screen__options button {
-  min-height: 5rem;
+  display: grid;
+  min-height: clamp(7rem, 20vw, 9rem);
   border: 0.18rem solid #fff;
   border-radius: 1.25rem;
   background: #fff2bf;
@@ -451,9 +508,10 @@ body {
   color: var(--color-ink);
   cursor: pointer;
   font: inherit;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   font-weight: 900;
-  padding: 0.75rem;
+  padding: 0.25rem;
+  place-items: center;
 }
 
 .activity-screen__options button:focus-visible,
@@ -481,7 +539,8 @@ body {
 }
 
 .assembly-board button {
-  min-height: 4.5rem;
+  display: grid;
+  min-height: clamp(6.5rem, 19vw, 8.5rem);
   border: 0.16rem solid #fff;
   border-radius: 1rem;
   color: var(--color-ink);
@@ -489,6 +548,7 @@ body {
   font: inherit;
   font-weight: 900;
   padding: 0.6rem;
+  place-items: center;
 }
 
 .assembly-board__pieces button {
@@ -534,6 +594,17 @@ body {
   border: 0.2rem dashed #72bbc8;
   background: #eaf8fa;
   font-size: 1.5rem;
+}
+
+.activity-feedback__mark {
+  display: inline-grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: currentColor;
+  color: #fff;
+  font-weight: 900;
+  place-items: center;
 }
 
 .visually-hidden {

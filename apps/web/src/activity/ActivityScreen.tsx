@@ -6,6 +6,7 @@ import { feedbackForAttempt, type FeedbackCue } from '@fantasia/engine-core';
 import { InstructionAudioControl } from '../audio/InstructionAudioControl';
 import { ActivityFeedback } from '../feedback/ActivityFeedback';
 import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
+import { ActivityAsset } from './ActivityAsset';
 import { createChoicePresentation } from './activity-presentation';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
 
@@ -77,7 +78,9 @@ function ChoiceActivityScreen({
           aria-label="Sequência para observar"
         >
           {presentation.pattern.map((item, index) => (
-            <span key={`${item}-${index}`}>{item.split(' ')[0]}</span>
+            <span aria-label={item.label} key={`${item.id}-${index}`}>
+              <ActivityAsset assetId={item.id} decorative />
+            </span>
           ))}
           <span aria-label="parte que falta">?</span>
         </div>
@@ -96,7 +99,7 @@ function ChoiceActivityScreen({
             onClick={() => answer(option.id)}
             type="button"
           >
-            <span aria-hidden="true">{option.label.split(' ')[0]}</span>
+            <ActivityAsset assetId={option.assetId} decorative />
           </button>
         ))}
       </div>

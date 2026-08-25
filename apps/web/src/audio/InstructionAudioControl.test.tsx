@@ -37,7 +37,7 @@ describe('InstructionAudioControl', () => {
     expect(screen.queryByText('Toque no diferente.')).not.toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Ouvir a instrução novamente' }),
-    ).toHaveTextContent('🔊');
+    ).toHaveTextContent('');
     fireEvent.click(
       screen.getByRole('button', { name: 'Ouvir a instrução novamente' }),
     );

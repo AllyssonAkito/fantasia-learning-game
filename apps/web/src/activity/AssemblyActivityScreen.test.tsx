@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { AudioService } from '@fantasia/audio';
-import { mvpCatalogSeed } from '@fantasia/content';
+import { mvpAssetById, mvpCatalogSeed } from '@fantasia/content';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
 
 const activity = mvpCatalogSeed.activities![6]!;
@@ -48,12 +48,8 @@ describe('AssemblyActivityScreen', () => {
     for (const piece of [...definition.pieces].sort(
       (a, b) => a.order - b.order,
     )) {
-      const label = mvpCatalogSeed.activities![6]!.assets.includes(piece.id)
-        ? screen.getByLabelText('Peças disponíveis').querySelectorAll('button')
-        : [];
-      const button = [...label].find((candidate) =>
-        candidate.textContent?.includes(mvpAssetSymbol(piece.id)),
-      )!;
+      const label = mvpAssetById.get(piece.id)?.alt ?? piece.id;
+      const button = screen.getByRole('button', { name: label });
       fireEvent.click(button);
       const slotIndex = [...definition.pieces]
         .sort((a, b) => a.order - b.order)
@@ -67,18 +63,3 @@ describe('AssemblyActivityScreen', () => {
     ).toBeVisible();
   });
 });
-
-function mvpAssetSymbol(id: string) {
-  const symbols: Record<string, string> = {
-    'asset.symbol.rabbit': '🐰',
-    'asset.symbol.dog': '🐶',
-    'asset.symbol.fish': '🐟',
-    'asset.symbol.star': '⭐',
-    'asset.symbol.heart': '💜',
-    'asset.symbol.circle': '🔵',
-    'asset.symbol.square': '🟧',
-    'asset.symbol.triangle': '🔺',
-    'asset.symbol.carrot': '🥕',
-  };
-  return symbols[id] ?? '';
-}

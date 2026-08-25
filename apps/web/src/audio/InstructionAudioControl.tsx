@@ -46,7 +46,9 @@ export function InstructionAudioControl({
         onClick={() => void repeat()}
         type="button"
       >
-        <span aria-hidden="true">{status === 'playing' ? '🔉' : '🔊'}</span>
+        <span aria-hidden="true" className="instruction-audio__glyph">
+          <span className="instruction-audio__waves" />
+        </span>
       </button>
       <span aria-live="polite" className="visually-hidden">
         {status === 'playing'
