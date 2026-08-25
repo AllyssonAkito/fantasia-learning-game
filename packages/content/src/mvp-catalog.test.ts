@@ -85,6 +85,28 @@ describe('catálogo MVP', () => {
     ).toBe(6);
   });
 
+  it('usa uma curadoria leve nas seis sequências de Padrões', () => {
+    const patternActivities = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.logic.patterns.01',
+    );
+    const patterns = patternActivities.map(
+      ({ content }) =>
+        (content as { pattern: string[]; expectedId: string }).pattern,
+    );
+
+    expect(patterns).toEqual([
+      ['asset.symbol.star', 'asset.symbol.heart', 'asset.symbol.star'],
+      ['asset.symbol.heart', 'asset.symbol.circle', 'asset.symbol.heart'],
+      ['asset.symbol.circle', 'asset.symbol.flower', 'asset.symbol.circle'],
+      ['asset.symbol.flower', 'asset.symbol.rabbit', 'asset.symbol.flower'],
+      ['asset.symbol.rabbit', 'asset.symbol.dog', 'asset.symbol.rabbit'],
+      ['asset.symbol.dog', 'asset.symbol.fish', 'asset.symbol.dog'],
+    ]);
+    expect(patternActivities.flatMap(({ assets }) => assets)).not.toEqual(
+      expect.arrayContaining(['asset.symbol.square', 'asset.symbol.triangle']),
+    );
+  });
+
   it('distribui a expansão em três níveis variados e progressivos', () => {
     const expansion = ['journey-a', 'journey-b', 'journey-c'].map((journey) =>
       mvpCatalogSeed.activities!.filter(({ levelId }) =>

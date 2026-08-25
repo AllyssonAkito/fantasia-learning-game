@@ -46,6 +46,11 @@ describe('LevelActivityGrid', () => {
     expect(
       firstPreview.querySelector('.level-task__pattern-gap'),
     ).toBeInTheDocument();
+    expect(
+      Array.from(document.querySelectorAll('[data-preview-kind="pattern"] img'))
+        .map((image) => image.getAttribute('src'))
+        .join(' '),
+    ).not.toMatch(/square|triangle/);
     expect(screen.queryByText('🧩')).not.toBeInTheDocument();
 
     act(() => {
