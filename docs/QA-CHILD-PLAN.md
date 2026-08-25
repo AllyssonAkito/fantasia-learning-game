@@ -18,13 +18,13 @@ desempenho escolar. Nenhum dado é usado para diagnóstico.
 
 ## Matriz de aparelhos-alvo
 
-| Classe | Referência de viewport | Orientação | Gate |
-|---|---:|---|---|
-| celular pequeno | 360 × 640 | retrato | obrigatório |
-| celular grande | 393 × 851 | retrato | obrigatório |
-| tablet | 768 × 1024 | retrato | obrigatório |
-| tablet | 1024 × 768 | paisagem | obrigatório |
-| desktop | 1366 × 768 | paisagem | regressão |
+| Classe          | Referência de viewport | Orientação | Gate        |
+| --------------- | ---------------------: | ---------- | ----------- |
+| celular pequeno |              360 × 640 | retrato    | obrigatório |
+| celular grande  |              393 × 851 | retrato    | obrigatório |
+| tablet          |             768 × 1024 | retrato    | obrigatório |
+| tablet          |             1024 × 768 | paisagem   | obrigatório |
+| desktop         |             1366 × 768 | paisagem   | regressão   |
 
 Browser alvo inicial: Chromium moderno com toque quando disponível. O conteúdo
 deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
@@ -33,7 +33,7 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
 
 1. Entregar o aparelho na trilha, sem explicar os botões.
 2. Perguntar: “O que você acha que dá para fazer aqui?”
-3. Observar se inicia “Padrões” em até 10 segundos.
+3. Observar se inicia “Padrões 1” em até 10 segundos.
 4. Não ensinar a resposta; se pedir ajuda, dizer apenas: “Você pode olhar e
    tentar do seu jeito.”
 5. Observar se identifica a sequência, toca uma alternativa e percebe o
