@@ -106,6 +106,26 @@ describe('TreeOddOneOutActivityScreen', () => {
       'asset.game.odd-instruments.racket',
     ],
     ['activity.logic.odd-one-out.012', 'picnic', 'asset.game.odd-fruits.can'],
+    [
+      'activity.logic.odd-one-out.013',
+      'workshop',
+      'asset.game.odd-keys.wrench',
+    ],
+    [
+      'activity.logic.odd-one-out.014',
+      'library',
+      'asset.game.odd-books.eraser',
+    ],
+    [
+      'activity.logic.odd-one-out.015',
+      'meadow',
+      'asset.game.odd-stones.flower',
+    ],
+    [
+      'activity.logic.odd-one-out.016',
+      'coast',
+      'asset.game.odd-seagull.seagull',
+    ],
   ])(
     'aplica a cena %s com arte e celebração próprias',
     (activityId, theme, correctAssetId) => {

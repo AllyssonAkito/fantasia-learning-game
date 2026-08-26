@@ -71,6 +71,21 @@ sem cenário, interface, texto, emoji, logotipo ou marca-d'água. Os PNGs gerado
 foram convertidos mecanicamente para WebP RGBA de `1254 × 1254 px`; o catálogo
 recorta os quadrantes em tempo de execução.
 
+### Cenas originais dos Jogos 13–16
+
+Os arquivos `odd-keys-sprite.webp`, `odd-books-sprite.webp`,
+`odd-stones-sprite.webp` e `odd-seagull-sprite.webp` foram gerados
+especificamente para a Issue #190 com o gerador de imagens integrado da OpenAI
+em 26 de agosto de 2026. A referência enviada serviu somente para identificar a
+lógica dos agrupamentos; nenhuma arte da referência foi incorporada.
+
+Resumo dos prompts: três chaves com uma chave de boca; três livros com uma
+borracha; três pedras com uma flor; e três peixes com uma gaivota. As folhas 2 ×
+2 preservam fundo alfa transparente, contorno branco, formas arredondadas e
+paleta leve do Fantasia, sem cenário, interface, texto, emoji, logotipo ou
+marca-d'água. Os PNGs gerados foram convertidos mecanicamente para WebP RGBA de
+`1254 × 1254 px`, com recorte dos quadrantes em tempo de execução.
+
 ## Recortes de personagens na montagem
 
 As atividades de montagem reutilizam, por recorte visual, as ilustrações

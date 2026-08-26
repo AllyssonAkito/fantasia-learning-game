@@ -48,7 +48,7 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
     page.getByRole('button', { name: /atividade 1.*pronta/i }),
   ).toBeEnabled();
   await expect(page.getByRole('button', { name: /atividade \d/i })).toHaveCount(
-    12,
+    16,
   );
   await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
   await expect(page.locator('#activity-title')).toHaveClass('visually-hidden');

@@ -2,6 +2,10 @@
 
 ## Novidades
 
+- completa “O que não encaixa 1” com 16 tarefas, acrescentando chaves e chave de
+  boca, livros e borracha, pedras e flor, peixes e gaivota;
+- cria quatro novos cenários leves e ações de sucesso com giro, deslizamento,
+  balanço e voo;
 - amplia “O que não encaixa 1” para 12 tarefas com seis conjuntos originais:
   sapatos e chapéu, bolas e alvo, leques e guarda-chuva, chaleiras e coco,
   instrumentos e raquete, frutas e lata;
@@ -22,7 +26,7 @@
   esperada com tremida, pequeno salto e grave cômico;
 - no acerto, remove as outras árvores, amplia o cachorrinho no centro, executa
   uma brincadeira curta e o faz se esconder na árvore antes da recompensa;
-- adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com 12 tarefas
+- adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com 16 tarefas
   originais de grupo, função e atributo visual em grade 2 × 2;
 - varia a posição da resposta correta e deriva as capas da fase e das tarefas
   das quatro imagens usadas em cada desafio;

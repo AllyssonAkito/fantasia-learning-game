@@ -698,6 +698,50 @@ const oddOneOutChallenges = [
     ],
     correctOptionId: 'asset.game.odd-fruits.can',
   },
+  {
+    title: 'A chave de boca entre as chaves',
+    instruction: 'Três figuras são chaves de abrir portas. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-keys.round-key',
+      'asset.game.odd-keys.heart-key',
+      'asset.game.odd-keys.square-key',
+      'asset.game.odd-keys.wrench',
+    ],
+    correctOptionId: 'asset.game.odd-keys.wrench',
+  },
+  {
+    title: 'A borracha entre os livros',
+    instruction: 'Três figuras são livros. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-books.eraser',
+      'asset.game.odd-books.yellow-book',
+      'asset.game.odd-books.mint-notebook',
+      'asset.game.odd-books.open-book',
+    ],
+    correctOptionId: 'asset.game.odd-books.eraser',
+  },
+  {
+    title: 'A flor entre as pedras',
+    instruction: 'Três figuras são pedras. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-stones.river-stone',
+      'asset.game.odd-stones.flower',
+      'asset.game.odd-stones.stone-cluster',
+      'asset.game.odd-stones.mossy-rock',
+    ],
+    correctOptionId: 'asset.game.odd-stones.flower',
+  },
+  {
+    title: 'A gaivota entre os peixes',
+    instruction: 'Três figuras são peixes. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-seagull.mint-fish',
+      'asset.game.odd-seagull.yellow-fish',
+      'asset.game.odd-seagull.seagull',
+      'asset.game.odd-seagull.lilac-fish',
+    ],
+    correctOptionId: 'asset.game.odd-seagull.seagull',
+  },
 ] as const;
 
 function characterPieces(offset: number) {
