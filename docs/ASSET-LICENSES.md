@@ -53,6 +53,24 @@ da fotografia ou das imagens funcionais de referência é distribuída no jogo.
 Os arquivos-fonte PNG foram convertidos mecanicamente para WebP RGBA de
 `1024 × 1024 px`; o catálogo recorta os quatro quadrantes em tempo de execução.
 
+### Cenas originais dos Jogos 7–12
+
+Os arquivos `odd-shoes-sprite.webp`, `odd-balls-sprite.webp`,
+`odd-fans-sprite.webp`, `odd-kettles-sprite.webp`,
+`odd-instruments-sprite.webp` e `odd-fruits-sprite.webp` foram gerados
+especificamente para a Issue #188 com o gerador de imagens integrado da OpenAI
+em 26 de agosto de 2026. A imagem fornecida pelo responsável serviu somente como
+referência funcional para os agrupamentos; nenhuma arte da referência foi
+copiada ou incorporada.
+
+Resumo dos prompts: três sapatos com chapéu; três bolas com alvo; três leques
+com guarda-chuva; três chaleiras com coco; três instrumentos com raquete; e três
+frutas com lata. As seis folhas usam composição 2 × 2, fundo alfa transparente,
+contorno branco, formas infantis arredondadas e paleta leve própria do Fantasia,
+sem cenário, interface, texto, emoji, logotipo ou marca-d'água. Os PNGs gerados
+foram convertidos mecanicamente para WebP RGBA de `1254 × 1254 px`; o catálogo
+recorta os quadrantes em tempo de execução.
+
 ## Recortes de personagens na montagem
 
 As atividades de montagem reutilizam, por recorte visual, as ilustrações

@@ -84,6 +84,28 @@ describe('TreeOddOneOutActivityScreen', () => {
       'reef',
       'asset.game.odd-octopus.blue-octopus',
     ],
+    [
+      'activity.logic.odd-one-out.007',
+      'closet',
+      'asset.game.odd-shoes.lilac-hat',
+    ],
+    [
+      'activity.logic.odd-one-out.008',
+      'playground',
+      'asset.game.odd-balls.target',
+    ],
+    [
+      'activity.logic.odd-one-out.009',
+      'breeze',
+      'asset.game.odd-fans.umbrella',
+    ],
+    ['activity.logic.odd-one-out.010', 'tea', 'asset.game.odd-kettles.coconut'],
+    [
+      'activity.logic.odd-one-out.011',
+      'music',
+      'asset.game.odd-instruments.racket',
+    ],
+    ['activity.logic.odd-one-out.012', 'picnic', 'asset.game.odd-fruits.can'],
   ])(
     'aplica a cena %s com arte e celebração próprias',
     (activityId, theme, correctAssetId) => {

@@ -36,7 +36,7 @@ describe('FantasiaApp', () => {
     ).toBeVisible();
   });
 
-  it('percorre as seis tarefas antes de concluir e avançar o nível', () => {
+  it('percorre as doze tarefas antes de concluir e avançar o nível', () => {
     vi.useFakeTimers();
     render(
       <FantasiaApp
@@ -54,7 +54,7 @@ describe('FantasiaApp', () => {
     );
     expect(
       screen.getAllByRole('button', { name: /Atividade \d/i }),
-    ).toHaveLength(6);
+    ).toHaveLength(12);
 
     const activities = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',

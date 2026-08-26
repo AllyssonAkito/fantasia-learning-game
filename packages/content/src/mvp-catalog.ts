@@ -632,6 +632,72 @@ const oddOneOutChallenges = [
     ],
     correctOptionId: 'asset.game.odd-octopus.blue-octopus',
   },
+  {
+    title: 'O chapéu entre os sapatos',
+    instruction: 'Três figuras são sapatos. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-shoes.mint-sneaker',
+      'asset.game.odd-shoes.lilac-hat',
+      'asset.game.odd-shoes.blue-boot',
+      'asset.game.odd-shoes.yellow-flat',
+    ],
+    correctOptionId: 'asset.game.odd-shoes.lilac-hat',
+  },
+  {
+    title: 'O alvo entre as bolas',
+    instruction: 'Três figuras são bolas. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-balls.beach-ball',
+      'asset.game.odd-balls.soccer-ball',
+      'asset.game.odd-balls.target',
+      'asset.game.odd-balls.tennis-ball',
+    ],
+    correctOptionId: 'asset.game.odd-balls.target',
+  },
+  {
+    title: 'O guarda-chuva entre os leques',
+    instruction: 'Três figuras são leques. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-fans.mint-fan',
+      'asset.game.odd-fans.lilac-fan',
+      'asset.game.odd-fans.blue-fan',
+      'asset.game.odd-fans.umbrella',
+    ],
+    correctOptionId: 'asset.game.odd-fans.umbrella',
+  },
+  {
+    title: 'O coco entre as chaleiras',
+    instruction: 'Três figuras são chaleiras. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-kettles.coconut',
+      'asset.game.odd-kettles.mint-kettle',
+      'asset.game.odd-kettles.lilac-kettle',
+      'asset.game.odd-kettles.blue-kettle',
+    ],
+    correctOptionId: 'asset.game.odd-kettles.coconut',
+  },
+  {
+    title: 'A raquete entre os instrumentos',
+    instruction: 'Três figuras são instrumentos musicais. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-instruments.ukulele',
+      'asset.game.odd-instruments.violin',
+      'asset.game.odd-instruments.racket',
+      'asset.game.odd-instruments.drum',
+    ],
+    correctOptionId: 'asset.game.odd-instruments.racket',
+  },
+  {
+    title: 'A lata entre as frutas',
+    instruction: 'Três figuras são frutas. Qual não encaixa?',
+    optionIds: [
+      'asset.game.odd-fruits.pear',
+      'asset.game.odd-fruits.can',
+      'asset.game.odd-fruits.banana',
+      'asset.game.odd-fruits.apple',
+    ],
+    correctOptionId: 'asset.game.odd-fruits.can',
+  },
 ] as const;
 
 function characterPieces(offset: number) {
@@ -1417,7 +1483,7 @@ levels.push({
   },
 });
 for (const [index, challenge] of oddOneOutChallenges.entries()) {
-  const difficulty = index + 1;
+  const difficulty = (index % 6) + 1;
   activities.push({
     ...common,
     id: `activity.logic.odd-one-out.${String(index + 1).padStart(3, '0')}`,

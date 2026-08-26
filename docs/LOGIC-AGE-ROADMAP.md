@@ -27,7 +27,7 @@ composição de tela de terceiros não entram no produto.
 
 ## Entrega ativa: O que não encaixa 1
 
-A primeira família para 4–5 anos possui seis tarefas originais e reutiliza o
+A primeira família para 4–5 anos possui 12 tarefas originais e reutiliza o
 motor de escolha:
 
 | Variação           | Habilidade               | Progressão inicial                |
@@ -38,6 +38,12 @@ motor de escolha:
 | categoria concreta | classificar              | peixes e estrela-do-mar           |
 | categoria concreta | classificar              | pássaros e borboleta              |
 | categoria concreta | classificar              | peixes e polvinho azul            |
+| categoria concreta | classificar              | sapatos e chapéu                  |
+| função do objeto   | relacionar uso cotidiano | bolas e alvo                      |
+| categoria concreta | classificar              | leques e guarda-chuva             |
+| categoria concreta | classificar              | chaleiras e coco                  |
+| função do objeto   | relacionar uso cotidiano | instrumentos e raquete            |
+| categoria concreta | classificar              | frutas e lata                     |
 
 Cada tarefa usa quatro ilustrações em grade 2 × 2, instrução e repetição sonora
 em português brasileiro, posição variada da resposta correta, feedback sem
@@ -52,7 +58,8 @@ O Jogo 1 foi implementado pela Issue #181 como uma cena dirigida: quatro árvore
 surgem em sequência, uma delas contém o cachorrinho, o erro produz uma reação
 breve e gentil e o acerto termina com o mascote escondendo-se novamente. A Issue
 #186 especializa as tarefas 2–6 com arte original e microanimações temáticas,
-mantendo uma única máquina de estados reutilizável.
+mantendo uma única máquina de estados reutilizável. A Issue #188 usa essa mesma
+máquina para as tarefas 7–12 e acrescenta seis cenas originais.
 
 ## Estado das próximas famílias
 
@@ -63,8 +70,8 @@ Produção em massa começa somente após aprovação da matriz da respectiva fa
 
 ## Ciclo de entrega
 
-Uma família pequena como “O que não encaixa”, com seis tarefas, requer de três a
-cinco dias úteis para conteúdo, integração, testes automatizados, revisão visual
-e aprovação. A implementação jogável pode ficar pronta antes; o ciclo inclui a
+Uma família como “O que não encaixa”, com 12 tarefas, requer conteúdo,
+integração, testes automatizados, revisão visual e aprovação. A implementação
+jogável pode ficar pronta antes; o ciclo inclui a
 revisão humana necessária para declará-la concluída. Identidade visual definitiva
 e outras faixas etárias são entregas separadas.

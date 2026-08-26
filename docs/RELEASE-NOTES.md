@@ -2,6 +2,11 @@
 
 ## Novidades
 
+- amplia “O que não encaixa 1” para 12 tarefas com seis conjuntos originais:
+  sapatos e chapéu, bolas e alvo, leques e guarda-chuva, chaleiras e coco,
+  instrumentos e raquete, frutas e lata;
+- adiciona seis cenários leves e microanimações próprias de reverência, pulso,
+  giro, salto, rebatida e balanço, reutilizando o fluxo de feedback aprovado;
 - coloca “O que não encaixa 1” como a primeira fase da trilha de Lógica e usa a
   própria floresta como capa de entrada;
 - substitui as tarefas genéricas 2–6 por cinco cenas originais: cadeados e
@@ -17,7 +22,7 @@
   esperada com tremida, pequeno salto e grave cômico;
 - no acerto, remove as outras árvores, amplia o cachorrinho no centro, executa
   uma brincadeira curta e o faz se esconder na árvore antes da recompensa;
-- adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com seis tarefas
+- adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com 12 tarefas
   originais de grupo, função e atributo visual em grade 2 × 2;
 - varia a posição da resposta correta e deriva as capas da fase e das tarefas
   das quatro imagens usadas em cada desafio;

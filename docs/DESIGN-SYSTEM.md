@@ -219,7 +219,7 @@ ordem narrativa permanece igual.
 
 ### Cenas temáticas reutilizáveis
 
-Os Jogos 2–6 reutilizam a mesma máquina de estados da cena das árvores:
+Os Jogos 2–12 reutilizam a mesma máquina de estados da cena das árvores:
 aparição sequencial com `reveal`, escolha por toque, mouse ou teclado, reação
 gentil de erro com `wrong-rumble`, isolamento da resposta e recompensa somente
 depois da narrativa visual. O cenário e a microanimação de sucesso são definidos
@@ -230,3 +230,9 @@ planetas, água clara para peixes e estrela-do-mar, jardim amarelo e verde para
 pássaros e borboleta, e recife turquesa para peixes e polvinho. As paletas evitam
 fundos vermelhos ou laranjas pesados. A chave gira, o planeta orbita, a
 estrela-do-mar dança, a borboleta voa e o polvinho acena antes de desaparecer.
+
+As tarefas 7–12 acrescentam closet lilás para sapatos e chapéu, parque azul e
+verde para bolas e alvo, brisa azul-lilás para leques e guarda-chuva, mesa de chá
+menta para chaleiras e coco, música azul-clara para instrumentos e raquete e
+piquenique verde-amarelo para frutas e lata. As ações de sucesso são,
+respectivamente, reverência, pulso, giro, salto, rebatida e balanço.
