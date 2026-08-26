@@ -78,8 +78,14 @@ export class BrowserAudioBackend implements AudioBackend {
     for (const tone of effect.tones) {
       const oscillator = context.createOscillator();
       const gain = context.createGain();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = tone.frequencyHz;
+      oscillator.type = tone.waveform ?? 'sine';
+      oscillator.frequency.setValueAtTime(tone.frequencyHz, cursor);
+      if (tone.endFrequencyHz) {
+        oscillator.frequency.exponentialRampToValueAtTime(
+          tone.endFrequencyHz,
+          cursor + tone.durationMs / 1000,
+        );
+      }
       gain.gain.setValueAtTime(volume, cursor);
       gain.gain.exponentialRampToValueAtTime(
         0.001,

@@ -32,7 +32,7 @@ motor de escolha:
 
 | Variação           | Habilidade               | Progressão inicial                |
 | ------------------ | ------------------------ | --------------------------------- |
-| grupo visual       | reconhecer pertencimento | animais e elemento não animal     |
+| camuflagem visual  | reconhecer pertencimento | três árvores e cachorrinho oculto |
 | função do objeto   | relacionar uso cotidiano | alimentos e brinquedo             |
 | atributo visual    | comparar contornos       | itens arredondados e item pontudo |
 | categoria concreta | classificar              | animais e elemento natural        |
@@ -47,6 +47,12 @@ O feedback de sucesso isola a alternativa correta e a amplia do ponto de toque
 até preencher a viewport. A recompensa aparece somente depois desse movimento.
 Essa sequência reproduz a regra funcional observada, mantendo composição,
 paleta, assets e identidade próprios do Fantasia.
+
+O Jogo 1 está implementado pela Issue #181 como uma cena dirigida: quatro
+árvores surgem em sequência, uma delas contém o cachorrinho, o erro produz uma
+reação breve e gentil e o acerto termina com o mascote escondendo-se novamente.
+As tarefas 2–6 continuam como variações genéricas aprovadas e serão
+especializadas somente por Issues próprias.
 
 ## Estado das próximas famílias
 

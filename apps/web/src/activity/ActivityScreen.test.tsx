@@ -129,9 +129,9 @@ describe('ActivityScreen', () => {
   });
 
   it('exibe O que não encaixa como quatro imagens em grade', () => {
-    const oddOneOut = mvpCatalogSeed.activities!.find(
+    const oddOneOut = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
-    )!;
+    )[1]!;
 
     const { container } = render(
       <ActivityScreen
@@ -152,9 +152,9 @@ describe('ActivityScreen', () => {
 
   it('faz a resposta correta crescer antes de abrir a recompensa', () => {
     vi.useFakeTimers();
-    const oddOneOut = mvpCatalogSeed.activities!.find(
+    const oddOneOut = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
-    )!;
+    )[1]!;
     const presentation = createChoicePresentation(oddOneOut);
     const correct = presentation.options.find(({ id }) =>
       presentation.evaluate(id),

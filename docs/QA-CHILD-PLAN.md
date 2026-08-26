@@ -69,6 +69,12 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
    provocar rolagem e se a recompensa aparece somente após a animação.
 8. Repetir com movimento reduzido ativado e confirmar que a criança não fica
    presa na celebração.
+9. No Jogo 1, confirmar que cada árvore surge com um sopro audível, sem competir
+   com a instrução falada.
+10. Tocar uma árvore comum e observar se a tremida e o grave são percebidos como
+    convite cômico, sem susto ou frustração.
+11. Tocar o cachorrinho camuflado e confirmar a sequência: outras peças somem,
+    personagem cresce, brinca, esconde-se na árvore e desaparece antes do modal.
 
 ## Registro de observação
 

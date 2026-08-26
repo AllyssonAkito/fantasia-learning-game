@@ -567,15 +567,15 @@ function attentionActivity(skillId: string, difficulty: number, index: number) {
 
 const oddOneOutChallenges = [
   {
-    title: 'O intruso entre os animais',
-    instruction: 'Três figuras são animais. Qual não encaixa?',
+    title: 'O cachorrinho escondido',
+    instruction: 'Três figuras são árvores. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.rabbit',
-      'asset.symbol.dog',
-      'asset.symbol.fish',
-      'asset.symbol.carrot',
+      'asset.game.odd-tree.tall',
+      'asset.game.odd-tree.round',
+      'asset.game.odd-tree.puppy',
+      'asset.game.odd-tree.narrow',
     ],
-    correctOptionId: 'asset.symbol.carrot',
+    correctOptionId: 'asset.game.odd-tree.puppy',
   },
   {
     title: 'O intruso pela função',

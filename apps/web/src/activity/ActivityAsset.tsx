@@ -1,4 +1,5 @@
 import { mvpAssetById } from '@fantasia/content';
+import type { CSSProperties } from 'react';
 
 export interface ActivityAssetProps {
   assetId: string;
@@ -38,6 +39,27 @@ export function ActivityAsset({
             <ActivityAsset assetId={component.assetId} decorative />
           </span>
         ))}
+      </span>
+    );
+  }
+
+  if (asset.kind === 'sprite-image' && asset.sprite) {
+    return (
+      <span
+        aria-hidden={decorative || undefined}
+        aria-label={decorative ? undefined : asset.alt}
+        className="activity-sprite-image"
+        role={decorative ? undefined : 'img'}
+        style={
+          {
+            '--sprite-columns': asset.sprite.columns,
+            '--sprite-rows': asset.sprite.rows,
+            '--sprite-column': asset.sprite.column,
+            '--sprite-row': asset.sprite.row,
+          } as CSSProperties
+        }
+      >
+        <img alt="" draggable={false} src={asset.source} />
       </span>
     );
   }

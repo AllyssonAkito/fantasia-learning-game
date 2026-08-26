@@ -136,8 +136,8 @@ TTS é fallback aceitável. Áudio pré-gravado exige catálogo e revisão.
 
 O serviço central tenta o arquivo revisado, usa TTS `pt-BR` quando ele falha e
 mantém a instrução disponível para tecnologia assistiva quando nenhum áudio
-existe. Efeitos usam os IDs
-`success`, `attempt`, `hint` e `reward`; durante fala, seu volume é reduzido para
+existe. Efeitos usam os IDs `success`, `attempt`, `hint`, `reward`, `reveal` e
+`wrong-rumble`; durante fala, seu volume é reduzido para
 preservar a compreensão. Toda atividade expõe um botão de áudio sem texto
 visível, com nome acessível “Ouvir a instrução novamente”.
 
@@ -194,3 +194,17 @@ cresce até ocupar toda a viewport, acompanhada de partículas leves feitas em
 CSS. A animação bloqueia novas escolhas e a rolagem, dura menos de 1 segundo e
 acontece antes da recompensa. Com `prefers-reduced-motion`, a transição deve ser
 praticamente imediata, mantendo o mesmo estado final e anúncio acessível.
+
+### Cena das árvores
+
+O Jogo 1 usa fundo verde claro com textura gráfica discreta, quatro figuras sem
+cartões visíveis e aparição sequencial. Cada entrada recebe o efeito compartilhado
+`reveal`, curto e leve. Em uma tentativa diferente, todas as peças tremem e
+fazem um pequeno salto em profundidade enquanto toca `wrong-rumble`; o movimento
+volta ao repouso em até 520 ms e não usa vermelho, perda ou reprovação.
+
+Ao acertar, as três peças não escolhidas somem. A peça correta cresce no centro,
+faz uma oscilação brincalhona, é substituída visualmente por uma árvore comum e
+o conjunto desaparece antes da recompensa. O estado é anunciado por tecnologia
+assistiva. Com redução de movimento, cada etapa dura no máximo 70 ms, mas a
+ordem narrativa permanece igual.
