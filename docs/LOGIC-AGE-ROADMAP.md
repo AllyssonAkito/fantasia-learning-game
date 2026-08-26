@@ -30,18 +30,23 @@ composição de tela de terceiros não entram no produto.
 A primeira família para 4–5 anos possui seis tarefas originais e reutiliza o
 motor de escolha:
 
-| Variação               | Habilidade                 | Progressão inicial                |
-| ---------------------- | -------------------------- | --------------------------------- |
-| grupo visual           | reconhecer pertencimento   | animais e elemento não animal     |
-| atributo visual        | comparar forma             | formas básicas e figura orgânica  |
-| semelhança de contorno | perceber formato           | itens arredondados e item pontudo |
-| origem/função          | relacionar objeto ao mundo | itens que crescem e brinquedo     |
-| categoria concreta     | classificar                | alimentos e símbolo afetivo       |
-| consolidação           | combinar pistas visuais    | pontudos e arredondado            |
+| Variação           | Habilidade               | Progressão inicial                |
+| ------------------ | ------------------------ | --------------------------------- |
+| grupo visual       | reconhecer pertencimento | animais e elemento não animal     |
+| função do objeto   | relacionar uso cotidiano | alimentos e brinquedo             |
+| atributo visual    | comparar contornos       | itens arredondados e item pontudo |
+| categoria concreta | classificar              | animais e elemento natural        |
+| três semelhantes   | comparar uma regra comum | formas simples e figura orgânica  |
+| consolidação       | combinar pistas visuais  | bichinhos e brinquedo             |
 
 Cada tarefa usa quatro ilustrações em grade 2 × 2, instrução e repetição sonora
 em português brasileiro, posição variada da resposta correta, feedback sem
 punição e capas derivadas do próprio conteúdo.
+
+O feedback de sucesso isola a alternativa correta e a amplia do ponto de toque
+até preencher a viewport. A recompensa aparece somente depois desse movimento.
+Essa sequência reproduz a regra funcional observada, mantendo composição,
+paleta, assets e identidade próprios do Fantasia.
 
 ## Estado das próximas famílias
 

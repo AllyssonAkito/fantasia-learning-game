@@ -7,6 +7,10 @@ import { InstructionAudioControl } from '../audio/InstructionAudioControl';
 import { ActivityFeedback } from '../feedback/ActivityFeedback';
 import { ActivityCompletionOverlay } from './ActivityCompletionOverlay';
 import { ActivityAsset } from './ActivityAsset';
+import {
+  CorrectAnswerCelebration,
+  type CelebrationOrigin,
+} from './CorrectAnswerCelebration';
 import { createChoicePresentation } from './activity-presentation';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
 import { MemoryActivityScreen } from './MemoryActivityScreen';
@@ -41,8 +45,15 @@ function ChoiceActivityScreen({
     message: string;
   }>();
   const [complete, setComplete] = useState(false);
+  const [rewardReady, setRewardReady] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState<{
+    assetId: string;
+    label: string;
+    origin?: CelebrationOrigin;
+  }>();
+  const isOddOneOut = activity.levelId === 'level.logic.odd-one-out.01';
 
-  function answer(optionId: string) {
+  function answer(optionId: string, source: HTMLButtonElement) {
     if (complete) return;
     const nextAttempt = attempt + 1;
     const correct = presentation.evaluate(optionId);
@@ -50,6 +61,25 @@ function ChoiceActivityScreen({
     setAttempt(nextAttempt);
     if (correct) {
       setComplete(true);
+      if (isOddOneOut) {
+        const option = presentation.options.find(({ id }) => id === optionId)!;
+        const rect = source.getBoundingClientRect();
+        setCorrectAnswer({
+          assetId: option.assetId,
+          label: option.label,
+          origin:
+            rect.width > 0 && rect.height > 0
+              ? {
+                  height: rect.height,
+                  left: rect.left,
+                  top: rect.top,
+                  width: rect.width,
+                }
+              : undefined,
+        });
+      } else {
+        setRewardReady(true);
+      }
       setFeedback({ cue, message: feedbackCopyCatalog.completion.activity });
       void audio.playEffect('success');
     } else {
@@ -63,7 +93,7 @@ function ChoiceActivityScreen({
 
   const optionList = (
     <div
-      className={`activity-screen__options${presentation.options.length === 4 ? ' activity-screen__options--four' : ''}`}
+      className={`activity-screen__options${presentation.options.length === 4 ? ' activity-screen__options--four' : ''}${isOddOneOut ? ' activity-screen__options--odd-one-out' : ''}`}
       aria-label="Escolha uma resposta"
     >
       {presentation.options.map((option) => (
@@ -71,7 +101,7 @@ function ChoiceActivityScreen({
           aria-label={option.label}
           disabled={complete}
           key={option.id}
-          onClick={() => answer(option.id)}
+          onClick={(event) => answer(option.id, event.currentTarget)}
           type="button"
         >
           <span
@@ -155,7 +185,15 @@ function ChoiceActivityScreen({
         audio={audio}
         instruction={activity.instruction}
       />
-      {complete ? (
+      {complete && correctAnswer && !rewardReady ? (
+        <CorrectAnswerCelebration
+          assetId={correctAnswer.assetId}
+          label={correctAnswer.label}
+          onFinished={() => setRewardReady(true)}
+          origin={correctAnswer.origin}
+        />
+      ) : null}
+      {complete && rewardReady ? (
         <ActivityCompletionOverlay
           coins={activity.reward.coins}
           onContinue={onComplete}

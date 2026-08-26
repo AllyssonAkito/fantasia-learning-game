@@ -188,3 +188,9 @@ grade 2 × 2. A capa da fase e a capa de cada tarefa repetem esse arranjo com os
 assets reais da definição, para antecipar a mecânica sem revelar a resposta.
 Não usar emojis, números ou cores de alerta para marcar a alternativa correta.
 O enunciado é falado automaticamente e pode ser repetido pelo botão de áudio.
+
+No acerto dessa família, a ilustração selecionada sai visualmente da grade e
+cresce até ocupar toda a viewport, acompanhada de partículas leves feitas em
+CSS. A animação bloqueia novas escolhas e a rolagem, dura menos de 1 segundo e
+acontece antes da recompensa. Com `prefers-reduced-motion`, a transição deve ser
+praticamente imediata, mantendo o mesmo estado final e anúncio acessível.
