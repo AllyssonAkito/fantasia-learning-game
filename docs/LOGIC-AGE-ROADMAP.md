@@ -33,11 +33,11 @@ motor de escolha:
 | Variação           | Habilidade               | Progressão inicial                |
 | ------------------ | ------------------------ | --------------------------------- |
 | camuflagem visual  | reconhecer pertencimento | três árvores e cachorrinho oculto |
-| função do objeto   | relacionar uso cotidiano | alimentos e brinquedo             |
-| atributo visual    | comparar contornos       | itens arredondados e item pontudo |
-| categoria concreta | classificar              | animais e elemento natural        |
-| três semelhantes   | comparar uma regra comum | formas simples e figura orgânica  |
-| consolidação       | combinar pistas visuais  | bichinhos e brinquedo             |
+| função do objeto   | relacionar uso cotidiano | três cadeados e uma chave         |
+| atributo visual    | comparar cor dominante   | planetas lilases e um amarelo     |
+| categoria concreta | classificar              | peixes e estrela-do-mar           |
+| categoria concreta | classificar              | pássaros e borboleta              |
+| categoria concreta | classificar              | peixes e polvinho azul            |
 
 Cada tarefa usa quatro ilustrações em grade 2 × 2, instrução e repetição sonora
 em português brasileiro, posição variada da resposta correta, feedback sem
@@ -48,11 +48,11 @@ até preencher a viewport. A recompensa aparece somente depois desse movimento.
 Essa sequência reproduz a regra funcional observada, mantendo composição,
 paleta, assets e identidade próprios do Fantasia.
 
-O Jogo 1 está implementado pela Issue #181 como uma cena dirigida: quatro
-árvores surgem em sequência, uma delas contém o cachorrinho, o erro produz uma
-reação breve e gentil e o acerto termina com o mascote escondendo-se novamente.
-As tarefas 2–6 continuam como variações genéricas aprovadas e serão
-especializadas somente por Issues próprias.
+O Jogo 1 foi implementado pela Issue #181 como uma cena dirigida: quatro árvores
+surgem em sequência, uma delas contém o cachorrinho, o erro produz uma reação
+breve e gentil e o acerto termina com o mascote escondendo-se novamente. A Issue
+#186 especializa as tarefas 2–6 com arte original e microanimações temáticas,
+mantendo uma única máquina de estados reutilizável.
 
 ## Estado das próximas famílias
 

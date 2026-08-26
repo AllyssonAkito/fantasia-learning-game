@@ -9,7 +9,7 @@ describe('catálogo MVP', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
       activities: 132,
       areas: 6,
-      assets: 30,
+      assets: 50,
     });
     const counts = mvpContentCoverage.reduce<Record<string, number>>(
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
@@ -147,14 +147,14 @@ describe('catálogo MVP', () => {
           ({ id }) => id === definition.correctOptionId,
         );
       }),
-    ).toEqual([2, 0, 1, 3, 2, 2]);
+    ).toEqual([2, 3, 3, 2, 0, 2]);
     expect(activities.map(({ title }) => title)).toEqual([
       'O cachorrinho escondido',
-      'O intruso pela função',
-      'O intruso pelo atributo visual',
-      'O intruso da categoria',
-      'Três semelhantes e um diferente',
-      'O intruso entre os amigos',
+      'A chave dos cadeados',
+      'O planeta ensolarado',
+      'A estrela entre os peixes',
+      'A borboleta entre os pássaros',
+      'O polvinho da Melina',
     ]);
     expect(
       activities.every(({ engine, assets, content, instruction }) => {
@@ -165,6 +165,8 @@ describe('catálogo MVP', () => {
         return (
           engine === 'choice' &&
           assets.length === 4 &&
+          new Set(assets).size === 4 &&
+          assets.every((id) => id.startsWith('asset.game.odd-')) &&
           definition.options.length === 4 &&
           definition.options.some(
             ({ id }) => id === definition.correctOptionId,

@@ -15,7 +15,15 @@ import { createChoicePresentation } from './activity-presentation';
 import { AssemblyActivityScreen } from './AssemblyActivityScreen';
 import { MemoryActivityScreen } from './MemoryActivityScreen';
 import { PlacementActivityScreen } from './PlacementActivityScreen';
-import { TreeOddOneOutActivityScreen } from './TreeOddOneOutActivityScreen';
+import { ThemedOddOneOutActivityScreen } from './TreeOddOneOutActivityScreen';
+
+const themedOddOneOutActivityIds = new Set(
+  Array.from(
+    { length: 6 },
+    (_, index) =>
+      `activity.logic.odd-one-out.${String(index + 1).padStart(3, '0')}`,
+  ),
+);
 
 const attemptMessages = [
   feedbackCopyCatalog.attempts.first,
@@ -206,8 +214,8 @@ function ChoiceActivityScreen({
 }
 
 export function ActivityScreen(props: ActivityScreenProps) {
-  if (props.activity.id === 'activity.logic.odd-one-out.001') {
-    return <TreeOddOneOutActivityScreen {...props} />;
+  if (themedOddOneOutActivityIds.has(props.activity.id)) {
+    return <ThemedOddOneOutActivityScreen {...props} />;
   }
   if (props.activity.engine === 'assembly') {
     return <AssemblyActivityScreen {...props} />;

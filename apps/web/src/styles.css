@@ -797,6 +797,95 @@ body {
   inset: 0;
 }
 
+.tree-odd-one-out[data-theme='locks'] {
+  background:
+    radial-gradient(
+      circle at 18% 24%,
+      rgb(255 255 255 / 30%) 0 0.36rem,
+      transparent 0.42rem
+    ),
+    radial-gradient(
+      circle at 78% 20%,
+      rgb(132 116 218 / 18%) 0 0.5rem,
+      transparent 0.56rem
+    ),
+    radial-gradient(
+      circle at 70% 76%,
+      rgb(255 255 255 / 26%) 0 0.28rem,
+      transparent 0.34rem
+    ),
+    linear-gradient(145deg, #d8d0ff, #b9def7);
+}
+
+.tree-odd-one-out[data-theme='space'] {
+  background:
+    radial-gradient(circle at 15% 26%, #fff 0 0.14rem, transparent 0.2rem),
+    radial-gradient(circle at 82% 18%, #fff7c9 0 0.18rem, transparent 0.24rem),
+    radial-gradient(circle at 72% 78%, #fff 0 0.12rem, transparent 0.18rem),
+    radial-gradient(circle at 28% 72%, #dcd4ff 0 0.16rem, transparent 0.22rem),
+    linear-gradient(145deg, #91c8f4, #a9a2e8);
+}
+
+.tree-odd-one-out[data-theme='ocean'] {
+  background:
+    radial-gradient(
+      circle at 16% 28%,
+      rgb(255 255 255 / 42%) 0 0.45rem,
+      transparent 0.52rem
+    ),
+    radial-gradient(
+      circle at 78% 20%,
+      rgb(255 255 255 / 34%) 0 0.28rem,
+      transparent 0.35rem
+    ),
+    radial-gradient(
+      circle at 72% 78%,
+      rgb(255 255 255 / 30%) 0 0.56rem,
+      transparent 0.63rem
+    ),
+    linear-gradient(145deg, #9de4e4, #8abfe9);
+}
+
+.tree-odd-one-out[data-theme='garden'] {
+  background:
+    radial-gradient(
+      ellipse at 18% 24%,
+      rgb(126 181 136 / 22%) 0 0.28rem,
+      transparent 0.35rem
+    ),
+    radial-gradient(
+      ellipse at 80% 18%,
+      rgb(126 181 136 / 18%) 0 0.34rem,
+      transparent 0.41rem
+    ),
+    radial-gradient(
+      ellipse at 74% 76%,
+      rgb(126 181 136 / 18%) 0 0.3rem,
+      transparent 0.37rem
+    ),
+    linear-gradient(145deg, #fff1b8, #d9edbd);
+}
+
+.tree-odd-one-out[data-theme='reef'] {
+  background:
+    radial-gradient(
+      circle at 17% 26%,
+      rgb(255 255 255 / 38%) 0 0.38rem,
+      transparent 0.45rem
+    ),
+    radial-gradient(
+      circle at 80% 21%,
+      rgb(255 255 255 / 28%) 0 0.24rem,
+      transparent 0.31rem
+    ),
+    radial-gradient(
+      circle at 69% 78%,
+      rgb(255 255 255 / 32%) 0 0.5rem,
+      transparent 0.57rem
+    ),
+    linear-gradient(145deg, #8ce1dc, #84c4e5);
+}
+
 .tree-odd-one-out__back {
   position: absolute;
   z-index: 4;
@@ -883,6 +972,36 @@ body {
   inset: 0;
 }
 
+.tree-success[data-theme='locks'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fff9d6, transparent 32%),
+    linear-gradient(145deg, #d8d0ff, #b9def7);
+}
+
+.tree-success[data-theme='space'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 46%), transparent 34%),
+    linear-gradient(145deg, #91c8f4, #a9a2e8);
+}
+
+.tree-success[data-theme='ocean'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 48%), transparent 35%),
+    linear-gradient(145deg, #9de4e4, #8abfe9);
+}
+
+.tree-success[data-theme='garden'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fffbe3, transparent 34%),
+    linear-gradient(145deg, #fff1b8, #d9edbd);
+}
+
+.tree-success[data-theme='reef'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 48%), transparent 35%),
+    linear-gradient(145deg, #8ce1dc, #84c4e5);
+}
+
 .tree-success__visual {
   position: fixed;
   top: 50%;
@@ -920,8 +1039,38 @@ body {
   animation: tree-success-play 560ms ease-in-out both;
 }
 
+.tree-success[data-theme='locks'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-key-turn 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='space'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-planet-orbit 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='ocean'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-starfish-dance 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='garden'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-butterfly-flutter 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='reef'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-octopus-wave 560ms ease-in-out both;
+}
+
 .tree-success[data-phase='hiding'] .tree-success__puppy {
   animation: puppy-hide-in-tree 680ms ease-in both;
+}
+
+.tree-success:not([data-theme='trees'])[data-phase='hiding']
+  .tree-success__puppy {
+  animation: odd-hero-exit 680ms ease-in both;
 }
 
 .tree-success[data-phase='hiding'] .tree-success__cover {
@@ -990,6 +1139,83 @@ body {
   }
   65% {
     transform: translate(-50%, -52%) rotate(4deg) scale(1.06);
+  }
+}
+
+@keyframes odd-key-turn {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  42% {
+    transform: translate(-50%, -54%) rotate(-18deg) scale(1.05);
+  }
+  72% {
+    transform: translate(-50%, -50%) rotate(16deg) scale(1.04);
+  }
+}
+
+@keyframes odd-planet-orbit {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  42% {
+    transform: translate(-62%, -57%) rotate(-12deg) scale(0.96);
+  }
+  74% {
+    transform: translate(-38%, -43%) rotate(12deg) scale(1.06);
+  }
+}
+
+@keyframes odd-starfish-dance {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  32% {
+    transform: translate(-50%, -54%) rotate(-12deg) scale(1.04);
+  }
+  68% {
+    transform: translate(-50%, -52%) rotate(12deg) scale(1.08);
+  }
+}
+
+@keyframes odd-butterfly-flutter {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  30% {
+    transform: translate(-57%, -57%) rotate(-8deg) scaleX(0.82) scaleY(1.08);
+  }
+  68% {
+    transform: translate(-42%, -63%) rotate(8deg) scaleX(1.08) scaleY(0.9);
+  }
+}
+
+@keyframes odd-octopus-wave {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  28% {
+    transform: translate(-50%, -54%) rotate(-7deg) scale(1.06, 0.96);
+  }
+  62% {
+    transform: translate(-50%, -50%) rotate(7deg) scale(0.96, 1.08);
+  }
+}
+
+@keyframes odd-hero-exit {
+  0%,
+  36% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16%) scale(0.18) rotate(9deg);
   }
 }
 
@@ -1945,6 +2171,14 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.15rem;
   padding: 0.3rem;
+}
+
+.path-cover--odd-one-out[data-scene='trees'] {
+  background: linear-gradient(145deg, #baf08f, #8de0a1);
+}
+
+.path-cover--odd-one-out[data-scene='trees'] .path-cover__odd-one-out-item {
+  background: rgb(255 255 255 / 38%);
 }
 
 .path-cover__odd-one-out-item {

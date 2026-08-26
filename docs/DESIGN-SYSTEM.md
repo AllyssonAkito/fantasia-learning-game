@@ -216,3 +216,17 @@ faz uma oscilação brincalhona, é substituída visualmente por uma árvore com
 o conjunto desaparece antes da recompensa. O estado é anunciado por tecnologia
 assistiva. Com redução de movimento, cada etapa dura no máximo 70 ms, mas a
 ordem narrativa permanece igual.
+
+### Cenas temáticas reutilizáveis
+
+Os Jogos 2–6 reutilizam a mesma máquina de estados da cena das árvores:
+aparição sequencial com `reveal`, escolha por toque, mouse ou teclado, reação
+gentil de erro com `wrong-rumble`, isolamento da resposta e recompensa somente
+depois da narrativa visual. O cenário e a microanimação de sucesso são definidos
+por conteúdo, sem duplicar a regra do motor.
+
+As variações aprovadas são: magia lilás para cadeados e chave, céu azul para
+planetas, água clara para peixes e estrela-do-mar, jardim amarelo e verde para
+pássaros e borboleta, e recife turquesa para peixes e polvinho. As paletas evitam
+fundos vermelhos ou laranjas pesados. A chave gira, o planeta orbita, a
+estrela-do-mar dança, a borboleta voa e o polvinho acena antes de desaparecer.

@@ -14,6 +14,43 @@ type ScenePhase =
   | 'hiding'
   | 'reward';
 
+type SceneTheme = 'trees' | 'locks' | 'space' | 'ocean' | 'garden' | 'reef';
+
+interface OddOneOutScene {
+  theme: SceneTheme;
+  successLabel: string;
+  hidesBehindOption?: boolean;
+}
+
+const oddOneOutScenes: Record<string, OddOneOutScene> = {
+  'activity.logic.odd-one-out.001': {
+    theme: 'trees',
+    successLabel:
+      'O cachorrinho cresce, brinca e volta a se esconder na árvore.',
+    hidesBehindOption: true,
+  },
+  'activity.logic.odd-one-out.002': {
+    theme: 'locks',
+    successLabel: 'A chave cresce, gira e abre um cadeado imaginário.',
+  },
+  'activity.logic.odd-one-out.003': {
+    theme: 'space',
+    successLabel: 'O planeta amarelo cresce e faz uma volta pelo espaço.',
+  },
+  'activity.logic.odd-one-out.004': {
+    theme: 'ocean',
+    successLabel: 'A estrela-do-mar cresce e dança na água.',
+  },
+  'activity.logic.odd-one-out.005': {
+    theme: 'garden',
+    successLabel: 'A borboleta cresce, bate as asas e voa.',
+  },
+  'activity.logic.odd-one-out.006': {
+    theme: 'reef',
+    successLabel: 'O polvinho azul cresce, acena e mergulha.',
+  },
+};
+
 const revealStepMs = 260;
 const wrongReactionMs = 520;
 const growMs = 850;
@@ -27,7 +64,7 @@ function reducedMotionPreferred() {
   );
 }
 
-export function TreeOddOneOutActivityScreen({
+export function ThemedOddOneOutActivityScreen({
   activity,
   audio,
   onBack,
@@ -42,12 +79,13 @@ export function TreeOddOneOutActivityScreen({
   const [announcement, setAnnouncement] = useState('');
   const timers = useRef<number[]>([]);
   const reducedMotion = reducedMotionPreferred();
+  const scene = oddOneOutScenes[activity.id]!;
   const correctOption = presentation.options.find(({ id }) =>
     presentation.evaluate(id),
   )!;
-  const coverTree = presentation.options.find(
-    ({ id }) => !presentation.evaluate(id),
-  )!;
+  const coverOption = scene.hidesBehindOption
+    ? presentation.options.find(({ id }) => !presentation.evaluate(id))
+    : undefined;
   const successActive =
     phase === 'growing' || phase === 'celebrating' || phase === 'hiding';
 
@@ -93,7 +131,7 @@ export function TreeOddOneOutActivityScreen({
       return;
     }
 
-    setAnnouncement('Muito bem! O cachorrinho estava escondido.');
+    setAnnouncement(`Muito bem! ${correctOption.label} não encaixa.`);
     setPhase('growing');
     void audio.playEffect('success');
     const firstDuration = reducedMotion ? 70 : growMs;
@@ -110,8 +148,9 @@ export function TreeOddOneOutActivityScreen({
   return (
     <section
       aria-labelledby="activity-title"
-      className="tree-odd-one-out"
+      className="tree-odd-one-out odd-one-out-scene"
       data-phase={phase}
+      data-theme={scene.theme}
     >
       <button
         aria-label="Voltar"
@@ -153,19 +192,22 @@ export function TreeOddOneOutActivityScreen({
       </span>
       {successActive ? (
         <div
-          aria-label="O cachorrinho cresce, brinca e volta a se esconder na árvore."
+          aria-label={scene.successLabel}
           aria-live="assertive"
           className="tree-success"
           data-phase={phase}
+          data-theme={scene.theme}
           role="status"
         >
           <div aria-hidden="true" className="tree-success__visual">
             <span className="tree-success__puppy">
               <ActivityAsset assetId={correctOption.assetId} decorative />
             </span>
-            <span className="tree-success__cover">
-              <ActivityAsset assetId={coverTree.assetId} decorative />
-            </span>
+            {coverOption ? (
+              <span className="tree-success__cover">
+                <ActivityAsset assetId={coverOption.assetId} decorative />
+              </span>
+            ) : null}
           </div>
           <span aria-hidden="true" className="tree-success__sparkles" />
         </div>

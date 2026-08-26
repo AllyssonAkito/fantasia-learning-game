@@ -578,59 +578,59 @@ const oddOneOutChallenges = [
     correctOptionId: 'asset.game.odd-tree.puppy',
   },
   {
-    title: 'O intruso pela função',
-    instruction: 'Três figuras mostram coisas que comemos. Qual não encaixa?',
+    title: 'A chave dos cadeados',
+    instruction: 'Três figuras são cadeados. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.ball',
-      'asset.symbol.carrot',
-      'asset.symbol.fish',
-      'asset.symbol.apple',
+      'asset.game.odd-locks.mint-lock',
+      'asset.game.odd-locks.heart-lock',
+      'asset.game.odd-locks.round-lock',
+      'asset.game.odd-locks.gold-key',
     ],
-    correctOptionId: 'asset.symbol.ball',
+    correctOptionId: 'asset.game.odd-locks.gold-key',
   },
   {
-    title: 'O intruso pelo atributo visual',
-    instruction: 'Três figuras são redondas. Qual não encaixa?',
+    title: 'O planeta ensolarado',
+    instruction: 'Três planetas são roxos. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.circle',
-      'asset.symbol.star',
-      'asset.symbol.ball',
-      'asset.symbol.apple',
+      'asset.game.odd-planets.ringed-lilac',
+      'asset.game.odd-planets.round-lilac',
+      'asset.game.odd-planets.berry-lilac',
+      'asset.game.odd-planets.yellow',
     ],
-    correctOptionId: 'asset.symbol.star',
+    correctOptionId: 'asset.game.odd-planets.yellow',
   },
   {
-    title: 'O intruso da categoria',
-    instruction: 'Três figuras são animais. Qual não encaixa?',
+    title: 'A estrela entre os peixes',
+    instruction: 'Três figuras são peixes. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.dog',
-      'asset.symbol.rabbit',
-      'asset.symbol.fish',
-      'asset.symbol.flower',
+      'asset.game.odd-starfish.blue-fish',
+      'asset.game.odd-starfish.mint-fish',
+      'asset.game.odd-starfish.yellow-star',
+      'asset.game.odd-starfish.lilac-fish',
     ],
-    correctOptionId: 'asset.symbol.flower',
+    correctOptionId: 'asset.game.odd-starfish.yellow-star',
   },
   {
-    title: 'Três semelhantes e um diferente',
-    instruction: 'Três figuras são formas simples. Qual não encaixa?',
+    title: 'A borboleta entre os pássaros',
+    instruction: 'Três figuras são pássaros. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.circle',
-      'asset.symbol.square',
-      'asset.symbol.flower',
-      'asset.symbol.triangle',
+      'asset.game.odd-butterfly.lilac-butterfly',
+      'asset.game.odd-butterfly.brown-bird',
+      'asset.game.odd-butterfly.yellow-bird',
+      'asset.game.odd-butterfly.coral-bird',
     ],
-    correctOptionId: 'asset.symbol.flower',
+    correctOptionId: 'asset.game.odd-butterfly.lilac-butterfly',
   },
   {
-    title: 'O intruso entre os amigos',
-    instruction: 'Três figuras são bichinhos. Qual não encaixa?',
+    title: 'O polvinho da Melina',
+    instruction: 'Três figuras são peixes. Qual não encaixa?',
     optionIds: [
-      'asset.symbol.dog',
-      'asset.symbol.rabbit',
-      'asset.symbol.ball',
-      'asset.symbol.fish',
+      'asset.game.odd-octopus.mint-fish',
+      'asset.game.odd-octopus.coral-fish',
+      'asset.game.odd-octopus.blue-octopus',
+      'asset.game.odd-octopus.lilac-fish',
     ],
-    correctOptionId: 'asset.symbol.ball',
+    correctOptionId: 'asset.game.odd-octopus.blue-octopus',
   },
 ] as const;
 
@@ -1394,12 +1394,15 @@ for (const [levelOrder, blueprint] of expansionLevels.entries()) {
 
 const oddOneOutSkillId = 'skill.logic.odd-one-out';
 const oddOneOutLevelId = 'level.logic.odd-one-out.01';
+for (const skill of skills) {
+  if (skill.trailId === 'trail.logic.adventure') skill.order += 1;
+}
 skills.push({
   ...common,
   id: oddOneOutSkillId,
   trailId: 'trail.logic.adventure',
   title: 'Identificar o elemento que não pertence ao grupo',
-  order: 6,
+  order: 0,
 });
 levels.push({
   ...common,

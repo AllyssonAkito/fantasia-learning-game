@@ -99,12 +99,22 @@ describe('buildLearningPathView', () => {
 
     expect(view.status).toBe('ready');
     if (view.status !== 'ready') return;
-    expect(view.stops.slice(0, 3).map(({ cover }) => cover?.kind)).toEqual([
+    expect(view.stops.slice(0, 4).map(({ cover }) => cover?.kind)).toEqual([
+      'odd-one-out',
       'sequence',
       'assembly',
       'clue',
     ]);
     expect(view.stops[0]!.cover).toEqual({
+      kind: 'odd-one-out',
+      assetIds: [
+        'asset.game.odd-tree.tall',
+        'asset.game.odd-tree.round',
+        'asset.game.odd-tree.puppy',
+        'asset.game.odd-tree.narrow',
+      ],
+    });
+    expect(view.stops[1]!.cover).toEqual({
       kind: 'sequence',
       assetIds: [
         'asset.symbol.star',
@@ -112,7 +122,7 @@ describe('buildLearningPathView', () => {
         'asset.symbol.star',
       ],
     });
-    expect(view.stops[1]!.cover).toMatchObject({
+    expect(view.stops[2]!.cover).toMatchObject({
       kind: 'assembly',
       pieceIds: [
         expect.stringContaining('.top'),
@@ -120,22 +130,11 @@ describe('buildLearningPathView', () => {
         expect.stringContaining('.bottom'),
       ],
     });
-    expect(view.stops[2]!.cover).toMatchObject({
+    expect(view.stops[3]!.cover).toMatchObject({
       kind: 'clue',
       assetId: 'asset.symbol.rabbit',
     });
-    expect(view.stops.at(-1)).toMatchObject({
-      label: 'O que não encaixa 1',
-      cover: {
-        kind: 'odd-one-out',
-        assetIds: [
-          'asset.game.odd-tree.tall',
-          'asset.game.odd-tree.round',
-          'asset.game.odd-tree.puppy',
-          'asset.game.odd-tree.narrow',
-        ],
-      },
-    });
+    expect(view.stops[0]).toMatchObject({ label: 'O que não encaixa 1' });
   });
 
   it('deriva capas próprias para as três fases de Atenção', () => {

@@ -51,6 +51,13 @@ export function LearningPathCover({ cover }: LearningPathCoverProps) {
       <span
         className="path-cover path-cover--odd-one-out"
         data-cover="odd-one-out"
+        data-scene={
+          cover.assetIds.some((assetId) =>
+            assetId.startsWith('asset.game.odd-tree.'),
+          )
+            ? 'trees'
+            : undefined
+        }
       >
         {cover.assetIds.map((assetId) => (
           <span className="path-cover__odd-one-out-item" key={assetId}>
