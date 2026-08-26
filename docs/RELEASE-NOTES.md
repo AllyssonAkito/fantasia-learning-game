@@ -2,6 +2,8 @@
 
 ## Novidades
 
+- prioriza voz feminina brasileira nas instruções e deixa a síntese ligeiramente
+  mais rápida e expressiva, preservando fallback exclusivamente em português;
 - transforma a primeira tarefa de “O que não encaixa 1” em uma cena verde com
   quatro árvores originais, incluindo o cachorrinho camuflado;
 - apresenta cada peça em sequência com um sopro curto e reage à escolha não

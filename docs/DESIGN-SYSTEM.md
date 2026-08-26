@@ -141,6 +141,14 @@ existe. Efeitos usam os IDs `success`, `attempt`, `hint`, `reward`, `reveal` e
 preservar a compreensão. Toda atividade expõe um botão de áudio sem texto
 visível, com nome acessível “Ouvir a instrução novamente”.
 
+Na síntese do navegador, a seleção prioriza uma voz feminina `pt-BR`, seguida
+por uma voz feminina em outro português, uma voz brasileira genérica e outra
+voz portuguesa. Como a API não informa gênero, a preferência feminina usa
+indicadores conhecidos no nome da voz; quando o sistema não os fornece, o
+fallback continua em português. A narração infantil usa velocidade `1.02` e
+altura `1.16`: ligeiramente mais viva do que a fala neutra, sem sacrificar a
+clareza para 4–5 anos.
+
 ## Movimento
 
 - feedback de toque: até 150 ms;

@@ -1,5 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { BrowserAudioBackend, selectPortugueseVoice } from './browser-backend';
+import {
+  BrowserAudioBackend,
+  childNarrationSettings,
+  isLikelyFemaleVoice,
+  selectPortugueseVoice,
+} from './browser-backend';
 
 function voice(name: string, lang: string) {
   return {
@@ -14,7 +19,25 @@ function voice(name: string, lang: string) {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('BrowserAudioBackend', () => {
-  it('prioriza pt-BR, depois outra voz em português, e nunca inglês', () => {
+  it('prioriza uma voz feminina brasileira', () => {
+    const brazilianMale = voice('Microsoft Antonio', 'pt-BR');
+    const brazilianFemale = voice('Microsoft Francisca', 'pt-BR');
+    expect(selectPortugueseVoice([brazilianMale, brazilianFemale])).toBe(
+      brazilianFemale,
+    );
+    expect(isLikelyFemaleVoice(brazilianFemale)).toBe(true);
+    expect(isLikelyFemaleVoice(brazilianMale)).toBe(false);
+  });
+
+  it('prefere uma voz feminina portuguesa a uma brasileira sem gênero identificado', () => {
+    const brazilian = voice('Voz brasileira', 'pt-BR');
+    const portugueseFemale = voice('Catarina', 'pt-PT');
+    expect(selectPortugueseVoice([brazilian, portugueseFemale])).toBe(
+      portugueseFemale,
+    );
+  });
+
+  it('mantém pt-BR e português como fallback, mas nunca inglês', () => {
     const english = voice('English', 'en-US');
     const portuguese = voice('Português', 'pt-PT');
     const brazilian = voice('Brasil', 'pt-BR');
@@ -25,8 +48,8 @@ describe('BrowserAudioBackend', () => {
     expect(selectPortugueseVoice([english])).toBeUndefined();
   });
 
-  it('atribui a voz brasileira à fala', async () => {
-    const brazilian = voice('Brasil', 'pt-BR');
+  it('atribui a voz feminina brasileira e uma entonação mais animada à fala', async () => {
+    const brazilian = voice('Microsoft Francisca', 'pt-BR');
     class Utterance {
       lang = '';
       voice: SpeechSynthesisVoice | null = null;
@@ -52,6 +75,8 @@ describe('BrowserAudioBackend', () => {
     expect(speak.mock.calls[0]![0]).toMatchObject({
       lang: 'pt-BR',
       voice: brazilian,
+      rate: childNarrationSettings.rate,
+      pitch: childNarrationSettings.pitch,
     });
   });
 });

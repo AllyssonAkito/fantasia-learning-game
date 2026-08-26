@@ -1,14 +1,60 @@
 import type { AudioAvailability, AudioBackend } from './audio-service';
 import type { AudioEffectDefinition } from './effect-catalog';
 
+const femaleVoiceNameHints = [
+  'female',
+  'feminina',
+  'mulher',
+  'francisca',
+  'luciana',
+  'maria',
+  'joana',
+  'catarina',
+  'fernanda',
+  'heloisa',
+  'mariana',
+  'camila',
+  'isabela',
+  'leticia',
+  'vitoria',
+  'amelia',
+  'ines',
+  'mafalda',
+  'google portugues do brasil',
+] as const;
+
+export const childNarrationSettings = {
+  rate: 1.02,
+  pitch: 1.16,
+} as const;
+
+function normalized(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+export function isLikelyFemaleVoice(voice: SpeechSynthesisVoice) {
+  const name = normalized(voice.name);
+  return femaleVoiceNameHints.some((hint) => name.includes(hint));
+}
+
 export function selectPortugueseVoice(
   voices: readonly SpeechSynthesisVoice[],
 ): SpeechSynthesisVoice | undefined {
   const language = (voice: SpeechSynthesisVoice) => voice.lang.toLowerCase();
+  const portugueseVoices = voices.filter((voice) =>
+    language(voice).startsWith('pt'),
+  );
+  const brazilianVoices = portugueseVoices.filter((voice) =>
+    language(voice).startsWith('pt-br'),
+  );
   return (
-    voices.find((voice) => language(voice) === 'pt-br') ??
-    voices.find((voice) => language(voice).startsWith('pt-br')) ??
-    voices.find((voice) => language(voice).startsWith('pt'))
+    brazilianVoices.find(isLikelyFemaleVoice) ??
+    portugueseVoices.find(isLikelyFemaleVoice) ??
+    brazilianVoices[0] ??
+    portugueseVoices[0]
   );
 }
 
@@ -62,8 +108,8 @@ export class BrowserAudioBackend implements AudioBackend {
       utterance.lang =
         voice.lang || (language.startsWith('pt') ? language : 'pt-BR');
       utterance.voice = voice;
-      utterance.rate = 0.9;
-      utterance.pitch = 1.08;
+      utterance.rate = childNarrationSettings.rate;
+      utterance.pitch = childNarrationSettings.pitch;
       utterance.volume = volume;
       utterance.onend = () => resolve();
       utterance.onerror = () => reject(new Error('speech-failed'));
