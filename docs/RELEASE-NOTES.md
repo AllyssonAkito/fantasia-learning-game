@@ -6,6 +6,10 @@
   originais de grupo, função e atributo visual em grade 2 × 2;
 - varia a posição da resposta correta e deriva as capas da fase e das tarefas
   das quatro imagens usadas em cada desafio;
+- alinha as tarefas às variações de grupo, função, atributo, categoria e três
+  semelhantes com um diferente;
+- ao acertar em “O que não encaixa”, isola a imagem correta e a faz crescer até
+  cobrir a tela antes de apresentar a recompensa;
 - disponibiliza a escolha visual entre as áreas Lógica e Atenção no Nível 1;
 - adiciona em Atenção as fases Procurar 1, Detalhes 1 e Separar 1, com seis
   tarefas curadas em cada fase;

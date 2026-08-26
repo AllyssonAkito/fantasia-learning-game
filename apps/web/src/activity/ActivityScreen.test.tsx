@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -147,5 +148,40 @@ describe('ActivityScreen', () => {
       4,
     );
     expect(options.querySelectorAll('img')).toHaveLength(4);
+  });
+
+  it('faz a resposta correta crescer antes de abrir a recompensa', () => {
+    vi.useFakeTimers();
+    const oddOneOut = mvpCatalogSeed.activities!.find(
+      ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
+    )!;
+    const presentation = createChoicePresentation(oddOneOut);
+    const correct = presentation.options.find(({ id }) =>
+      presentation.evaluate(id),
+    )!;
+
+    const { container } = render(
+      <ActivityScreen
+        activity={oddOneOut}
+        audio={audio}
+        onBack={vi.fn()}
+        onComplete={vi.fn()}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: correct.label }));
+    const celebration = screen.getByRole('status', {
+      name: new RegExp(correct.label, 'i'),
+    });
+    expect(celebration).toBeVisible();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(
+      container.querySelector('.correct-answer-celebration__visual'),
+    ).toHaveAttribute('data-duration-ms', '1100');
+    act(() => vi.advanceTimersByTime(1100));
+    expect(
+      screen.getByRole('dialog', { name: 'Você conseguiu!' }),
+    ).toBeVisible();
+    vi.useRealTimers();
   });
 });

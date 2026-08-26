@@ -65,6 +65,10 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
    criança considera a regra, em vez de repetir uma posição.
 6. Confirmar que a capa de cada tarefa antecipa suas quatro figuras sem marcar a
    alternativa correta.
+7. Ao acertar, observar se a imagem escolhida cresce sobre a atividade sem
+   provocar rolagem e se a recompensa aparece somente após a animação.
+8. Repetir com movimento reduzido ativado e confirmar que a criança não fica
+   presa na celebração.
 
 ## Registro de observação
 

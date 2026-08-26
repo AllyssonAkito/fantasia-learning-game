@@ -147,7 +147,15 @@ describe('catálogo MVP', () => {
           ({ id }) => id === definition.correctOptionId,
         );
       }),
-    ).toEqual([3, 2, 1, 0, 2, 3]);
+    ).toEqual([3, 0, 1, 3, 2, 2]);
+    expect(activities.map(({ title }) => title)).toEqual([
+      'O intruso entre os animais',
+      'O intruso pela função',
+      'O intruso pelo atributo visual',
+      'O intruso da categoria',
+      'Três semelhantes e um diferente',
+      'O intruso entre os amigos',
+    ]);
     expect(
       activities.every(({ engine, assets, content, instruction }) => {
         const definition = content as {

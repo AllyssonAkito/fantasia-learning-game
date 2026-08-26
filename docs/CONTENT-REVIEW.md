@@ -57,18 +57,20 @@ A fase introduz seis desafios originais de escolha visual. Cada tarefa apresenta
 quatro imagens e uma única resposta inequívoca; a instrução falada explicita a
 regra sem depender de leitura autônoma.
 
-| Tarefa | Regra observada        | Conjunto visual                     | Posição da resposta |
-| ------ | ---------------------- | ----------------------------------- | ------------------- |
-| 1      | pertencimento ao grupo | três animais e uma cenoura          | 4                   |
-| 2      | atributo geométrico    | três formas básicas e uma flor      | 3                   |
-| 3      | formato arredondado    | três figuras redondas e uma estrela | 2                   |
-| 4      | origem natural         | três itens que crescem e uma bola   | 1                   |
-| 5      | categoria de alimento  | três alimentos e um coração         | 3                   |
-| 6      | presença de ponta      | três figuras pontudas e um círculo  | 4                   |
+| Tarefa | Regra observada           | Conjunto visual                     | Posição da resposta |
+| ------ | ------------------------- | ----------------------------------- | ------------------- |
+| 1      | pertencimento ao grupo    | três animais e uma cenoura          | 4                   |
+| 2      | função do objeto          | três alimentos e uma bola           | 1                   |
+| 3      | atributo visual           | três figuras redondas e uma estrela | 2                   |
+| 4      | pertencimento à categoria | três animais e uma flor             | 4                   |
+| 5      | três semelhantes          | três formas simples e uma flor      | 3                   |
+| 6      | consolidação por grupo    | três bichinhos e uma bola           | 3                   |
 
 As capas da fase e de cada tarefa são derivadas do próprio conteúdo. A resposta
 correta não recebe destaque antecipado, e todos os assets pertencem ao catálogo
-original do projeto.
+original do projeto. No acerto, a ilustração escolhida é isolada e cresce do seu
+lugar na grade até cobrir a viewport; somente depois a recompensa e a ação de
+continuar são apresentadas.
 
 ## Categorias da área Atenção
 
