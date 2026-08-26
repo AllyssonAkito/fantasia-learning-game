@@ -27,7 +27,9 @@ O nome usado nas atividades é conteúdo local da experiência. Ele não integra
 
 ## Riscos residuais
 
-- o navegador pode oferecer uma voz de síntese diferente por sistema;
+- o navegador pode oferecer nomes e vozes de síntese diferentes por sistema; a
+  preferência feminina é aplicada quando o nome permite identificá-la e nunca
+  causa download, gravação ou coleta adicional;
 - o armazenamento do dispositivo pode ser apagado pelo navegador;
 - o MVP não sincroniza dados entre dispositivos;
 - controles parentais do sistema e supervisão do responsável continuam recomendados.

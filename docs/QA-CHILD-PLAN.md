@@ -29,6 +29,17 @@ desempenho escolar. Nenhum dado é usado para diagnóstico.
 Browser alvo inicial: Chromium moderno com toque quando disponível. O conteúdo
 deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
 
+## Verificação da narração
+
+1. Em cada sistema-alvo, registrar apenas o nome técnico da voz selecionada e o
+   idioma informado pelo navegador, sem gravar a criança ou o áudio ambiente.
+2. Confirmar que uma voz feminina brasileira disponível vence uma masculina ou
+   genérica, mesmo quando aparece depois na lista do sistema.
+3. Confirmar que a fala soa alegre, mas que a criança entende a instrução curta
+   na primeira reprodução.
+4. Sem uma voz feminina identificável, confirmar fallback em português e apoio
+   visual; uma voz inglesa nunca deve ser usada.
+
 ## Roteiro moderado do core loop
 
 1. Entregar o aparelho na trilha, sem explicar os botões.
