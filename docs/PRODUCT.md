@@ -155,7 +155,7 @@ o cálculo estão documentados em [`RESPONSIBLE-AREA.md`](RESPONSIBLE-AREA.md).
 - 6 áreas;
 - 8 motores;
 - no mínimo 18 exercícios por área, com expansão incremental por faixa etária;
-- 138 atividades configuradas, incluindo as 12 tarefas de “O que não encaixa 1”
+- 142 atividades configuradas, incluindo as 16 tarefas de “O que não encaixa 1”
   para 4–5 anos.
 
 ## Fora de escopo inicial

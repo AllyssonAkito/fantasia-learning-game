@@ -26,66 +26,35 @@ type SceneTheme =
   | 'breeze'
   | 'tea'
   | 'music'
-  | 'picnic';
+  | 'picnic'
+  | 'workshop'
+  | 'library'
+  | 'meadow'
+  | 'coast';
 
 interface OddOneOutScene {
   theme: SceneTheme;
-  successLabel: string;
   hidesBehindOption?: boolean;
 }
 
-const oddOneOutScenes: Record<string, OddOneOutScene> = {
-  'activity.logic.odd-one-out.001': {
-    theme: 'trees',
-    successLabel:
-      'O cachorrinho cresce, brinca e volta a se esconder na árvore.',
-    hidesBehindOption: true,
-  },
-  'activity.logic.odd-one-out.002': {
-    theme: 'locks',
-    successLabel: 'A chave cresce, gira e abre um cadeado imaginário.',
-  },
-  'activity.logic.odd-one-out.003': {
-    theme: 'space',
-    successLabel: 'O planeta amarelo cresce e faz uma volta pelo espaço.',
-  },
-  'activity.logic.odd-one-out.004': {
-    theme: 'ocean',
-    successLabel: 'A estrela-do-mar cresce e dança na água.',
-  },
-  'activity.logic.odd-one-out.005': {
-    theme: 'garden',
-    successLabel: 'A borboleta cresce, bate as asas e voa.',
-  },
-  'activity.logic.odd-one-out.006': {
-    theme: 'reef',
-    successLabel: 'O polvinho azul cresce, acena e mergulha.',
-  },
-  'activity.logic.odd-one-out.007': {
-    theme: 'closet',
-    successLabel: 'O chapéu cresce, gira e faz uma reverência.',
-  },
-  'activity.logic.odd-one-out.008': {
-    theme: 'playground',
-    successLabel: 'O alvo cresce e suas cores pulsam.',
-  },
-  'activity.logic.odd-one-out.009': {
-    theme: 'breeze',
-    successLabel: 'O guarda-chuva cresce, abre e gira com a brisa.',
-  },
-  'activity.logic.odd-one-out.010': {
-    theme: 'tea',
-    successLabel: 'O coco cresce, balança e dá um pulinho.',
-  },
-  'activity.logic.odd-one-out.011': {
-    theme: 'music',
-    successLabel: 'A raquete cresce e rebate uma bolinha imaginária.',
-  },
-  'activity.logic.odd-one-out.012': {
-    theme: 'picnic',
-    successLabel: 'A lata cresce, gira e balança como um chocalho.',
-  },
-};
+const oddOneOutScenes: readonly OddOneOutScene[] = [
+  { theme: 'trees', hidesBehindOption: true },
+  { theme: 'locks' },
+  { theme: 'space' },
+  { theme: 'ocean' },
+  { theme: 'garden' },
+  { theme: 'reef' },
+  { theme: 'closet' },
+  { theme: 'playground' },
+  { theme: 'breeze' },
+  { theme: 'tea' },
+  { theme: 'music' },
+  { theme: 'picnic' },
+  { theme: 'workshop' },
+  { theme: 'library' },
+  { theme: 'meadow' },
+  { theme: 'coast' },
+];
 
 const revealStepMs = 260;
 const wrongReactionMs = 520;
@@ -115,7 +84,7 @@ export function ThemedOddOneOutActivityScreen({
   const [announcement, setAnnouncement] = useState('');
   const timers = useRef<number[]>([]);
   const reducedMotion = reducedMotionPreferred();
-  const scene = oddOneOutScenes[activity.id]!;
+  const scene = oddOneOutScenes[Number(activity.id.slice(-3)) - 1]!;
   const correctOption = presentation.options.find(({ id }) =>
     presentation.evaluate(id),
   )!;
@@ -228,7 +197,7 @@ export function ThemedOddOneOutActivityScreen({
       </span>
       {successActive ? (
         <div
-          aria-label={scene.successLabel}
+          aria-label={`${correctOption.label} cresce e se anima antes da recompensa.`}
           aria-live="assertive"
           className="tree-success"
           data-phase={phase}

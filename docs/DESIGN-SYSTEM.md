@@ -219,7 +219,7 @@ ordem narrativa permanece igual.
 
 ### Cenas temáticas reutilizáveis
 
-Os Jogos 2–12 reutilizam a mesma máquina de estados da cena das árvores:
+Os Jogos 2–16 reutilizam a mesma máquina de estados da cena das árvores:
 aparição sequencial com `reveal`, escolha por toque, mouse ou teclado, reação
 gentil de erro com `wrong-rumble`, isolamento da resposta e recompensa somente
 depois da narrativa visual. O cenário e a microanimação de sucesso são definidos
@@ -236,3 +236,8 @@ verde para bolas e alvo, brisa azul-lilás para leques e guarda-chuva, mesa de c
 menta para chaleiras e coco, música azul-clara para instrumentos e raquete e
 piquenique verde-amarelo para frutas e lata. As ações de sucesso são,
 respectivamente, reverência, pulso, giro, salto, rebatida e balanço.
+
+As tarefas 13–16 usam oficina menta para chaves e chave de boca, biblioteca
+lilás para livros e borracha, campo verde-claro para pedras e flor e costa azul
+para peixes e gaivota. A chave de boca gira, a borracha desliza, a flor dança e
+a gaivota levanta voo antes de desaparecer.

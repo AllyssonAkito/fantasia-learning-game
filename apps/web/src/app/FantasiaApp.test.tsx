@@ -36,7 +36,7 @@ describe('FantasiaApp', () => {
     ).toBeVisible();
   });
 
-  it('percorre as doze tarefas antes de concluir e avançar o nível', () => {
+  it('percorre as dezesseis tarefas antes de concluir e avançar o nível', () => {
     vi.useFakeTimers();
     render(
       <FantasiaApp
@@ -54,7 +54,7 @@ describe('FantasiaApp', () => {
     );
     expect(
       screen.getAllByRole('button', { name: /Atividade \d/i }),
-    ).toHaveLength(12);
+    ).toHaveLength(16);
 
     const activities = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
@@ -84,7 +84,7 @@ describe('FantasiaApp', () => {
     expect(
       screen.getByRole('button', { name: /Padrões.*Pronto para brincar/i }),
     ).toBeEnabled();
-  });
+  }, 15_000);
 
   it('abre Atenção, conclui Procurar e libera Detalhes na mesma área', () => {
     render(

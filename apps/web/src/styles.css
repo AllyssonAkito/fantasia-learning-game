@@ -935,6 +935,46 @@ body {
     auto;
 }
 
+.tree-odd-one-out[data-theme='workshop'] {
+  background:
+    radial-gradient(circle at 18% 25%, #fff4b5 0 0.32rem, transparent 0.39rem),
+    radial-gradient(circle at 82% 72%, #d9d2f8 0 0.38rem, transparent 0.45rem),
+    linear-gradient(145deg, #c9ece8, #d6e2f5);
+}
+
+.tree-odd-one-out[data-theme='library'] {
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 14%) 50%, transparent 50%),
+    radial-gradient(circle at 78% 22%, #fff5b8 0 0.36rem, transparent 0.43rem),
+    linear-gradient(145deg, #ddd6f7, #ccebf0);
+  background-size:
+    5rem 100%,
+    auto,
+    auto;
+}
+
+.tree-odd-one-out[data-theme='meadow'] {
+  background:
+    radial-gradient(ellipse at 18% 75%, #b9e7ba 0 0.46rem, transparent 0.54rem),
+    radial-gradient(ellipse at 80% 22%, #fff6bd 0 0.34rem, transparent 0.41rem),
+    linear-gradient(145deg, #d7f0cb, #cbeaf4);
+}
+
+.tree-odd-one-out[data-theme='coast'] {
+  background:
+    radial-gradient(
+      circle at 18% 22%,
+      rgb(255 255 255 / 48%) 0 0.4rem,
+      transparent 0.47rem
+    ),
+    repeating-radial-gradient(
+      ellipse at 76% 76%,
+      rgb(255 255 255 / 18%) 0 0.22rem,
+      transparent 0.3rem 2.4rem
+    ),
+    linear-gradient(145deg, #bfeaf2, #d7dcf7);
+}
+
 .tree-odd-one-out__back {
   position: absolute;
   z-index: 4;
@@ -1087,6 +1127,30 @@ body {
     linear-gradient(145deg, #d8efc8, #f3e7b7);
 }
 
+.tree-success[data-theme='workshop'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fff9d2, transparent 34%),
+    linear-gradient(145deg, #c9ece8, #d6e2f5);
+}
+
+.tree-success[data-theme='library'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 55%), transparent 35%),
+    linear-gradient(145deg, #ddd6f7, #ccebf0);
+}
+
+.tree-success[data-theme='meadow'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fff9cf, transparent 34%),
+    linear-gradient(145deg, #d7f0cb, #cbeaf4);
+}
+
+.tree-success[data-theme='coast'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 54%), transparent 35%),
+    linear-gradient(145deg, #bfeaf2, #d7dcf7);
+}
+
 .tree-success__visual {
   position: fixed;
   top: 50%;
@@ -1177,6 +1241,26 @@ body {
 .tree-success[data-theme='picnic'][data-phase='celebrating']
   .tree-success__visual {
   animation: odd-can-shake 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='workshop'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-wrench-turn 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='library'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-eraser-slide 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='meadow'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-flower-sway 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='coast'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-seagull-flight 560ms ease-in-out both;
 }
 
 .tree-success[data-phase='hiding'] .tree-success__puppy {
@@ -1400,6 +1484,58 @@ body {
   }
   78% {
     transform: translate(-52%, -51%) rotate(-6deg) scale(1.04);
+  }
+}
+
+@keyframes odd-wrench-turn {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  38% {
+    transform: translate(-50%, -54%) rotate(-22deg) scale(1.06);
+  }
+  72% {
+    transform: translate(-50%, -49%) rotate(18deg) scale(1.04);
+  }
+}
+
+@keyframes odd-eraser-slide {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  34% {
+    transform: translate(-62%, -53%) rotate(-7deg) scale(1.03);
+  }
+  68% {
+    transform: translate(-38%, -48%) rotate(7deg) scale(1.08);
+  }
+}
+
+@keyframes odd-flower-sway {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  36% {
+    transform: translate(-50%, -56%) rotate(-10deg) scale(1.06);
+  }
+  70% {
+    transform: translate(-50%, -52%) rotate(10deg) scale(1.08);
+  }
+}
+
+@keyframes odd-seagull-flight {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  38% {
+    transform: translate(-58%, -62%) rotate(-8deg) scale(0.96, 1.08);
+  }
+  72% {
+    transform: translate(-40%, -68%) rotate(8deg) scale(1.08, 0.94);
   }
 }
 

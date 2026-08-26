@@ -7,15 +7,15 @@ import { validatePublishableCatalog } from './publish-validation';
 describe('catálogo MVP', () => {
   it('publica o catálogo ampliado com cobertura mínima nas seis áreas', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
-      activities: 138,
+      activities: 142,
       areas: 6,
-      assets: 74,
+      assets: 90,
     });
     const counts = mvpContentCoverage.reduce<Record<string, number>>(
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
       {},
     );
-    expect(Object.values(counts)).toEqual([33, 21, 21, 21, 21, 21]);
+    expect(Object.values(counts)).toEqual([37, 21, 21, 21, 21, 21]);
   });
 
   it('usa somente recortes do mesmo mascote nas atividades de montagem', () => {
@@ -73,7 +73,7 @@ describe('catálogo MVP', () => {
     expect(catalog.getSkillsByTrail('trail.logic.adventure')).toHaveLength(7);
     expect(
       catalog.getActivitiesByLevel('level.logic.odd-one-out.01'),
-    ).toHaveLength(12);
+    ).toHaveLength(16);
     for (const levelId of [
       'level.logic.journey-a.01',
       'level.logic.journey-b.01',
@@ -131,12 +131,12 @@ describe('catálogo MVP', () => {
     );
   });
 
-  it('publica doze desafios visuais variados em O que não encaixa', () => {
+  it('publica dezesseis desafios visuais variados em O que não encaixa', () => {
     const activities = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
     );
 
-    expect(activities).toHaveLength(12);
+    expect(activities).toHaveLength(16);
     expect(
       activities.map(({ content }) => {
         const definition = content as {
@@ -147,7 +147,7 @@ describe('catálogo MVP', () => {
           ({ id }) => id === definition.correctOptionId,
         );
       }),
-    ).toEqual([2, 3, 3, 2, 0, 2, 1, 2, 3, 0, 2, 1]);
+    ).toEqual([2, 3, 3, 2, 0, 2, 1, 2, 3, 0, 2, 1, 3, 0, 1, 2]);
     expect(activities.map(({ title }) => title)).toEqual([
       'O cachorrinho escondido',
       'A chave dos cadeados',
@@ -161,6 +161,10 @@ describe('catálogo MVP', () => {
       'O coco entre as chaleiras',
       'A raquete entre os instrumentos',
       'A lata entre as frutas',
+      'A chave de boca entre as chaves',
+      'A borracha entre os livros',
+      'A flor entre as pedras',
+      'A gaivota entre os peixes',
     ]);
     expect(
       activities.every(({ engine, assets, content, instruction }) => {

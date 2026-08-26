@@ -19,7 +19,7 @@ import { ThemedOddOneOutActivityScreen } from './TreeOddOneOutActivityScreen';
 
 const themedOddOneOutActivityIds = new Set(
   Array.from(
-    { length: 12 },
+    { length: 16 },
     (_, index) =>
       `activity.logic.odd-one-out.${String(index + 1).padStart(3, '0')}`,
   ),

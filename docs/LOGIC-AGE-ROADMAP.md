@@ -27,7 +27,7 @@ composição de tela de terceiros não entram no produto.
 
 ## Entrega ativa: O que não encaixa 1
 
-A primeira família para 4–5 anos possui 12 tarefas originais e reutiliza o
+A primeira família para 4–5 anos possui 16 tarefas originais e reutiliza o
 motor de escolha:
 
 | Variação           | Habilidade               | Progressão inicial                |
@@ -44,6 +44,10 @@ motor de escolha:
 | categoria concreta | classificar              | chaleiras e coco                  |
 | função do objeto   | relacionar uso cotidiano | instrumentos e raquete            |
 | categoria concreta | classificar              | frutas e lata                     |
+| função do objeto   | relacionar uso cotidiano | chaves e chave de boca            |
+| categoria concreta | classificar              | livros e borracha                 |
+| categoria concreta | classificar              | pedras e flor                     |
+| categoria concreta | classificar              | peixes e gaivota                  |
 
 Cada tarefa usa quatro ilustrações em grade 2 × 2, instrução e repetição sonora
 em português brasileiro, posição variada da resposta correta, feedback sem
@@ -60,6 +64,8 @@ breve e gentil e o acerto termina com o mascote escondendo-se novamente. A Issue
 #186 especializa as tarefas 2–6 com arte original e microanimações temáticas,
 mantendo uma única máquina de estados reutilizável. A Issue #188 usa essa mesma
 máquina para as tarefas 7–12 e acrescenta seis cenas originais.
+A Issue #190 completa a família com as tarefas 13–16, preservando o mesmo motor
+e adicionando quatro agrupamentos originais.
 
 ## Estado das próximas famílias
 
@@ -70,7 +76,7 @@ Produção em massa começa somente após aprovação da matriz da respectiva fa
 
 ## Ciclo de entrega
 
-Uma família como “O que não encaixa”, com 12 tarefas, requer conteúdo,
+Uma família como “O que não encaixa”, com 16 tarefas, requer conteúdo,
 integração, testes automatizados, revisão visual e aprovação. A implementação
 jogável pode ficar pronta antes; o ciclo inclui a
 revisão humana necessária para declará-la concluída. Identidade visual definitiva

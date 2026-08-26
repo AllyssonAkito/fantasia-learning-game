@@ -132,7 +132,11 @@ function oddSceneSprite(
     | 'fans'
     | 'kettles'
     | 'instruments'
-    | 'fruits',
+    | 'fruits'
+    | 'keys'
+    | 'books'
+    | 'stones'
+    | 'seagull',
   id: string,
   alt: string,
   column: 0 | 1,
@@ -227,6 +231,22 @@ export const mvpAssets = [
   oddSceneSprite('fruits', 'can', 'lata azul sem rótulo', 1, 0),
   oddSceneSprite('fruits', 'banana', 'banana amarela', 0, 1),
   oddSceneSprite('fruits', 'apple', 'maçã cor-de-rosa', 1, 1),
+  oddSceneSprite('keys', 'round-key', 'chave verde-menta redonda', 0, 0),
+  oddSceneSprite('keys', 'heart-key', 'chave amarela de coração', 1, 0),
+  oddSceneSprite('keys', 'square-key', 'chave azul quadrada', 0, 1),
+  oddSceneSprite('keys', 'wrench', 'chave de boca lilás', 1, 1),
+  oddSceneSprite('books', 'eraser', 'borracha azul e lilás', 0, 0),
+  oddSceneSprite('books', 'yellow-book', 'livro amarelo fechado', 1, 0),
+  oddSceneSprite('books', 'mint-notebook', 'caderno verde-menta', 0, 1),
+  oddSceneSprite('books', 'open-book', 'livro lilás aberto', 1, 1),
+  oddSceneSprite('stones', 'river-stone', 'pedra de rio verde-clara', 0, 0),
+  oddSceneSprite('stones', 'flower', 'flor amarela com folhas', 1, 0),
+  oddSceneSprite('stones', 'stone-cluster', 'grupo de pedras lilases', 0, 1),
+  oddSceneSprite('stones', 'mossy-rock', 'rocha azul com musgo', 1, 1),
+  oddSceneSprite('seagull', 'mint-fish', 'peixe verde-menta', 0, 0),
+  oddSceneSprite('seagull', 'yellow-fish', 'peixe amarelo', 1, 0),
+  oddSceneSprite('seagull', 'seagull', 'gaivota azul e branca', 0, 1),
+  oddSceneSprite('seagull', 'lilac-fish', 'peixe lilás', 1, 1),
 ] as const;
 
 export const mvpAssetById = new Map(
