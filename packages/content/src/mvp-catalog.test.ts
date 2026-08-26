@@ -5,9 +5,9 @@ import { mvpCatalogSeed, mvpContentCoverage } from './mvp-catalog';
 import { validatePublishableCatalog } from './publish-validation';
 
 describe('catálogo MVP', () => {
-  it('publica 21 atividades válidas em cada uma das seis áreas', () => {
+  it('publica o catálogo ampliado com cobertura mínima nas seis áreas', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
-      activities: 126,
+      activities: 132,
       areas: 6,
       assets: 26,
     });
@@ -15,7 +15,7 @@ describe('catálogo MVP', () => {
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
       {},
     );
-    expect(Object.values(counts)).toEqual([21, 21, 21, 21, 21, 21]);
+    expect(Object.values(counts)).toEqual([27, 21, 21, 21, 21, 21]);
   });
 
   it('usa somente recortes do mesmo mascote nas atividades de montagem', () => {
@@ -37,7 +37,7 @@ describe('catálogo MVP', () => {
     expect(new Set(mvpContentCoverage.map(({ engine }) => engine)).size).toBe(
       8,
     );
-    expect(mvpCatalogSeed.skills).toHaveLength(21);
+    expect(mvpCatalogSeed.skills).toHaveLength(22);
     expect(
       new Set(mvpContentCoverage.map(({ difficulty }) => difficulty)),
     ).toEqual(new Set([1, 2, 3, 4, 5, 6]));
@@ -45,7 +45,7 @@ describe('catálogo MVP', () => {
 
   it('identifica todas as fases publicadas como Nível 1', () => {
     const levels = mvpCatalogSeed.levels!;
-    expect(levels).toHaveLength(21);
+    expect(levels).toHaveLength(22);
     expect(
       levels.every(({ presentation }) => presentation?.label.endsWith(' 1')),
     ).toBe(true);
@@ -60,6 +60,7 @@ describe('catálogo MVP', () => {
       'Reconhecer 1',
       'Relacionar 1',
       'Combinar 1',
+      'O que não encaixa 1',
     ]);
   });
 
@@ -69,7 +70,10 @@ describe('catálogo MVP', () => {
     expect(
       catalog.getActivitiesByLevel('level.logic.patterns.01'),
     ).toHaveLength(6);
-    expect(catalog.getSkillsByTrail('trail.logic.adventure')).toHaveLength(6);
+    expect(catalog.getSkillsByTrail('trail.logic.adventure')).toHaveLength(7);
+    expect(
+      catalog.getActivitiesByLevel('level.logic.odd-one-out.01'),
+    ).toHaveLength(6);
     for (const levelId of [
       'level.logic.journey-a.01',
       'level.logic.journey-b.01',
@@ -125,6 +129,43 @@ describe('catálogo MVP', () => {
     expect(patternActivities.flatMap(({ assets }) => assets)).not.toEqual(
       expect.arrayContaining(['asset.symbol.square', 'asset.symbol.triangle']),
     );
+  });
+
+  it('publica seis desafios visuais variados em O que não encaixa', () => {
+    const activities = mvpCatalogSeed.activities!.filter(
+      ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
+    );
+
+    expect(activities).toHaveLength(6);
+    expect(
+      activities.map(({ content }) => {
+        const definition = content as {
+          options: { id: string }[];
+          correctOptionId: string;
+        };
+        return definition.options.findIndex(
+          ({ id }) => id === definition.correctOptionId,
+        );
+      }),
+    ).toEqual([3, 2, 1, 0, 2, 3]);
+    expect(
+      activities.every(({ engine, assets, content, instruction }) => {
+        const definition = content as {
+          options: { id: string }[];
+          correctOptionId: string;
+        };
+        return (
+          engine === 'choice' &&
+          assets.length === 4 &&
+          definition.options.length === 4 &&
+          definition.options.some(
+            ({ id }) => id === definition.correctOptionId,
+          ) &&
+          instruction.ttsFallback === true &&
+          /qual não encaixa\?/i.test(instruction.text)
+        );
+      }),
+    ).toBe(true);
   });
 
   it('publica as três fases de Atenção com seis desafios específicos', () => {

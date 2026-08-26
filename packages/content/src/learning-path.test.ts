@@ -124,6 +124,18 @@ describe('buildLearningPathView', () => {
       kind: 'clue',
       assetId: 'asset.symbol.rabbit',
     });
+    expect(view.stops.at(-1)).toMatchObject({
+      label: 'O que não encaixa 1',
+      cover: {
+        kind: 'odd-one-out',
+        assetIds: [
+          'asset.symbol.rabbit',
+          'asset.symbol.dog',
+          'asset.symbol.fish',
+          'asset.symbol.carrot',
+        ],
+      },
+    });
   });
 
   it('deriva capas próprias para as três fases de Atenção', () => {

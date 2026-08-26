@@ -2,12 +2,16 @@
 
 ## Novidades
 
+- adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com seis tarefas
+  originais de grupo, função e atributo visual em grade 2 × 2;
+- varia a posição da resposta correta e deriva as capas da fase e das tarefas
+  das quatro imagens usadas em cada desafio;
 - disponibiliza a escolha visual entre as áreas Lógica e Atenção no Nível 1;
 - adiciona em Atenção as fases Procurar 1, Detalhes 1 e Separar 1, com seis
   tarefas curadas em cada fase;
 - substitui as capas genéricas de Atenção por prévias ilustradas da busca,
   memória visual e classificação;
-- identifica todas as 21 fases existentes como Nível 1 no rótulo infantil;
+- identifica todas as 22 fases existentes como Nível 1 no rótulo infantil;
 - adiciona três níveis com seis tarefas cada: Reconhecer, Relacionar e Combinar;
 - distribui os oito motores em brincadeiras variadas, com dificuldade e número de alternativas crescentes;
 - inclui completar e ordenar o nome MELINA com peças grandes e instrução falada;

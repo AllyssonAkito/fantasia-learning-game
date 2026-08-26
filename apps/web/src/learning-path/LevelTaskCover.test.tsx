@@ -21,4 +21,20 @@ describe('LevelTaskCover', () => {
       container.querySelector('[data-preview-kind="fallback"]'),
     ).not.toBeInTheDocument();
   });
+
+  it('resume O que não encaixa com as quatro figuras da tarefa', () => {
+    const activity = mvpCatalogSeed.activities!.find(
+      ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
+    )!;
+    const { container } = render(<LevelTaskCover activity={activity} />);
+    const preview = container.querySelector(
+      '[data-preview-kind="odd-one-out"]',
+    )!;
+
+    expect(preview).toBeInTheDocument();
+    expect(preview.querySelectorAll('img')).toHaveLength(4);
+    expect(
+      container.querySelector('[data-preview-kind="fallback"]'),
+    ).not.toBeInTheDocument();
+  });
 });

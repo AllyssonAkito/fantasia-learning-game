@@ -565,6 +565,75 @@ function attentionActivity(skillId: string, difficulty: number, index: number) {
   };
 }
 
+const oddOneOutChallenges = [
+  {
+    title: 'O intruso entre os animais',
+    instruction: 'Três figuras são animais. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.rabbit',
+      'asset.symbol.dog',
+      'asset.symbol.fish',
+      'asset.symbol.carrot',
+    ],
+    correctOptionId: 'asset.symbol.carrot',
+  },
+  {
+    title: 'O intruso entre as formas',
+    instruction: 'Três figuras são formas geométricas. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.circle',
+      'asset.symbol.square',
+      'asset.symbol.flower',
+      'asset.symbol.triangle',
+    ],
+    correctOptionId: 'asset.symbol.flower',
+  },
+  {
+    title: 'O intruso entre os redondos',
+    instruction: 'Três figuras são redondas. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.circle',
+      'asset.symbol.star',
+      'asset.symbol.ball',
+      'asset.symbol.apple',
+    ],
+    correctOptionId: 'asset.symbol.star',
+  },
+  {
+    title: 'O intruso da natureza',
+    instruction: 'Três figuras crescem na natureza. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.ball',
+      'asset.symbol.flower',
+      'asset.symbol.carrot',
+      'asset.symbol.apple',
+    ],
+    correctOptionId: 'asset.symbol.ball',
+  },
+  {
+    title: 'O intruso entre as comidas',
+    instruction: 'Três figuras mostram coisas que comemos. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.carrot',
+      'asset.symbol.apple',
+      'asset.symbol.heart',
+      'asset.symbol.fish',
+    ],
+    correctOptionId: 'asset.symbol.heart',
+  },
+  {
+    title: 'O intruso entre as pontas',
+    instruction: 'Três figuras têm pontas. Qual não encaixa?',
+    optionIds: [
+      'asset.symbol.star',
+      'asset.symbol.triangle',
+      'asset.symbol.carrot',
+      'asset.symbol.circle',
+    ],
+    correctOptionId: 'asset.symbol.circle',
+  },
+] as const;
+
 function characterPieces(offset: number) {
   const character = assemblyCharacters[offset % assemblyCharacters.length]!;
   return (['top', 'middle', 'bottom'] as const).map((crop, order) => ({
@@ -1321,6 +1390,57 @@ for (const [levelOrder, blueprint] of expansionLevels.entries()) {
       },
     });
   }
+}
+
+const oddOneOutSkillId = 'skill.logic.odd-one-out';
+const oddOneOutLevelId = 'level.logic.odd-one-out.01';
+skills.push({
+  ...common,
+  id: oddOneOutSkillId,
+  trailId: 'trail.logic.adventure',
+  title: 'Identificar o elemento que não pertence ao grupo',
+  order: 6,
+});
+levels.push({
+  ...common,
+  id: oddOneOutLevelId,
+  skillId: oddOneOutSkillId,
+  title: 'O que não encaixa?',
+  order: 0,
+  difficulty: 2,
+  presentation: {
+    label: numberedLevelLabel('O que não encaixa'),
+    icon: 'icon.star',
+  },
+});
+for (const [index, challenge] of oddOneOutChallenges.entries()) {
+  const difficulty = index + 1;
+  activities.push({
+    ...common,
+    id: `activity.logic.odd-one-out.${String(index + 1).padStart(3, '0')}`,
+    levelId: oddOneOutLevelId,
+    title: challenge.title,
+    order: index,
+    engine: 'choice',
+    difficulty,
+    instruction: { text: challenge.instruction, ttsFallback: true },
+    content: {
+      difficulty,
+      prompt: challenge.instruction,
+      options: challenge.optionIds.map(assetOption),
+      correctOptionId: challenge.correctOptionId,
+    },
+    hints: [
+      { type: 'encourage' },
+      { type: 'highlight-region' },
+      { type: 'demonstrate-logic' },
+    ],
+    reward: {
+      stars: difficulty <= 2 ? 1 : difficulty <= 4 ? 2 : 3,
+      coins: 2,
+    },
+    assets: [...challenge.optionIds],
+  });
 }
 
 export const mvpCatalogSeed: ContentCatalogSeed = {

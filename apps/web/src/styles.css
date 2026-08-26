@@ -686,6 +686,10 @@ body {
   opacity: 0.7;
 }
 
+.activity-screen__options--four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 @media (max-width: 30rem) {
   .activity-screen__discovery-layout {
     grid-template-columns: minmax(5.5rem, 0.76fr) minmax(8.5rem, 1.24fr);
@@ -1117,6 +1121,29 @@ body {
   line-height: 1;
 }
 
+.level-task__odd-one-out {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.3rem;
+  padding: 0.45rem;
+}
+
+.level-task__odd-one-out > span {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0.6rem;
+  background: rgb(255 255 255 / 72%);
+  place-items: center;
+}
+
+.level-task__odd-one-out .activity-asset {
+  width: 100%;
+  height: auto;
+  max-height: 2.65rem;
+}
+
 .level-task__attention-search,
 .level-task__attention-memory {
   display: grid;
@@ -1471,6 +1498,27 @@ body {
   align-items: center;
   gap: 0.2rem;
   padding: 0.4rem;
+}
+
+.path-cover--odd-one-out {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.15rem;
+  padding: 0.3rem;
+}
+
+.path-cover__odd-one-out-item {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255 / 72%);
+  place-items: center;
+}
+
+.path-cover--odd-one-out .activity-asset {
+  width: 100%;
+  height: auto;
+  max-height: 2.15rem;
 }
 
 .path-cover--memory {

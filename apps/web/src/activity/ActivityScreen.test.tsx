@@ -126,4 +126,26 @@ describe('ActivityScreen', () => {
       screen.queryByLabelText('Sequência para observar'),
     ).not.toBeInTheDocument();
   });
+
+  it('exibe O que não encaixa como quatro imagens em grade', () => {
+    const oddOneOut = mvpCatalogSeed.activities!.find(
+      ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
+    )!;
+
+    const { container } = render(
+      <ActivityScreen
+        activity={oddOneOut}
+        audio={audio}
+        onBack={vi.fn()}
+        onComplete={vi.fn()}
+      />,
+    );
+
+    const options = container.querySelector('.activity-screen__options--four')!;
+    expect(options).toBeInTheDocument();
+    expect(within(options as HTMLElement).getAllByRole('button')).toHaveLength(
+      4,
+    );
+    expect(options.querySelectorAll('img')).toHaveLength(4);
+  });
 });

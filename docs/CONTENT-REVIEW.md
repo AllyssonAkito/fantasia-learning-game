@@ -2,10 +2,11 @@
 
 ## Resultado
 
-O catálogo contém 126 atividades publicadas: 21 em cada uma das áreas
-Lógica, Atenção, Associação, Números, Formas e percepção e Memória. A matriz
+O catálogo contém 132 atividades publicadas: 27 em Lógica e 21 em cada uma das
+áreas Atenção, Associação, Números, Formas e percepção e Memória. A matriz
 executável relaciona área, habilidade, dificuldade e motor, cobrindo os oito
-motores reutilizáveis.
+motores reutilizáveis. Os limites automatizados são mínimos de cobertura, para
+permitir a expansão gradual sem invalidar áreas já ampliadas.
 
 ## Checklist pedagógico aplicado
 
@@ -39,15 +40,35 @@ ordenação de peças, sempre com instrução em português brasileiro e apoio v
 
 ## Categorias da trilha inicial de Lógica
 
-| Nível       | Regra principal              | Apresentação                                                                    |
-| ----------- | ---------------------------- | ------------------------------------------------------------------------------- |
-| Padrões 1   | prever o próximo item        | sequência AB com lacuna final, capa derivada e paleta suave                     |
-| Montar 1    | ordenar partes               | três recortes do mesmo mascote                                                  |
-| Descobrir 1 | reconhecer o todo pela parte | respostas em coluna à esquerda e fragmento ampliado em preto e branco à direita |
+| Nível               | Regra principal                                  | Apresentação                                                                    |
+| ------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Padrões 1           | prever o próximo item                            | sequência AB com lacuna final, capa derivada e paleta suave                     |
+| Montar 1            | ordenar partes                                   | três recortes do mesmo mascote                                                  |
+| Descobrir 1         | reconhecer o todo pela parte                     | respostas em coluna à esquerda e fragmento ampliado em preto e branco à direita |
+| O que não encaixa 1 | identificar a figura que não compartilha a regra | quatro imagens grandes em grade 2 × 2 e posição da resposta variada             |
 
 Os três níveis não compartilham a mesma regra cognitiva. Reuso de motor é
 permitido no catálogo geral, mas níveis vizinhos não podem ser diferenciados
 apenas pelo texto ou pelos assets.
+
+## O que não encaixa 1 — 4–5 anos
+
+A fase introduz seis desafios originais de escolha visual. Cada tarefa apresenta
+quatro imagens e uma única resposta inequívoca; a instrução falada explicita a
+regra sem depender de leitura autônoma.
+
+| Tarefa | Regra observada        | Conjunto visual                     | Posição da resposta |
+| ------ | ---------------------- | ----------------------------------- | ------------------- |
+| 1      | pertencimento ao grupo | três animais e uma cenoura          | 4                   |
+| 2      | atributo geométrico    | três formas básicas e uma flor      | 3                   |
+| 3      | formato arredondado    | três figuras redondas e uma estrela | 2                   |
+| 4      | origem natural         | três itens que crescem e uma bola   | 1                   |
+| 5      | categoria de alimento  | três alimentos e um coração         | 3                   |
+| 6      | presença de ponta      | três figuras pontudas e um círculo  | 4                   |
+
+As capas da fase e de cada tarefa são derivadas do próprio conteúdo. A resposta
+correta não recebe destaque antecipado, e todos os assets pertencem ao catálogo
+original do projeto.
 
 ## Categorias da área Atenção
 
@@ -79,8 +100,8 @@ protótipo preservado e não são distribuídas pelo novo catálogo.
 
 `validatePublishableCatalog` bloqueia o CI quando:
 
-- o total sai da faixa de 120–150;
-- alguma área sai da faixa de 18–24;
+- o total fica abaixo de 120 atividades;
+- alguma área fica abaixo de 18 atividades;
 - uma definição não corresponde ao schema do motor;
 - conteúdo deixa de estar publicado ou audível;
 - um asset está ausente ou falha no checklist mínimo.

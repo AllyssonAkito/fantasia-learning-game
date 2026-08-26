@@ -54,6 +54,18 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
 5. Em Separar 1, testar arrastar e depois repetir usando somente toque.
 6. Voltar à escolha de área e confirmar que o progresso continua visível.
 
+## Roteiro complementar de O que não encaixa
+
+1. Abrir “O que não encaixa 1” sem explicar a regra com texto adicional.
+2. Confirmar que a criança percebe quatro imagens grandes em uma grade 2 × 2.
+3. Observar se a instrução falada basta para iniciar a primeira escolha.
+4. Após uma escolha não esperada, verificar se o feedback convida a tentar de
+   novo sem expor a resposta imediatamente.
+5. Percorrer tarefas com a resposta em posições diferentes e observar se a
+   criança considera a regra, em vez de repetir uma posição.
+6. Confirmar que a capa de cada tarefa antecipa suas quatro figuras sem marcar a
+   alternativa correta.
+
 ## Registro de observação
 
 Usar apenas: tarefa, compreendeu sem ajuda (`sim/parcial/não`), tempo em faixa

@@ -25,6 +25,7 @@ export type LearningPathCover =
   | { kind: 'sequence'; assetIds: string[] }
   | { kind: 'assembly'; pieceIds: string[] }
   | { kind: 'search'; assetIds: string[] }
+  | { kind: 'odd-one-out'; assetIds: string[] }
   | { kind: 'memory'; assetIds: string[] }
   | {
       kind: 'classification';
@@ -49,6 +50,17 @@ export type LearningPathView =
 
 function buildLevelCover(activity: Activity | undefined) {
   if (!activity) return undefined;
+  if (
+    activity.levelId === 'level.logic.odd-one-out.01' &&
+    activity.engine === 'choice'
+  ) {
+    const parsed = choiceDefinitionSchema.safeParse(activity.content);
+    if (!parsed.success) return undefined;
+    return {
+      kind: 'odd-one-out' as const,
+      assetIds: parsed.data.options.map(({ id }) => id),
+    };
+  }
   const isAttentionActivity = activity.levelId.startsWith('level.attention.');
   if (isAttentionActivity && activity.engine === 'choice') {
     const parsed = choiceDefinitionSchema.safeParse(activity.content);
