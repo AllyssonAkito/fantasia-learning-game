@@ -62,7 +62,10 @@ function ChoiceActivityScreen({
   }
 
   const optionList = (
-    <div className="activity-screen__options" aria-label="Escolha uma resposta">
+    <div
+      className={`activity-screen__options${presentation.options.length === 4 ? ' activity-screen__options--four' : ''}`}
+      aria-label="Escolha uma resposta"
+    >
       {presentation.options.map((option) => (
         <button
           aria-label={option.label}

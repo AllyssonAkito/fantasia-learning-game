@@ -47,6 +47,19 @@ export function LevelTaskCover({ activity }: LevelTaskCoverProps) {
     );
   }
 
+  if (activity.levelId === 'level.logic.odd-one-out.01') {
+    const definition = activity.content as ChoiceDefinition;
+    return (
+      <span className="level-task__odd-one-out" data-preview-kind="odd-one-out">
+        {definition.options.map(({ id }) => (
+          <span key={id}>
+            <ActivityAsset assetId={id} decorative />
+          </span>
+        ))}
+      </span>
+    );
+  }
+
   if (activity.levelId === 'level.attention.visual-search.01') {
     const definition = activity.content as ChoiceDefinition;
     return (

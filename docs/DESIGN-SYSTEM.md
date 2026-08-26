@@ -180,3 +180,11 @@ Evitar:
 - comparações com outras crianças;
 - urgência artificial;
 - linguagem de culpa.
+
+## Escolha do elemento diferente
+
+Atividades de “O que não encaixa” apresentam quatro ilustrações grandes em uma
+grade 2 × 2. A capa da fase e a capa de cada tarefa repetem esse arranjo com os
+assets reais da definição, para antecipar a mecânica sem revelar a resposta.
+Não usar emojis, números ou cores de alerta para marcar a alternativa correta.
+O enunciado é falado automaticamente e pode ser repetido pelo botão de áudio.

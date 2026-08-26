@@ -46,6 +46,20 @@ export function LearningPathCover({ cover }: LearningPathCoverProps) {
       </span>
     );
   }
+  if (cover.kind === 'odd-one-out') {
+    return (
+      <span
+        className="path-cover path-cover--odd-one-out"
+        data-cover="odd-one-out"
+      >
+        {cover.assetIds.map((assetId) => (
+          <span className="path-cover__odd-one-out-item" key={assetId}>
+            <ActivityAsset assetId={assetId} decorative />
+          </span>
+        ))}
+      </span>
+    );
+  }
   if (cover.kind === 'memory') {
     return (
       <span className="path-cover path-cover--memory" data-cover="memory">
