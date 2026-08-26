@@ -57,20 +57,24 @@ A fase introduz seis desafios originais de escolha visual. Cada tarefa apresenta
 quatro imagens e uma única resposta inequívoca; a instrução falada explicita a
 regra sem depender de leitura autônoma.
 
-| Tarefa | Regra observada           | Conjunto visual                     | Posição da resposta |
-| ------ | ------------------------- | ----------------------------------- | ------------------- |
-| 1      | pertencimento ao grupo    | três animais e uma cenoura          | 4                   |
-| 2      | função do objeto          | três alimentos e uma bola           | 1                   |
-| 3      | atributo visual           | três figuras redondas e uma estrela | 2                   |
-| 4      | pertencimento à categoria | três animais e uma flor             | 4                   |
-| 5      | três semelhantes          | três formas simples e uma flor      | 3                   |
-| 6      | consolidação por grupo    | três bichinhos e uma bola           | 3                   |
+| Tarefa | Regra observada            | Conjunto visual                         | Posição da resposta |
+| ------ | -------------------------- | --------------------------------------- | ------------------- |
+| 1      | camuflagem e pertencimento | três árvores e um cachorrinho escondido | 3                   |
+| 2      | função do objeto           | três alimentos e uma bola               | 1                   |
+| 3      | atributo visual            | três figuras redondas e uma estrela     | 2                   |
+| 4      | pertencimento à categoria  | três animais e uma flor                 | 4                   |
+| 5      | três semelhantes           | três formas simples e uma flor          | 3                   |
+| 6      | consolidação por grupo     | três bichinhos e uma bola               | 3                   |
 
 As capas da fase e de cada tarefa são derivadas do próprio conteúdo. A resposta
 correta não recebe destaque antecipado, e todos os assets pertencem ao catálogo
-original do projeto. No acerto, a ilustração escolhida é isolada e cresce do seu
-lugar na grade até cobrir a viewport; somente depois a recompensa e a ação de
-continuar são apresentadas.
+original do projeto. Na primeira tarefa, as quatro peças aparecem uma a uma em
+uma cena colorida. Uma escolha não esperada faz o conjunto tremer e saltar
+suavemente para a frente, sem mensagem punitiva. No acerto, as outras árvores
+desaparecem, o cachorrinho camuflado cresce no centro, brinca por um instante,
+volta a se esconder em uma árvore comum e desaparece; somente então a recompensa
+e a ação de continuar são apresentadas. As demais tarefas mantêm a ampliação
+genérica até receberem suas próprias Issues de direção de cena.
 
 ## Categorias da área Atenção
 

@@ -1,6 +1,6 @@
 export interface ContentAsset {
   id: string;
-  kind: 'raster-image' | 'letter-tile' | 'composite-image';
+  kind: 'raster-image' | 'letter-tile' | 'composite-image' | 'sprite-image';
   source?: string;
   alt: string;
   width: number;
@@ -11,6 +11,12 @@ export interface ContentAsset {
   crop?: 'top' | 'middle' | 'bottom';
   letter?: string;
   tone?: 'sun' | 'sky' | 'berry' | 'mint' | 'coral' | 'lilac';
+  sprite?: {
+    columns: number;
+    rows: number;
+    column: number;
+    row: number;
+  };
   components?: readonly {
     assetId: string;
     position: 'top' | 'bottom';
@@ -94,6 +100,26 @@ function positionScene(
   };
 }
 
+function oddTreeSprite(
+  id: 'tall' | 'round' | 'narrow' | 'puppy',
+  alt: string,
+  column: 0 | 1,
+  row: 0 | 1,
+): ContentAsset {
+  return {
+    id: `asset.game.odd-tree.${id}`,
+    kind: 'sprite-image',
+    source: '/assets/activity/odd-tree-sprite.webp',
+    alt,
+    width: 512,
+    height: 512,
+    sprite: { columns: 2, rows: 2, column, row },
+    license: 'Original project artwork',
+    licenseUrl: assetLicense,
+    legibility: 'verified-at-96px',
+  };
+}
+
 export const mvpAssets = [
   illustration('star', 'estrela amarela'),
   illustration('heart', 'coração roxo'),
@@ -121,6 +147,10 @@ export const mvpAssets = [
   letterTile('A', 'sun'),
   positionScene('above', ['top', 'bottom']),
   positionScene('below', ['bottom', 'top']),
+  oddTreeSprite('tall', 'pinheiro alto verde-menta', 0, 0),
+  oddTreeSprite('round', 'pinheiro arredondado verde-claro', 1, 0),
+  oddTreeSprite('narrow', 'pinheiro estreito verde-escuro', 0, 1),
+  oddTreeSprite('puppy', 'cachorrinho escondido no pinheiro', 1, 1),
 ] as const;
 
 export const mvpAssetById = new Map(

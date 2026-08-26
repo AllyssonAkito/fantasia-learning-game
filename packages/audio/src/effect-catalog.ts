@@ -1,10 +1,19 @@
-export const audioEffectIds = ['success', 'attempt', 'hint', 'reward'] as const;
+export const audioEffectIds = [
+  'success',
+  'attempt',
+  'hint',
+  'reward',
+  'reveal',
+  'wrong-rumble',
+] as const;
 
 export type AudioEffectId = (typeof audioEffectIds)[number];
 
 export interface ToneStep {
   frequencyHz: number;
   durationMs: number;
+  endFrequencyHz?: number;
+  waveform?: OscillatorType;
 }
 
 export interface AudioEffectDefinition {
@@ -49,6 +58,44 @@ export const audioEffectCatalog: Readonly<
       { frequencyHz: 523, durationMs: 80 },
       { frequencyHz: 659, durationMs: 80 },
       { frequencyHz: 784, durationMs: 150 },
+    ],
+  },
+  reveal: {
+    id: 'reveal',
+    purpose: 'Acompanha o surgimento de uma peça com um sopro curto e leve.',
+    gain: 0.22,
+    tones: [
+      {
+        frequencyHz: 1180,
+        endFrequencyHz: 690,
+        durationMs: 85,
+        waveform: 'triangle',
+      },
+      {
+        frequencyHz: 820,
+        endFrequencyHz: 540,
+        durationMs: 65,
+        waveform: 'sine',
+      },
+    ],
+  },
+  'wrong-rumble': {
+    id: 'wrong-rumble',
+    purpose: 'Marca uma nova tentativa com um grave cômico e não punitivo.',
+    gain: 0.24,
+    tones: [
+      {
+        frequencyHz: 150,
+        endFrequencyHz: 82,
+        durationMs: 170,
+        waveform: 'sawtooth',
+      },
+      {
+        frequencyHz: 104,
+        endFrequencyHz: 64,
+        durationMs: 150,
+        waveform: 'triangle',
+      },
     ],
   },
 };

@@ -9,7 +9,7 @@ describe('catálogo MVP', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
       activities: 132,
       areas: 6,
-      assets: 26,
+      assets: 30,
     });
     const counts = mvpContentCoverage.reduce<Record<string, number>>(
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
@@ -147,9 +147,9 @@ describe('catálogo MVP', () => {
           ({ id }) => id === definition.correctOptionId,
         );
       }),
-    ).toEqual([3, 0, 1, 3, 2, 2]);
+    ).toEqual([2, 0, 1, 3, 2, 2]);
     expect(activities.map(({ title }) => title)).toEqual([
-      'O intruso entre os animais',
+      'O cachorrinho escondido',
       'O intruso pela função',
       'O intruso pelo atributo visual',
       'O intruso da categoria',
@@ -174,6 +174,12 @@ describe('catálogo MVP', () => {
         );
       }),
     ).toBe(true);
+    expect(activities[0]!.assets).toEqual([
+      'asset.game.odd-tree.tall',
+      'asset.game.odd-tree.round',
+      'asset.game.odd-tree.puppy',
+      'asset.game.odd-tree.narrow',
+    ]);
   });
 
   it('publica as três fases de Atenção com seis desafios específicos', () => {

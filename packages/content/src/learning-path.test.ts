@@ -129,10 +129,10 @@ describe('buildLearningPathView', () => {
       cover: {
         kind: 'odd-one-out',
         assetIds: [
-          'asset.symbol.rabbit',
-          'asset.symbol.dog',
-          'asset.symbol.fish',
-          'asset.symbol.carrot',
+          'asset.game.odd-tree.tall',
+          'asset.game.odd-tree.round',
+          'asset.game.odd-tree.puppy',
+          'asset.game.odd-tree.narrow',
         ],
       },
     });

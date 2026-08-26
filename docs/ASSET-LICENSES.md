@@ -19,6 +19,20 @@ Os arquivos distribuídos pelo aplicativo são WebP de `384 × 384 px` com canal
 alfa. A origem, o texto alternativo e as dimensões também ficam registrados no
 catálogo `packages/content/src/mvp-assets.ts`.
 
+### Árvores do Jogo 1
+
+O arquivo `odd-tree-sprite.webp` foi gerado especificamente para a Issue #181
+com o gerador de imagens integrado da OpenAI em 25 de agosto de 2026. A imagem
+de referência do cachorrinho do próprio projeto foi usada somente para preservar
+a identidade do mascote; nenhuma arte de terceiros compõe o resultado.
+
+Resumo do prompt: folha de sprites 2 × 2 com fundo transparente para jogo
+infantil, contendo três pinheiros chibi originais em verdes leves e um
+cachorrinho camuflado em um quarto pinheiro, contornos brancos arredondados,
+formas grandes, sem cenário, interface, texto ou marca-d'água. O arquivo-fonte
+foi convertido mecanicamente para WebP RGBA de `1024 × 1024 px`, e os quatro
+quadrantes são recortados pelo catálogo sem duplicar a imagem.
+
 ## Recortes de personagens na montagem
 
 As atividades de montagem reutilizam, por recorte visual, as ilustrações

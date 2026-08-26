@@ -2,6 +2,12 @@
 
 ## Novidades
 
+- transforma a primeira tarefa de “O que não encaixa 1” em uma cena verde com
+  quatro árvores originais, incluindo o cachorrinho camuflado;
+- apresenta cada peça em sequência com um sopro curto e reage à escolha não
+  esperada com tremida, pequeno salto e grave cômico;
+- no acerto, remove as outras árvores, amplia o cachorrinho no centro, executa
+  uma brincadeira curta e o faz se esconder na árvore antes da recompensa;
 - adiciona “O que não encaixa 1” à área Lógica para 4–5 anos, com seis tarefas
   originais de grupo, função e atributo visual em grade 2 × 2;
 - varia a posição da resposta correta e deriva as capas da fase e das tarefas
