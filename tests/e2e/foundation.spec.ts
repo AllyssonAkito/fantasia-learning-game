@@ -20,12 +20,16 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   });
   await page.goto('/');
 
+  await expect(page.getByRole('heading', { name: 'Nível 1' })).toBeVisible();
+  await page.getByRole('button', { name: 'Abrir Lógica' }).click();
   await expect(page.getByRole('heading', { name: 'Lógica' })).toBeVisible();
   await expect(
     page.getByRole('link', { name: 'Fantasia — início' }),
   ).toBeVisible();
   await expect(
-    page.getByRole('button', { name: /padrões.*pronto para brincar/i }),
+    page.getByRole('button', {
+      name: /o que não encaixa.*pronto para brincar/i,
+    }),
   ).toBeEnabled();
   await expect(page.locator('main')).toBeInViewport();
 
@@ -36,7 +40,9 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   ).toBe(true);
 
   await page
-    .getByRole('button', { name: /padrões.*pronto para brincar/i })
+    .getByRole('button', {
+      name: /o que não encaixa.*pronto para brincar/i,
+    })
     .click();
   await expect(
     page.getByRole('button', { name: /atividade 1.*pronta/i }),
@@ -51,10 +57,12 @@ test('percorre o core loop em viewport móvel sem overflow ou erro', async ({
   await expect(
     page.getByRole('button', { name: 'Ouvir a instrução novamente' }),
   ).toHaveClass(/instruction-audio__button/);
-  await expect(
-    page.getByRole('button', { name: 'coração roxo' }).locator('img'),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'coração roxo' }).click();
+  const hiddenPuppy = page.getByRole('button', {
+    name: 'cachorrinho escondido no pinheiro',
+  });
+  await expect(hiddenPuppy).toBeEnabled();
+  await expect(hiddenPuppy.locator('img')).toBeVisible();
+  await hiddenPuppy.click();
   const completion = page.getByRole('dialog', { name: 'Você conseguiu!' });
   await expect(completion).toBeVisible();
   await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
@@ -90,11 +98,21 @@ test('protege a área adulta e funciona por teclado', async ({ page }) => {
 test('respeita movimento reduzido na celebração', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
+  await page.getByRole('button', { name: 'Abrir Lógica' }).click();
   await page
-    .getByRole('button', { name: /padrões.*pronto para brincar/i })
+    .getByRole('button', {
+      name: /o que não encaixa.*pronto para brincar/i,
+    })
     .click();
   await page.getByRole('button', { name: /atividade 1.*pronta/i }).click();
-  await page.getByRole('button', { name: 'coração roxo' }).click();
+  const hiddenPuppy = page.getByRole('button', {
+    name: 'cachorrinho escondido no pinheiro',
+  });
+  await expect(hiddenPuppy).toBeEnabled();
+  await hiddenPuppy.click();
+  await expect(
+    page.getByRole('dialog', { name: 'Você conseguiu!' }),
+  ).toBeVisible();
   const duration = await page
     .locator('.reward-celebration')
     .evaluate((element) => getComputedStyle(element).animationDuration);

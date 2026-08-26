@@ -60,11 +60,11 @@ regra sem depender de leitura autônoma.
 | Tarefa | Regra observada            | Conjunto visual                         | Posição da resposta |
 | ------ | -------------------------- | --------------------------------------- | ------------------- |
 | 1      | camuflagem e pertencimento | três árvores e um cachorrinho escondido | 3                   |
-| 2      | função do objeto           | três alimentos e uma bola               | 1                   |
-| 3      | atributo visual            | três figuras redondas e uma estrela     | 2                   |
-| 4      | pertencimento à categoria  | três animais e uma flor                 | 4                   |
-| 5      | três semelhantes           | três formas simples e uma flor          | 3                   |
-| 6      | consolidação por grupo     | três bichinhos e uma bola               | 3                   |
+| 2      | função do objeto           | três cadeados e uma chave               | 4                   |
+| 3      | atributo visual            | três planetas lilases e um amarelo      | 4                   |
+| 4      | pertencimento à categoria  | três peixes e uma estrela-do-mar        | 3                   |
+| 5      | pertencimento à categoria  | três pássaros e uma borboleta           | 1                   |
+| 6      | pertencimento à categoria  | três peixes e o polvinho azul da Melina | 3                   |
 
 As capas da fase e de cada tarefa são derivadas do próprio conteúdo. A resposta
 correta não recebe destaque antecipado, e todos os assets pertencem ao catálogo
@@ -73,8 +73,9 @@ uma cena colorida. Uma escolha não esperada faz o conjunto tremer e saltar
 suavemente para a frente, sem mensagem punitiva. No acerto, as outras árvores
 desaparecem, o cachorrinho camuflado cresce no centro, brinca por um instante,
 volta a se esconder em uma árvore comum e desaparece; somente então a recompensa
-e a ação de continuar são apresentadas. As demais tarefas mantêm a ampliação
-genérica até receberem suas próprias Issues de direção de cena.
+e a ação de continuar são apresentadas. Nas tarefas 2–6, a peça correta também
+é isolada e ampliada, mas a microanimação acompanha o tema: a chave gira, o
+planeta orbita, a estrela-do-mar dança, a borboleta voa e o polvinho acena.
 
 ## Categorias da área Atenção
 

@@ -2,6 +2,13 @@
 
 ## Novidades
 
+- coloca “O que não encaixa 1” como a primeira fase da trilha de Lógica e usa a
+  própria floresta como capa de entrada;
+- substitui as tarefas genéricas 2–6 por cinco cenas originais: cadeados e
+  chave, planetas lilases e amarelo, peixes e estrela-do-mar, pássaros e
+  borboleta, peixes e o polvinho azul da Melina;
+- reaproveita a entrada sonora, a reação gentil ao erro e o crescimento da peça
+  correta, acrescentando microanimações próprias para cada cenário;
 - prioriza voz feminina brasileira nas instruções e deixa a síntese ligeiramente
   mais rápida e expressiva, preservando fallback exclusivamente em português;
 - transforma a primeira tarefa de “O que não encaixa 1” em uma cena verde com

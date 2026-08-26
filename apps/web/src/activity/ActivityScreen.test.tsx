@@ -6,7 +6,7 @@ import {
   waitFor,
   within,
 } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { AudioService } from '@fantasia/audio';
 import { mvpCatalogSeed } from '@fantasia/content';
 import { ActivityScreen } from './ActivityScreen';
@@ -17,6 +17,10 @@ const audio = {
   repeatInstruction: vi.fn(async () => 'visual-only' as const),
   playEffect: vi.fn(async () => true),
 } as unknown as AudioService;
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe('ActivityScreen', () => {
   it('adapta conteúdo validado sem duplicar resposta na tela', () => {
@@ -129,6 +133,7 @@ describe('ActivityScreen', () => {
   });
 
   it('exibe O que não encaixa como quatro imagens em grade', () => {
+    vi.useFakeTimers();
     const oddOneOut = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
     )[1]!;
@@ -142,7 +147,8 @@ describe('ActivityScreen', () => {
       />,
     );
 
-    const options = container.querySelector('.activity-screen__options--four')!;
+    act(() => vi.advanceTimersByTime(1040));
+    const options = container.querySelector('.tree-odd-one-out__pieces')!;
     expect(options).toBeInTheDocument();
     expect(within(options as HTMLElement).getAllByRole('button')).toHaveLength(
       4,
@@ -169,19 +175,20 @@ describe('ActivityScreen', () => {
       />,
     );
 
+    act(() => vi.advanceTimersByTime(1040));
     fireEvent.click(screen.getByRole('button', { name: correct.label }));
     const celebration = screen.getByRole('status', {
-      name: new RegExp(correct.label, 'i'),
+      name: /chave cresce/i,
     });
     expect(celebration).toBeVisible();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    expect(
-      container.querySelector('.correct-answer-celebration__visual'),
-    ).toHaveAttribute('data-duration-ms', '1100');
-    act(() => vi.advanceTimersByTime(1100));
+    expect(container.querySelector('.tree-success')).toHaveAttribute(
+      'data-theme',
+      'locks',
+    );
+    act(() => vi.advanceTimersByTime(2090));
     expect(
       screen.getByRole('dialog', { name: 'Você conseguiu!' }),
     ).toBeVisible();
-    vi.useRealTimers();
   });
 });

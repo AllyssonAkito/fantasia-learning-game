@@ -37,6 +37,7 @@ describe('FantasiaApp', () => {
   });
 
   it('percorre as seis tarefas antes de concluir e avançar o nível', () => {
+    vi.useFakeTimers();
     render(
       <FantasiaApp
         audio={audio}
@@ -48,7 +49,7 @@ describe('FantasiaApp', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Abrir Lógica' }));
     fireEvent.click(
       screen.getByRole('button', {
-        name: /Padrões.*Pronto para brincar/i,
+        name: /O que não encaixa.*Pronto para brincar/i,
       }),
     );
     expect(
@@ -56,7 +57,7 @@ describe('FantasiaApp', () => {
     ).toHaveLength(6);
 
     const activities = mvpCatalogSeed.activities!.filter(
-      ({ levelId }) => levelId === 'level.logic.patterns.01',
+      ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
     );
     for (const [index, activity] of activities.entries()) {
       fireEvent.click(
@@ -64,23 +65,24 @@ describe('FantasiaApp', () => {
           name: new RegExp(`Atividade ${index + 1}.*Pronta`, 'i'),
         }),
       );
-      expect(
-        screen.getByRole('heading', { name: 'O que vem depois?' }),
-      ).toBeVisible();
-      const expectedId = (activity.content as { expectedId: string })
-        .expectedId;
-      const label = (
-        activity.content as { options: { id: string; label: string }[] }
-      ).options.find(({ id }) => id === expectedId)!.label;
+      act(() => vi.advanceTimersByTime(1040));
+      const definition = activity.content as {
+        options: { id: string; label: string }[];
+        correctOptionId: string;
+      };
+      const label = definition.options.find(
+        ({ id }) => id === definition.correctOptionId,
+      )!.label;
       fireEvent.click(screen.getByRole('button', { name: label }));
+      act(() => vi.advanceTimersByTime(2090));
       fireEvent.click(screen.getByRole('button', { name: 'Continuar' }));
     }
 
     expect(
-      screen.getByRole('button', { name: /Padrões.*Concluído/i }),
+      screen.getByRole('button', { name: /O que não encaixa.*Concluído/i }),
     ).toBeVisible();
     expect(
-      screen.getByRole('button', { name: /Montar.*Pronto para brincar/i }),
+      screen.getByRole('button', { name: /Padrões.*Pronto para brincar/i }),
     ).toBeEnabled();
   });
 

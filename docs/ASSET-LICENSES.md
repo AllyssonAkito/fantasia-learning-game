@@ -33,6 +33,26 @@ formas grandes, sem cenário, interface, texto ou marca-d'água. O arquivo-fonte
 foi convertido mecanicamente para WebP RGBA de `1024 × 1024 px`, e os quatro
 quadrantes são recortados pelo catálogo sem duplicar a imagem.
 
+### Cenas originais dos Jogos 2–6
+
+Os arquivos `odd-locks-sprite.webp`, `odd-planets-sprite.webp`,
+`odd-starfish-sprite.webp`, `odd-butterfly-sprite.webp` e
+`odd-octopus-sprite.webp` foram gerados especificamente para a Issue #186 com o
+gerador de imagens integrado da OpenAI em 26 de agosto de 2026. Cada arquivo é
+uma folha 2 × 2 com canal alfa e quatro figuras grandes, sem cenário, interface,
+texto, emoji, logotipo ou marca-d'água.
+
+Resumo dos prompts: cadeados suaves com chave dourada; planetas lilases com um
+planeta amarelo; três peixes com estrela-do-mar; três pássaros com borboleta; e
+três peixes tropicais com um polvinho azul. Todos usam formas arredondadas,
+acabamento 2D levemente macio, contorno claro e paleta infantil própria do
+Fantasia. No último conjunto, a fotografia do polvinho de pelúcia da família foi
+usada somente como referência de identidade, cor e simplicidade. Nenhuma parte
+da fotografia ou das imagens funcionais de referência é distribuída no jogo.
+
+Os arquivos-fonte PNG foram convertidos mecanicamente para WebP RGBA de
+`1024 × 1024 px`; o catálogo recorta os quatro quadrantes em tempo de execução.
+
 ## Recortes de personagens na montagem
 
 As atividades de montagem reutilizam, por recorte visual, as ilustrações

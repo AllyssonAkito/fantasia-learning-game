@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { AudioService } from '@fantasia/audio';
 import { mvpCatalogSeed } from '@fantasia/content';
 import { createChoicePresentation } from './activity-presentation';
-import { TreeOddOneOutActivityScreen } from './TreeOddOneOutActivityScreen';
+import { ThemedOddOneOutActivityScreen as TreeOddOneOutActivityScreen } from './TreeOddOneOutActivityScreen';
 
 const activity = mvpCatalogSeed.activities!.find(
   ({ id }) => id === 'activity.logic.odd-one-out.001',
@@ -57,6 +57,67 @@ describe('TreeOddOneOutActivityScreen', () => {
       4,
     );
   });
+
+  it.each([
+    [
+      'activity.logic.odd-one-out.002',
+      'locks',
+      'asset.game.odd-locks.gold-key',
+    ],
+    [
+      'activity.logic.odd-one-out.003',
+      'space',
+      'asset.game.odd-planets.yellow',
+    ],
+    [
+      'activity.logic.odd-one-out.004',
+      'ocean',
+      'asset.game.odd-starfish.yellow-star',
+    ],
+    [
+      'activity.logic.odd-one-out.005',
+      'garden',
+      'asset.game.odd-butterfly.lilac-butterfly',
+    ],
+    [
+      'activity.logic.odd-one-out.006',
+      'reef',
+      'asset.game.odd-octopus.blue-octopus',
+    ],
+  ])(
+    'aplica a cena %s com arte e celebração próprias',
+    (activityId, theme, correctAssetId) => {
+      vi.useFakeTimers();
+      const themedActivity = mvpCatalogSeed.activities!.find(
+        ({ id }) => id === activityId,
+      )!;
+      const { container } = render(
+        <TreeOddOneOutActivityScreen
+          activity={themedActivity}
+          audio={audioService()}
+          onBack={vi.fn()}
+          onComplete={vi.fn()}
+        />,
+      );
+
+      expect(container.querySelector('.tree-odd-one-out')).toHaveAttribute(
+        'data-theme',
+        theme,
+      );
+      act(() => vi.advanceTimersByTime(1040));
+      const presentation = createChoicePresentation(themedActivity);
+      const correct = presentation.options.find(({ id }) =>
+        presentation.evaluate(id),
+      )!;
+      expect(correct.assetId).toBe(correctAssetId);
+      fireEvent.click(screen.getByRole('button', { name: correct.label }));
+      expect(container.querySelector('.tree-success')).toHaveAttribute(
+        'data-theme',
+        theme,
+      );
+      expect(container.querySelector('.tree-success__cover')).toBeNull();
+    },
+  );
 
   it('treme todas as peças e toca um grave gentil após uma escolha diferente', () => {
     vi.useFakeTimers();
