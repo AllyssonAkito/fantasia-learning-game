@@ -2,7 +2,7 @@
 
 ## Resultado
 
-O catálogo contém 132 atividades publicadas: 27 em Lógica e 21 em cada uma das
+O catálogo contém 138 atividades publicadas: 33 em Lógica e 21 em cada uma das
 áreas Atenção, Associação, Números, Formas e percepção e Memória. A matriz
 executável relaciona área, habilidade, dificuldade e motor, cobrindo os oito
 motores reutilizáveis. Os limites automatizados são mínimos de cobertura, para
@@ -53,7 +53,7 @@ apenas pelo texto ou pelos assets.
 
 ## O que não encaixa 1 — 4–5 anos
 
-A fase introduz seis desafios originais de escolha visual. Cada tarefa apresenta
+A fase introduz 12 desafios originais de escolha visual. Cada tarefa apresenta
 quatro imagens e uma única resposta inequívoca; a instrução falada explicita a
 regra sem depender de leitura autônoma.
 
@@ -65,6 +65,12 @@ regra sem depender de leitura autônoma.
 | 4      | pertencimento à categoria  | três peixes e uma estrela-do-mar        | 3                   |
 | 5      | pertencimento à categoria  | três pássaros e uma borboleta           | 1                   |
 | 6      | pertencimento à categoria  | três peixes e o polvinho azul da Melina | 3                   |
+| 7      | pertencimento à categoria  | três sapatos e um chapéu                | 2                   |
+| 8      | função do objeto           | três bolas e um alvo                    | 3                   |
+| 9      | pertencimento à categoria  | três leques e um guarda-chuva           | 4                   |
+| 10     | pertencimento à categoria  | três chaleiras e um coco                | 1                   |
+| 11     | função do objeto           | três instrumentos e uma raquete         | 3                   |
+| 12     | pertencimento à categoria  | três frutas e uma lata                  | 2                   |
 
 As capas da fase e de cada tarefa são derivadas do próprio conteúdo. A resposta
 correta não recebe destaque antecipado, e todos os assets pertencem ao catálogo
@@ -73,9 +79,11 @@ uma cena colorida. Uma escolha não esperada faz o conjunto tremer e saltar
 suavemente para a frente, sem mensagem punitiva. No acerto, as outras árvores
 desaparecem, o cachorrinho camuflado cresce no centro, brinca por um instante,
 volta a se esconder em uma árvore comum e desaparece; somente então a recompensa
-e a ação de continuar são apresentadas. Nas tarefas 2–6, a peça correta também
+e a ação de continuar são apresentadas. Nas tarefas 2–12, a peça correta também
 é isolada e ampliada, mas a microanimação acompanha o tema: a chave gira, o
-planeta orbita, a estrela-do-mar dança, a borboleta voa e o polvinho acena.
+planeta orbita, a estrela-do-mar dança, a borboleta voa, o polvinho acena, o
+chapéu faz reverência, o alvo pulsa, o guarda-chuva gira, o coco salta, a
+raquete rebate e a lata balança.
 
 ## Categorias da área Atenção
 

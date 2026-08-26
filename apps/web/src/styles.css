@@ -886,6 +886,55 @@ body {
     linear-gradient(145deg, #8ce1dc, #84c4e5);
 }
 
+.tree-odd-one-out[data-theme='closet'] {
+  background:
+    radial-gradient(circle at 18% 24%, #fff8c9 0 0.4rem, transparent 0.46rem),
+    radial-gradient(circle at 78% 72%, #fff 0 0.32rem, transparent 0.38rem),
+    linear-gradient(145deg, #d9d4fb, #c8ecf2);
+}
+
+.tree-odd-one-out[data-theme='playground'] {
+  background:
+    radial-gradient(circle at 20% 24%, #fff8b8 0 0.35rem, transparent 0.41rem),
+    radial-gradient(circle at 82% 68%, #c8f3dc 0 0.42rem, transparent 0.48rem),
+    linear-gradient(145deg, #bce8f7, #cfeec5);
+}
+
+.tree-odd-one-out[data-theme='breeze'] {
+  background:
+    repeating-radial-gradient(
+      ellipse at 22% 28%,
+      rgb(255 255 255 / 28%) 0 0.2rem,
+      transparent 0.28rem 2.3rem
+    ),
+    linear-gradient(145deg, #c8ecf7, #ded8fa);
+}
+
+.tree-odd-one-out[data-theme='tea'] {
+  background:
+    radial-gradient(ellipse at 18% 22%, #fff7d2 0 0.45rem, transparent 0.52rem),
+    radial-gradient(ellipse at 78% 72%, #d6f4df 0 0.38rem, transparent 0.45rem),
+    linear-gradient(145deg, #e5dbf7, #d5f0e2);
+}
+
+.tree-odd-one-out[data-theme='music'] {
+  background:
+    radial-gradient(circle at 18% 26%, #fff5ba 0 0.3rem, transparent 0.37rem),
+    radial-gradient(circle at 80% 20%, #e4dafb 0 0.34rem, transparent 0.41rem),
+    linear-gradient(145deg, #c8eced, #d7e0fa);
+}
+
+.tree-odd-one-out[data-theme='picnic'] {
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 16%) 50%, transparent 50%),
+    linear-gradient(rgb(255 255 255 / 16%) 50%, transparent 50%),
+    linear-gradient(145deg, #d8efc8, #f3e7b7);
+  background-size:
+    4rem 4rem,
+    4rem 4rem,
+    auto;
+}
+
 .tree-odd-one-out__back {
   position: absolute;
   z-index: 4;
@@ -1002,6 +1051,42 @@ body {
     linear-gradient(145deg, #8ce1dc, #84c4e5);
 }
 
+.tree-success[data-theme='closet'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fffbe1, transparent 34%),
+    linear-gradient(145deg, #d9d4fb, #c8ecf2);
+}
+
+.tree-success[data-theme='playground'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fff8cc, transparent 34%),
+    linear-gradient(145deg, #bce8f7, #cfeec5);
+}
+
+.tree-success[data-theme='breeze'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 55%), transparent 35%),
+    linear-gradient(145deg, #c8ecf7, #ded8fa);
+}
+
+.tree-success[data-theme='tea'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fff9de, transparent 34%),
+    linear-gradient(145deg, #e5dbf7, #d5f0e2);
+}
+
+.tree-success[data-theme='music'] {
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 52%), transparent 35%),
+    linear-gradient(145deg, #c8eced, #d7e0fa);
+}
+
+.tree-success[data-theme='picnic'] {
+  background:
+    radial-gradient(circle at 50% 46%, #fffbe4, transparent 34%),
+    linear-gradient(145deg, #d8efc8, #f3e7b7);
+}
+
 .tree-success__visual {
   position: fixed;
   top: 50%;
@@ -1062,6 +1147,36 @@ body {
 .tree-success[data-theme='reef'][data-phase='celebrating']
   .tree-success__visual {
   animation: odd-octopus-wave 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='closet'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-hat-bow 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='playground'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-target-pulse 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='breeze'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-umbrella-twirl 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='tea'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-coconut-bounce 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='music'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-racket-swing 560ms ease-in-out both;
+}
+
+.tree-success[data-theme='picnic'][data-phase='celebrating']
+  .tree-success__visual {
+  animation: odd-can-shake 560ms ease-in-out both;
 }
 
 .tree-success[data-phase='hiding'] .tree-success__puppy {
@@ -1204,6 +1319,87 @@ body {
   }
   62% {
     transform: translate(-50%, -50%) rotate(7deg) scale(0.96, 1.08);
+  }
+}
+
+@keyframes odd-hat-bow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  40% {
+    transform: translate(-50%, -42%) rotate(-14deg) scale(1.06);
+  }
+  72% {
+    transform: translate(-50%, -48%) rotate(12deg) scale(1.02);
+  }
+}
+
+@keyframes odd-target-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+  68% {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes odd-umbrella-twirl {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  45% {
+    transform: translate(-50%, -55%) rotate(-18deg) scale(1.06);
+  }
+  72% {
+    transform: translate(-50%, -52%) rotate(18deg) scale(1.04);
+  }
+}
+
+@keyframes odd-coconut-bounce {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  38% {
+    transform: translate(-50%, -62%) rotate(-9deg) scale(0.96, 1.08);
+  }
+  72% {
+    transform: translate(-50%, -47%) rotate(10deg) scale(1.07, 0.94);
+  }
+}
+
+@keyframes odd-racket-swing {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  38% {
+    transform: translate(-56%, -54%) rotate(-24deg) scale(1.04);
+  }
+  68% {
+    transform: translate(-44%, -48%) rotate(20deg) scale(1.08);
+  }
+}
+
+@keyframes odd-can-shake {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  28% {
+    transform: translate(-53%, -53%) rotate(-10deg) scale(1.05);
+  }
+  55% {
+    transform: translate(-47%, -49%) rotate(10deg) scale(1.08);
+  }
+  78% {
+    transform: translate(-52%, -51%) rotate(-6deg) scale(1.04);
   }
 }
 

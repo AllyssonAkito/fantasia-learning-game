@@ -14,7 +14,19 @@ type ScenePhase =
   | 'hiding'
   | 'reward';
 
-type SceneTheme = 'trees' | 'locks' | 'space' | 'ocean' | 'garden' | 'reef';
+type SceneTheme =
+  | 'trees'
+  | 'locks'
+  | 'space'
+  | 'ocean'
+  | 'garden'
+  | 'reef'
+  | 'closet'
+  | 'playground'
+  | 'breeze'
+  | 'tea'
+  | 'music'
+  | 'picnic';
 
 interface OddOneOutScene {
   theme: SceneTheme;
@@ -48,6 +60,30 @@ const oddOneOutScenes: Record<string, OddOneOutScene> = {
   'activity.logic.odd-one-out.006': {
     theme: 'reef',
     successLabel: 'O polvinho azul cresce, acena e mergulha.',
+  },
+  'activity.logic.odd-one-out.007': {
+    theme: 'closet',
+    successLabel: 'O chapéu cresce, gira e faz uma reverência.',
+  },
+  'activity.logic.odd-one-out.008': {
+    theme: 'playground',
+    successLabel: 'O alvo cresce e suas cores pulsam.',
+  },
+  'activity.logic.odd-one-out.009': {
+    theme: 'breeze',
+    successLabel: 'O guarda-chuva cresce, abre e gira com a brisa.',
+  },
+  'activity.logic.odd-one-out.010': {
+    theme: 'tea',
+    successLabel: 'O coco cresce, balança e dá um pulinho.',
+  },
+  'activity.logic.odd-one-out.011': {
+    theme: 'music',
+    successLabel: 'A raquete cresce e rebate uma bolinha imaginária.',
+  },
+  'activity.logic.odd-one-out.012': {
+    theme: 'picnic',
+    successLabel: 'A lata cresce, gira e balança como um chocalho.',
   },
 };
 

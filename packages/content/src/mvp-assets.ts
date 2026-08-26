@@ -121,7 +121,18 @@ function oddTreeSprite(
 }
 
 function oddSceneSprite(
-  sheet: 'locks' | 'planets' | 'starfish' | 'butterfly' | 'octopus',
+  sheet:
+    | 'locks'
+    | 'planets'
+    | 'starfish'
+    | 'butterfly'
+    | 'octopus'
+    | 'shoes'
+    | 'balls'
+    | 'fans'
+    | 'kettles'
+    | 'instruments'
+    | 'fruits',
   id: string,
   alt: string,
   column: 0 | 1,
@@ -192,6 +203,30 @@ export const mvpAssets = [
   oddSceneSprite('octopus', 'coral-fish', 'peixe tropical coral', 1, 0),
   oddSceneSprite('octopus', 'blue-octopus', 'polvinho azul da Melina', 0, 1),
   oddSceneSprite('octopus', 'lilac-fish', 'peixe tropical lilás', 1, 1),
+  oddSceneSprite('shoes', 'mint-sneaker', 'tênis infantil verde-menta', 0, 0),
+  oddSceneSprite('shoes', 'lilac-hat', 'chapéu lilás com laço amarelo', 1, 0),
+  oddSceneSprite('shoes', 'blue-boot', 'bota infantil azul', 0, 1),
+  oddSceneSprite('shoes', 'yellow-flat', 'sapatilha infantil amarela', 1, 1),
+  oddSceneSprite('balls', 'beach-ball', 'bola de praia azul e verde', 0, 0),
+  oddSceneSprite('balls', 'soccer-ball', 'bola de futebol lilás', 1, 0),
+  oddSceneSprite('balls', 'target', 'alvo redondo colorido', 0, 1),
+  oddSceneSprite('balls', 'tennis-ball', 'bola de tênis amarela', 1, 1),
+  oddSceneSprite('fans', 'mint-fan', 'leque verde-menta', 0, 0),
+  oddSceneSprite('fans', 'lilac-fan', 'leque lilás', 1, 0),
+  oddSceneSprite('fans', 'blue-fan', 'leque azul', 0, 1),
+  oddSceneSprite('fans', 'umbrella', 'guarda-chuva lilás e amarelo', 1, 1),
+  oddSceneSprite('kettles', 'coconut', 'coco aberto com folhas', 0, 0),
+  oddSceneSprite('kettles', 'mint-kettle', 'chaleira verde-menta', 1, 0),
+  oddSceneSprite('kettles', 'lilac-kettle', 'chaleira lilás', 0, 1),
+  oddSceneSprite('kettles', 'blue-kettle', 'chaleira azul', 1, 1),
+  oddSceneSprite('instruments', 'ukulele', 'ukulele verde-menta', 0, 0),
+  oddSceneSprite('instruments', 'violin', 'violino lilás', 1, 0),
+  oddSceneSprite('instruments', 'racket', 'raquete azul e amarela', 0, 1),
+  oddSceneSprite('instruments', 'drum', 'tambor verde e amarelo', 1, 1),
+  oddSceneSprite('fruits', 'pear', 'pera verde-clara', 0, 0),
+  oddSceneSprite('fruits', 'can', 'lata azul sem rótulo', 1, 0),
+  oddSceneSprite('fruits', 'banana', 'banana amarela', 0, 1),
+  oddSceneSprite('fruits', 'apple', 'maçã cor-de-rosa', 1, 1),
 ] as const;
 
 export const mvpAssetById = new Map(

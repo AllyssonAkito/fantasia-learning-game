@@ -86,8 +86,9 @@ deve continuar compreensível quando TTS, arquivo gravado ou efeitos falharem.
     convite cômico, sem susto ou frustração.
 11. Tocar o cachorrinho camuflado e confirmar a sequência: outras peças somem,
     personagem cresce, brinca, esconde-se na árvore e desaparece antes do modal.
-12. Percorrer as tarefas 2–6 e verificar se a criança reconhece, sem texto na
-    tela, chave, planeta amarelo, estrela-do-mar, borboleta e polvinho azul.
+12. Percorrer as tarefas 2–12 e verificar se a criança reconhece, sem texto na
+    tela, chave, planeta amarelo, estrela-do-mar, borboleta, polvinho azul,
+    chapéu, alvo, guarda-chuva, coco, raquete e lata.
 13. Confirmar que cada acerto apresenta uma ação curta coerente com a cena e que
     nenhuma paleta, som ou movimento é percebido como alerta ou punição.
 

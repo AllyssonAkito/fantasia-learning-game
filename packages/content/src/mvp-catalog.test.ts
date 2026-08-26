@@ -7,15 +7,15 @@ import { validatePublishableCatalog } from './publish-validation';
 describe('catálogo MVP', () => {
   it('publica o catálogo ampliado com cobertura mínima nas seis áreas', () => {
     expect(validatePublishableCatalog(mvpCatalogSeed, mvpAssets)).toEqual({
-      activities: 132,
+      activities: 138,
       areas: 6,
-      assets: 50,
+      assets: 74,
     });
     const counts = mvpContentCoverage.reduce<Record<string, number>>(
       (result, { area }) => ({ ...result, [area]: (result[area] ?? 0) + 1 }),
       {},
     );
-    expect(Object.values(counts)).toEqual([27, 21, 21, 21, 21, 21]);
+    expect(Object.values(counts)).toEqual([33, 21, 21, 21, 21, 21]);
   });
 
   it('usa somente recortes do mesmo mascote nas atividades de montagem', () => {
@@ -73,7 +73,7 @@ describe('catálogo MVP', () => {
     expect(catalog.getSkillsByTrail('trail.logic.adventure')).toHaveLength(7);
     expect(
       catalog.getActivitiesByLevel('level.logic.odd-one-out.01'),
-    ).toHaveLength(6);
+    ).toHaveLength(12);
     for (const levelId of [
       'level.logic.journey-a.01',
       'level.logic.journey-b.01',
@@ -131,12 +131,12 @@ describe('catálogo MVP', () => {
     );
   });
 
-  it('publica seis desafios visuais variados em O que não encaixa', () => {
+  it('publica doze desafios visuais variados em O que não encaixa', () => {
     const activities = mvpCatalogSeed.activities!.filter(
       ({ levelId }) => levelId === 'level.logic.odd-one-out.01',
     );
 
-    expect(activities).toHaveLength(6);
+    expect(activities).toHaveLength(12);
     expect(
       activities.map(({ content }) => {
         const definition = content as {
@@ -147,7 +147,7 @@ describe('catálogo MVP', () => {
           ({ id }) => id === definition.correctOptionId,
         );
       }),
-    ).toEqual([2, 3, 3, 2, 0, 2]);
+    ).toEqual([2, 3, 3, 2, 0, 2, 1, 2, 3, 0, 2, 1]);
     expect(activities.map(({ title }) => title)).toEqual([
       'O cachorrinho escondido',
       'A chave dos cadeados',
@@ -155,6 +155,12 @@ describe('catálogo MVP', () => {
       'A estrela entre os peixes',
       'A borboleta entre os pássaros',
       'O polvinho da Melina',
+      'O chapéu entre os sapatos',
+      'O alvo entre as bolas',
+      'O guarda-chuva entre os leques',
+      'O coco entre as chaleiras',
+      'A raquete entre os instrumentos',
+      'A lata entre as frutas',
     ]);
     expect(
       activities.every(({ engine, assets, content, instruction }) => {
